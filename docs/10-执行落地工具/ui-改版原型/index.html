@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>货袋子改版原型 · 双引擎</title>
+  <link rel="stylesheet" href="../../08-技术交付物/ui-prototype/styles.css">
+  <style>
+    body { padding: 40px 20px; }
+    .container { max-width: 960px; margin: 0 auto; }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    .subtitle { color: var(--text-secondary); margin-bottom: 32px; }
+    .pages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .page-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+      border: 1px solid var(--border);
+    }
+    .page-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+    .page-card .badge {
+      margin-bottom: 12px;
+    }
+    .page-card .title {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .page-card .desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .info-card {
+      background: linear-gradient(to right, #f0f9ff, #e0f2fe);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>货袋子改版原型 · 双引擎模式</h1>
+    <div class="subtitle">配套 docs/09-过渡方案 的产品改版高保真稿。这是在原平台/小程序上的模块化扩展，<strong>不是新小程序</strong>。</div>
+
+    <div class="info-card">
+      <h3 style="margin-bottom: 8px;">🎯 改版核心</h3>
+      <ul style="padding-left: 20px; line-height: 1.8; font-size: 14px;">
+        <li>原有功能（库存浏览、库存发布）<strong>100% 保留</strong></li>
+        <li>新增"💬 询价"入口，老用户可一键关闭</li>
+        <li>数据共享：卖家发的库存自动接询价，不需要学新东西</li>
+        <li>渐进灰度：5% → 25% → 60% → 100%</li>
+      </ul>
+    </div>
+
+    <div class="pages-grid">
+      <a href="01-首页改版-双入口.html" class="page-card">
+        <span class="badge badge-primary">改版重点</span>
+        <div class="title">📱 改版后首页（双入口）</div>
+        <div class="desc">"🔍 浏览库存"（保留）+ "💬 发起询价"（新增，金色 NEW 标） + 行情快报 + 库存瀑布流（保留）。</div>
+      </a>
+
+      <a href="02-卖家中心改版.html" class="page-card">
+        <span class="badge badge-success">卖家端</span>
+        <div class="title">👤 卖家中心改版</div>
+        <div class="desc">「我的库存」（保留）+「我的询价」（新）+「收益看板」（新） + 老用户专属礼包提示 + 一键关闭新功能入口。</div>
+      </a>
+
+      <a href="03-我的询价页.html" class="page-card">
+        <span class="badge badge-warning">新功能</span>
+        <div class="title">💬 我的询价（卖家端）</div>
+        <div class="desc">3 条新询价待处理 + 「库存匹配」标签 + 一键报价 + 老用户引导（30 秒视频教程）。</div>
+      </a>
+
+      <a href="../../08-技术交付物/ui-prototype/03-采购会话.html" class="page-card">
+        <span class="badge badge-primary">买家端（已有）</span>
+        <div class="title">💬 采购会话（买家端）</div>
+        <div class="desc">买家发起询价后看到的聚合看板 + AI 识变 + Top 3 盲价报价。</div>
+      </a>
+
+      <a href="../../08-技术交付物/ui-prototype/02-清单上传.html" class="page-card">
+        <span class="badge badge-primary">买家端（已有）</span>
+        <div class="title">📋 清单采购（买家端）</div>
+        <div class="desc">拍照/Excel/PDF/微信转发 5 种上传方式 + AI 解析。</div>
+      </a>
+
+      <a href="../../08-技术交付物/ui-prototype/index.html" class="page-card">
+        <span class="badge badge-neutral">查看更多</span>
+        <div class="title">→ 全部 UI 原型</div>
+        <div class="desc">查看完整的 6 个 UI 原型（含买家端、卖家端、报价配置器、清单确认等）。</div>
+      </a>
+    </div>
+
+    <div class="info-card" style="margin-top: 32px;">
+      <h3 style="margin-bottom: 8px;">🎨 设计要点</h3>
+      <ul style="padding-left: 20px; line-height: 1.8; font-size: 14px;">
+        <li><strong>顶部信息条</strong>：M5 上线时展示"平台已升级！您发的库存能接询价了"，30 天后消失</li>
+        <li><strong>双入口卡片</strong>：左侧蓝色（老功能）+ 右侧金色（新功能 NEW）</li>
+        <li><strong>NEW 标签</strong>：所有新功能用金色 NEW 标识，3 个月后移除</li>
+        <li><strong>一键关闭</strong>：每个新功能页都有"关闭新功能"链接（不显眼但可见）</li>
+        <li><strong>老用户专属</strong>：礼包卡片高亮提示，金色背景</li>
+        <li><strong>库存匹配标签</strong>：卖家收到询价时，平台自动识别"您的库存可匹配"，绿色背景</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

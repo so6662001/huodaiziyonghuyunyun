@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的询价（卖家端新功能）· 货袋子</title>
+  <link rel="stylesheet" href="../../08-技术交付物/ui-prototype/styles.css">
+  <style>
+    .tabs {
+      display: flex;
+      background: white;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tabs .tab-item {
+      flex: 1;
+      text-align: center;
+      padding: 14px 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      position: relative;
+    }
+    .tabs .tab-item.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .tabs .tab-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    .tabs .tab-item .num {
+      background: var(--danger);
+      color: white;
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 8px;
+      margin-left: 4px;
+      vertical-align: top;
+    }
+    .inquiry-card {
+      background: white;
+      border-radius: 12px;
+      padding: 14px;
+      margin: 10px 16px;
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid var(--primary);
+    }
+    .inquiry-card.matched {
+      border-left-color: var(--success);
+      background: linear-gradient(to right, #ecfdf5 0%, white 30%);
+    }
+    .inquiry-card.urgent {
+      border-left-color: var(--warning);
+    }
+    .inquiry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .buyer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .buyer-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .buyer-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .time-badge {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .product-info {
+      background: var(--bg-light);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .product-name {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .product-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+    .match-tip {
+      background: var(--success-light);
+      color: var(--success);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .actions-row {
+      display: flex;
+      gap: 8px;
+    }
+    .actions-row .btn {
+      flex: 1;
+      font-size: 13px;
+      padding: 8px;
+    }
+    .filter-bar {
+      background: white;
+      padding: 12px 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-bar .chip {
+      padding: 4px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      background: white;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .filter-bar .chip.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .help-banner {
+      background: linear-gradient(to right, #f0f9ff, #e0f2fe);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 16px;
+      font-size: 13px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">我的询价</span>
+      <div class="actions"><span style="font-size: 18px;">⚙️</span></div>
+    </div>
+
+    <!-- 老用户引导 -->
+    <div class="help-banner">
+      💡 您是首次使用此功能 · <span style="text-decoration: underline; cursor: pointer;">看 30 秒视频教程</span>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab-item active">待处理 <span class="num">3</span></div>
+      <div class="tab-item">已报价 <span style="color: var(--text-muted); font-size: 11px;">12</span></div>
+      <div class="tab-item">已成交 <span style="color: var(--text-muted); font-size: 11px;">5</span></div>
+      <div class="tab-item">已关闭 <span style="color: var(--text-muted); font-size: 11px;">7</span></div>
+    </div>
+
+    <!-- 筛选 -->
+    <div class="filter-bar">
+      <div class="chip active">全部</div>
+      <div class="chip">优质买家 ⭐</div>
+      <div class="chip">库存匹配 ✅</div>
+      <div class="chip">本周新增</div>
+      <div class="chip">悬赏单</div>
+    </div>
+
+    <!-- 询价 1：库存完全匹配 -->
+    <div class="inquiry-card matched">
+      <div class="match-tip">
+        ✅ <strong>您的库存匹配</strong> - 50 吨现货可立即报价
+      </div>
+
+      <div class="inquiry-header">
+        <div class="buyer-info">
+          <div class="buyer-name">天津 ZZ 钢结构</div>
+          <div class="buyer-meta">
+            <span style="background: var(--success-light); color: var(--success); padding: 1px 6px; border-radius: 3px; font-size: 10px;">🟢 主力买家</span>
+            <span>90 天成交 5 单</span>
+            <span>·</span>
+            <span>已认证</span>
+          </div>
+        </div>
+        <div class="time-badge">8 分钟前</div>
+      </div>
+
+      <div class="product-info">
+        <div class="product-name">热轧卷板 Q235B 5.5×1500×C</div>
+        <div class="product-meta">
+          <div>📦 数量：50 吨</div>
+          <div>📍 到货：天津·北辰</div>
+          <div>📅 交期：3 天内</div>
+          <div>💰 账期：现款</div>
+        </div>
+      </div>
+
+      <div style="font-size: 12px; color: var(--warning); margin-bottom: 10px;">
+        ⏱ 剩余响应时间：28 分钟
+      </div>
+
+      <div class="actions-row">
+        <button class="btn btn-primary">⚡ 一键报价 ¥4280</button>
+        <button class="btn btn-secondary">自定义</button>
+      </div>
+    </div>
+
+    <!-- 询价 2：部分匹配 -->
+    <div class="inquiry-card">
+      <div class="inquiry-header">
+        <div class="buyer-info">
+          <div class="buyer-name">唐山 XX 机械</div>
+          <div class="buyer-meta">
+            <span style="background: var(--primary-light); color: var(--primary); padding: 1px 6px; border-radius: 3px; font-size: 10px;">🔵 新买家</span>
+            <span>资料完整</span>
+          </div>
+        </div>
+        <div class="time-badge">23 分钟前</div>
+      </div>
+
+      <div class="product-info">
+        <div class="product-name">热轧卷板 Q235B 6×1500×C</div>
+        <div class="product-meta">
+          <div>📦 数量：80 吨</div>
+          <div>📍 到货：唐山</div>
+          <div>📅 交期：5 天</div>
+          <div>💰 账期：现款</div>
+        </div>
+      </div>
+
+      <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;">
+        💡 您发布的 5.5×1500 库存可调换 6×1500（库存内可调）
+      </div>
+
+      <div class="actions-row">
+        <button class="btn btn-primary">报价</button>
+        <button class="btn btn-secondary">不接</button>
+      </div>
+    </div>
+
+    <!-- 询价 3：紧急悬赏 -->
+    <div class="inquiry-card urgent">
+      <div style="background: var(--warning-light); color: var(--warning); padding: 6px 10px; border-radius: 6px; font-size: 12px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+        🔥 <strong>悬赏单</strong> - 价高者优先 + 加急
+      </div>
+
+      <div class="inquiry-header">
+        <div class="buyer-info">
+          <div class="buyer-name">天津 AA 集装箱厂</div>
+          <div class="buyer-meta">
+            <span style="background: #fdf6e3; color: var(--gold); padding: 1px 6px; border-radius: 3px; font-size: 10px;">🟡 优质买家 ⭐</span>
+            <span>90 天成交 15 单</span>
+          </div>
+        </div>
+        <div class="time-badge">45 分钟前</div>
+      </div>
+
+      <div class="product-info">
+        <div class="product-name">热轧卷板 Q235B 5.5×1500×C</div>
+        <div class="product-meta">
+          <div>📦 数量：120 吨</div>
+          <div>📍 到货：天津</div>
+          <div>📅 交期：2 天 加急</div>
+          <div>💰 账期：现款</div>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <button class="btn btn-warning">⚡ 抢报价</button>
+        <button class="btn btn-secondary">查看历史</button>
+      </div>
+    </div>
+
+    <!-- 底部说明 -->
+    <div style="padding: 20px 16px; text-align: center; font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+      💬 已经为您过滤掉 7 条不匹配询价<br>
+      ⚙️ <a style="color: var(--primary); text-decoration: underline;">调整接单偏好</a> · 
+      <a style="color: var(--primary); text-decoration: underline;">关闭新功能</a>
+    </div>
+
+  </div>
+</body>
+</html>
