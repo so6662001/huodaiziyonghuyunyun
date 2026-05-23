@@ -1,0 +1,2065 @@
+openapi: 3.0.3
+info:
+  title: 货袋子平台 API
+  description: |
+    钢贸 B2B 撮合平台「货袋子」完整 API 规范。
+
+    ## 模块覆盖
+    - M1 用户与认证
+    - M2 采购会话（核心）
+    - M3 清单采购
+    - M4 报价系统
+    - M5 智能匹配引擎
+    - M6 信用体系
+    - M7 卖家工具包
+    - M8 买家工具包
+    - M9 微信集成
+    - M10 商业化产品
+    - M11 风控
+
+    ## 通用约定
+    - 所有时间为 ISO 8601 UTC 格式
+    - 金额单位：元（人民币），保留 2 位小数
+    - 重量单位：吨，保留 3 位小数
+    - 鉴权：Bearer Token (JWT)
+    - 错误码统一格式：{ code, message, details? }
+  version: 2.0.0
+  contact:
+    name: 货袋子技术团队
+    email: tech@huodaizi.com
+  license:
+    name: 内部专用
+
+servers:
+  - url: https://api.huodaizi.com/v1
+    description: 生产环境
+  - url: https://api-staging.huodaizi.com/v1
+    description: 灰度环境
+  - url: http://localhost:8080/v1
+    description: 本地开发
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Auth
+    description: 鉴权
+  - name: Users
+    description: 用户与企业
+  - name: Sessions
+    description: 采购会话（核心）
+  - name: DemandCards
+    description: 动态需求卡片
+  - name: Lists
+    description: 采购清单
+  - name: Quotes
+    description: 报价系统
+  - name: Dispatch
+    description: 智能匹配派单
+  - name: Credit
+    description: 信用体系
+  - name: Wechat
+    description: 微信集成
+  - name: Commercial
+    description: 商业化产品
+  - name: Risk
+    description: 风控
+
+paths:
+  # ========== Auth 鉴权 ==========
+  /auth/wechat-login:
+    post:
+      tags: [Auth]
+      summary: 微信小程序授权登录
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [code]
+              properties:
+                code:
+                  type: string
+                  description: 微信小程序登录 code
+                user_info:
+                  $ref: '#/components/schemas/WechatUserInfo'
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+
+  /auth/sms-send:
+    post:
+      tags: [Auth]
+      summary: 发送短信验证码
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [phone]
+              properties:
+                phone:
+                  type: string
+                  pattern: '^1[3-9]\d{9}$'
+                scenario:
+                  type: string
+                  enum: [login, register, bind, reset]
+      responses:
+        '200':
+          description: 已发送
+
+  /auth/sms-login:
+    post:
+      tags: [Auth]
+      summary: 短信验证码登录
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [phone, code]
+              properties:
+                phone:
+                  type: string
+                code:
+                  type: string
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+
+  # ========== Users 用户 ==========
+  /users/me:
+    get:
+      tags: [Users]
+      summary: 获取当前用户信息
+      responses:
+        '200':
+          description: 用户信息
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    patch:
+      tags: [Users]
+      summary: 更新用户信息
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                avatar:
+                  type: string
+                current_view:
+                  type: string
+                  enum: [buyer, seller]
+      responses:
+        '200':
+          description: 已更新
+
+  /users/me/switch-view:
+    post:
+      tags: [Users]
+      summary: 切换买家/卖家视角
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [target_view]
+              properties:
+                target_view:
+                  type: string
+                  enum: [buyer, seller]
+      responses:
+        '200':
+          description: 切换成功
+
+  /companies:
+    post:
+      tags: [Users]
+      summary: 创建企业账户
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCreate'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+
+  /companies/ocr:
+    post:
+      tags: [Users]
+      summary: OCR 识别营业执照
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: 识别结果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  business_license_no:
+                    type: string
+                  company_name:
+                    type: string
+                  legal_person:
+                    type: string
+                  registered_address:
+                    type: string
+                  ocr_confidence:
+                    type: number
+
+  /companies/{id}:
+    get:
+      tags: [Users]
+      summary: 查询企业详情
+      parameters:
+        - $ref: '#/components/parameters/CompanyId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+
+  # ========== Purchase Sessions 采购会话 ==========
+  /purchase-sessions:
+    post:
+      tags: [Sessions]
+      summary: 创建采购会话
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [product_category, material_grade, spec, quantity_ton, delivery_city]
+              properties:
+                product_category:
+                  type: string
+                  example: 热轧卷板
+                material_grade:
+                  type: string
+                  example: Q235B
+                spec:
+                  type: string
+                  example: 5.5×1500×C
+                quantity_ton:
+                  type: number
+                  example: 50
+                delivery_city:
+                  type: string
+                  example: 天津
+                delivery_district:
+                  type: string
+                delivery_date_start:
+                  type: string
+                  format: date
+                delivery_date_end:
+                  type: string
+                  format: date
+                payment_terms:
+                  type: string
+                  enum: [cash, 3d, 7d, 30d]
+                note:
+                  type: string
+                priority:
+                  type: string
+                  enum: [standard, urgent, bounty]
+                  default: standard
+                project_id:
+                  type: string
+                  description: 关联项目（可选）
+                source:
+                  type: string
+                  enum: [app, h5, miniprogram, wechat_bot, ai_voice, photo, list]
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseSession'
+
+    get:
+      tags: [Sessions]
+      summary: 我的会话列表
+      parameters:
+        - name: role
+          in: query
+          schema:
+            type: string
+            enum: [buyer, seller]
+        - name: status
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageToken'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSessions'
+
+  /purchase-sessions/{id}:
+    get:
+      tags: [Sessions]
+      summary: 查询会话详情
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseSessionDetail'
+
+  /purchase-sessions/{id}/aggregated:
+    get:
+      tags: [Sessions]
+      summary: 买家聚合视图
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AggregatedView'
+
+  /purchase-sessions/{id}/cards:
+    post:
+      tags: [DemandCards]
+      summary: 变更需求卡片（创建新版本）
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity_ton:
+                  type: number
+                spec:
+                  type: string
+                delivery_date_start:
+                  type: string
+                  format: date
+                payment_terms:
+                  type: string
+                changed_by:
+                  type: string
+                  enum: [buyer, ai_assist]
+                change_reason:
+                  type: string
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DemandCard'
+
+    get:
+      tags: [DemandCards]
+      summary: 查询所有卡片版本
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DemandCard'
+
+  /cards/{card_id}/response:
+    post:
+      tags: [DemandCards]
+      summary: 卖家响应卡片变更
+      parameters:
+        - name: card_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [action]
+              properties:
+                action:
+                  type: string
+                  enum: [maintain_price, adjust_price, set_tier, withdraw]
+                new_price:
+                  type: number
+                tier_pricing:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/TierPricing'
+      responses:
+        '200':
+          description: 响应成功
+
+  # ========== 采购清单 ==========
+  /procurement-lists/upload:
+    post:
+      tags: [Lists]
+      summary: 上传清单（多模态）
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [source]
+              properties:
+                file:
+                  type: string
+                  format: binary
+                source:
+                  type: string
+                  enum: [photo, excel, pdf, wechat_forward, paste, manual]
+                project_id:
+                  type: string
+                mode:
+                  type: string
+                  enum: [precise, fuzzy]
+                  default: precise
+      responses:
+        '202':
+          description: 已接收，开始解析
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  list_id:
+                    type: string
+                  parsing_job_id:
+                    type: string
+                  estimated_seconds:
+                    type: integer
+
+  /procurement-lists/{id}/parsing-status:
+    get:
+      tags: [Lists]
+      summary: 查询解析进度
+      parameters:
+        - $ref: '#/components/parameters/ListId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [parsing, ready_for_confirm, confirmed, dispatched, closed, failed]
+                  progress:
+                    type: integer
+                    minimum: 0
+                    maximum: 100
+                  total_lines:
+                    type: integer
+                  uncertain_lines:
+                    type: array
+                    items:
+                      type: integer
+
+  /procurement-lists/{id}/confirm:
+    post:
+      tags: [Lists]
+      summary: 确认清单并发起询价
+      parameters:
+        - $ref: '#/components/parameters/ListId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                corrections:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      line_number:
+                        type: integer
+                      field:
+                        type: string
+                      new_value:
+                        oneOf:
+                          - type: string
+                          - type: number
+                mode:
+                  type: string
+                  enum: [precise, fuzzy]
+      responses:
+        '200':
+          description: 已确认，开始拆单
+
+  /procurement-lists/{id}/lines:
+    get:
+      tags: [Lists]
+      summary: 清单明细
+      parameters:
+        - $ref: '#/components/parameters/ListId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ListLine'
+
+  /procurement-lists/{id}/dispatch:
+    post:
+      tags: [Lists]
+      summary: 触发智能拆单+派发
+      parameters:
+        - $ref: '#/components/parameters/ListId'
+      responses:
+        '200':
+          description: 已派发
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sub_lists:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        category:
+                          type: string
+                        line_count:
+                          type: integer
+                        sellers_invited:
+                          type: integer
+
+  /procurement-lists/{id}/calculate-combos:
+    post:
+      tags: [Lists]
+      summary: 计算最优组合方案
+      parameters:
+        - $ref: '#/components/parameters/ListId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                strategies:
+                  type: array
+                  items:
+                    type: string
+                    enum: [lowest_cost, one_stop, fastest, highest_credit]
+                  default: [lowest_cost, one_stop, fastest, highest_credit]
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OptimalCombo'
+
+  /procurement-lists/{id}/select-combo:
+    post:
+      tags: [Lists]
+      summary: 买家选择方案
+      parameters:
+        - $ref: '#/components/parameters/ListId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [combo_id]
+              properties:
+                combo_id:
+                  type: string
+      responses:
+        '200':
+          description: 已选择
+
+  /procurement-lists/{id}/comparison-pdf:
+    get:
+      tags: [Lists]
+      summary: 导出比价单 PDF
+      parameters:
+        - $ref: '#/components/parameters/ListId'
+        - name: template
+          in: query
+          schema:
+            type: string
+            enum: [simple, detailed, bid_compliant]
+            default: detailed
+      responses:
+        '200':
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+
+  # ========== Quotes 报价 ==========
+  /quotes:
+    post:
+      tags: [Quotes]
+      summary: 卖家创建报价（6 维方案）
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteCreate'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+
+  /quotes/{id}:
+    get:
+      tags: [Quotes]
+      summary: 查询报价
+      parameters:
+        - $ref: '#/components/parameters/QuoteId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+    patch:
+      tags: [Quotes]
+      summary: 更新报价
+      parameters:
+        - $ref: '#/components/parameters/QuoteId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: 已更新
+    delete:
+      tags: [Quotes]
+      summary: 撤回报价
+      parameters:
+        - $ref: '#/components/parameters/QuoteId'
+      responses:
+        '204':
+          description: 已撤回
+
+  /quotes/{id}/calculate:
+    post:
+      tags: [Quotes]
+      summary: 买家实时算价（无副作用）
+      parameters:
+        - $ref: '#/components/parameters/QuoteId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [quantity, spec]
+              properties:
+                quantity:
+                  type: number
+                spec:
+                  type: string
+                add_ons:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  unit_price:
+                    type: number
+                  total_price:
+                    type: number
+                  breakdown:
+                    type: object
+
+  /quotes/batch:
+    post:
+      tags: [Quotes]
+      summary: 批量报价（清单场景）
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                list_id:
+                  type: string
+                line_quotes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      line_id:
+                        type: string
+                      unit_price:
+                        type: number
+                      include_freight:
+                        type: boolean
+                      available_qty:
+                        type: number
+                      valid_until:
+                        type: string
+                        format: date-time
+      responses:
+        '201':
+          description: 批量创建成功
+
+  /quotes/import-excel:
+    post:
+      tags: [Quotes]
+      summary: Excel 上传报价
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                list_id:
+                  type: string
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: 已解析
+
+  # ========== Negotiations 议价 ==========
+  /negotiations:
+    post:
+      tags: [Quotes]
+      summary: 买家发起还价
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [quote_id, proposed_price]
+              properties:
+                quote_id:
+                  type: string
+                proposed_price:
+                  type: number
+                reason:
+                  type: string
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Negotiation'
+
+  /negotiations/{id}/accept:
+    post:
+      tags: [Quotes]
+      summary: 卖家同意还价
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 已同意
+
+  /negotiations/{id}/reject:
+    post:
+      tags: [Quotes]
+      summary: 卖家拒绝
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 已拒绝
+
+  /negotiations/{id}/counter:
+    post:
+      tags: [Quotes]
+      summary: 卖家反提议
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [counter_price]
+              properties:
+                counter_price:
+                  type: number
+                reason:
+                  type: string
+      responses:
+        '201':
+          description: 已反提议
+
+  # ========== Dispatch 派单 ==========
+  /dispatch/match:
+    post:
+      tags: [Dispatch]
+      summary: 触发派单（内部接口）
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [session_id]
+              properties:
+                session_id:
+                  type: string
+      responses:
+        '202':
+          description: 已触发派单
+      x-internal: true
+
+  /sellers/me/dispatches:
+    get:
+      tags: [Dispatch]
+      summary: 卖家收到的派单
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, engaged, rejected, expired]
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDispatches'
+
+  /dispatches/{id}/accept:
+    post:
+      tags: [Dispatch]
+      summary: 卖家接单
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 已接单
+
+  /dispatches/{id}/reject:
+    post:
+      tags: [Dispatch]
+      summary: 卖家拒单
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: 已拒单
+
+  /sellers/me/preferences:
+    get:
+      tags: [Dispatch]
+      summary: 获取接单偏好
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SellerPreference'
+    put:
+      tags: [Dispatch]
+      summary: 更新接单偏好
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerPreference'
+      responses:
+        '200':
+          description: 已更新
+
+  # ========== AI 服务 ==========
+  /ai/detect-intent:
+    post:
+      tags: [Sessions]
+      summary: AI 识变（识别 IM 中的需求变更意图）
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [stream_id, message_content]
+              properties:
+                stream_id:
+                  type: string
+                message_content:
+                  type: string
+                current_card_id:
+                  type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  intent_id:
+                    type: string
+                  has_intent:
+                    type: boolean
+                  intent_type:
+                    type: string
+                    enum: [change_quantity, change_spec, change_delivery, change_payment, request_quote, negotiate_price, none]
+                  extracted_fields:
+                    type: object
+                  confidence:
+                    type: number
+                  natural_summary:
+                    type: string
+
+  /ai/intents/{id}/confirm:
+    post:
+      tags: [Sessions]
+      summary: 用户确认 AI 识别
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  enum: [confirm, reject]
+      responses:
+        '200':
+          description: 已处理
+
+  # ========== Credit 信用 ==========
+  /users/{id}/credit-score:
+    get:
+      tags: [Credit]
+      summary: 查询信用分
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditScore'
+
+  /sellers/me/verification/apply:
+    post:
+      tags: [Credit]
+      summary: 申请实地核验
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                appointment_window:
+                  type: string
+                contact_phone:
+                  type: string
+      responses:
+        '202':
+          description: 已申请
+
+  /appeals:
+    post:
+      tags: [Credit]
+      summary: 发起申诉
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [target_type, target_id, reason]
+              properties:
+                target_type:
+                  type: string
+                  enum: [rating, credit_score, penalty, transaction]
+                target_id:
+                  type: string
+                reason:
+                  type: string
+                evidence:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appeal'
+
+  /reviews:
+    post:
+      tags: [Credit]
+      summary: 提交评价
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reviewee_id, session_id, rating]
+              properties:
+                reviewee_id:
+                  type: string
+                session_id:
+                  type: string
+                rating:
+                  type: integer
+                  minimum: 1
+                  maximum: 5
+                comment:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: 已提交
+
+  # ========== Wechat 微信 ==========
+  /wechat/bind:
+    post:
+      tags: [Wechat]
+      summary: 绑定微信
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [open_id, union_id]
+              properties:
+                open_id:
+                  type: string
+                union_id:
+                  type: string
+                is_corporate_wechat:
+                  type: boolean
+      responses:
+        '200':
+          description: 绑定成功
+
+  /webhook/wechat-bot:
+    post:
+      tags: [Wechat]
+      summary: 企微回调（机器人）
+      security: []
+      x-external: true
+      requestBody:
+        content:
+          application/xml: {}
+      responses:
+        '200':
+          description: 已接收
+
+  /virtual-numbers/create-call:
+    post:
+      tags: [Wechat]
+      summary: 创建虚拟号呼叫
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [callee_user_id, session_id]
+              properties:
+                callee_user_id:
+                  type: string
+                session_id:
+                  type: string
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  call_id:
+                    type: string
+                  virtual_number:
+                    type: string
+                  expires_at:
+                    type: string
+                    format: date-time
+
+  # ========== Commercial 商业化 ==========
+  /sellers/me/membership:
+    get:
+      tags: [Commercial]
+      summary: 当前会员
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Membership'
+
+  /sellers/me/membership/upgrade:
+    post:
+      tags: [Commercial]
+      summary: 升级会员
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [target_tier]
+              properties:
+                target_tier:
+                  type: string
+                  enum: [basic, gold, diamond]
+      responses:
+        '200':
+          description: 已生成支付订单
+
+  /traffic-wallets/me:
+    get:
+      tags: [Commercial]
+      summary: 流量账户
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrafficWallet'
+
+  /traffic-wallets/recharge:
+    post:
+      tags: [Commercial]
+      summary: 充值流量
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [amount]
+              properties:
+                amount:
+                  type: number
+                  minimum: 100
+                package_id:
+                  type: string
+                  description: 套餐 ID（可选）
+      responses:
+        '201':
+          description: 已生成支付订单
+
+  /traffic-charges/{id}/appeal:
+    post:
+      tags: [Commercial]
+      summary: 申诉无效线索
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reason]
+              properties:
+                reason:
+                  type: string
+                  enum: [duplicate, fake_buyer, no_contact, no_intent, deal_lost]
+                evidence:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: 申诉已提交
+
+  /saas-contracts:
+    post:
+      tags: [Commercial]
+      summary: 签约企业 SaaS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [product, company_id]
+              properties:
+                product:
+                  type: string
+                  enum: [procurement_saas, enterprise_suite, vip_buyer_service]
+                company_id:
+                  type: string
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaaSContract'
+
+  # ========== Risk 风控 ==========
+  /risk/check:
+    post:
+      tags: [Risk]
+      summary: 实时风控校验
+      x-internal: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [user_id, action]
+              properties:
+                user_id:
+                  type: string
+                action:
+                  type: string
+                context:
+                  type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pass:
+                    type: boolean
+                  triggered_rules:
+                    type: array
+                    items:
+                      type: string
+                  disposition:
+                    type: string
+
+  /market-references:
+    get:
+      tags: [Risk]
+      summary: 查询市场参考价
+      parameters:
+        - name: category
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: material
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: spec
+          in: query
+          schema:
+            type: string
+        - name: region
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: timeframe_days
+          in: query
+          schema:
+            type: integer
+            default: 7
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketReference'
+
+# ====================================
+# Components
+# ====================================
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    SessionId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: ps_20260523001
+    ListId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: pl_20260523001
+    QuoteId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    CompanyId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    PageSize:
+      name: page_size
+      in: query
+      schema:
+        type: integer
+        default: 20
+        minimum: 1
+        maximum: 100
+    PageToken:
+      name: page_token
+      in: query
+      schema:
+        type: string
+
+  schemas:
+    # ----- 基础类型 -----
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          example: INVALID_PARAM
+        message:
+          type: string
+        details:
+          type: object
+        request_id:
+          type: string
+
+    Pagination:
+      type: object
+      properties:
+        page_size:
+          type: integer
+        next_page_token:
+          type: string
+        has_more:
+          type: boolean
+
+    # ----- Auth -----
+    AuthResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        expires_in:
+          type: integer
+        user:
+          $ref: '#/components/schemas/User'
+
+    WechatUserInfo:
+      type: object
+      properties:
+        nickname:
+          type: string
+        avatar_url:
+          type: string
+
+    # ----- User -----
+    User:
+      type: object
+      properties:
+        user_id:
+          type: string
+        phone:
+          type: string
+        wechat_open_id:
+          type: string
+        name:
+          type: string
+        avatar:
+          type: string
+        primary_role:
+          type: string
+          enum: [buyer, seller, both]
+        current_view:
+          type: string
+          enum: [buyer, seller]
+        companies:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyBrief'
+        growth_account:
+          $ref: '#/components/schemas/GrowthAccount'
+        created_at:
+          type: string
+          format: date-time
+
+    CompanyBrief:
+      type: object
+      properties:
+        company_id:
+          type: string
+        name:
+          type: string
+        verification_level:
+          type: string
+        role:
+          type: string
+
+    Company:
+      type: object
+      properties:
+        company_id:
+          type: string
+        business_license_no:
+          type: string
+        name:
+          type: string
+        legal_person:
+          type: string
+        registered_address:
+          type: string
+        operating_address:
+          type: string
+        industry:
+          type: string
+        scale:
+          type: string
+          enum: [small, medium, large]
+        verified:
+          type: boolean
+        verification_level:
+          type: string
+          enum: [L1, L2, L3, L4]
+        created_at:
+          type: string
+          format: date-time
+
+    CompanyCreate:
+      type: object
+      required: [business_license_no, name]
+      properties:
+        business_license_no:
+          type: string
+        name:
+          type: string
+        legal_person:
+          type: string
+        registered_address:
+          type: string
+        industry:
+          type: string
+
+    GrowthAccount:
+      type: object
+      properties:
+        total_inquiries:
+          type: integer
+        total_deals:
+          type: integer
+        total_savings:
+          type: number
+        current_level:
+          type: string
+          enum: [novice, experienced, expert, master]
+        badges:
+          type: array
+          items:
+            type: string
+
+    # ----- Session -----
+    PurchaseSession:
+      type: object
+      properties:
+        session_id:
+          type: string
+        initiator_buyer_id:
+          type: string
+        initiator_company_id:
+          type: string
+        status:
+          type: string
+          enum: [active, matching, quoting, negotiating, deal, expired, closed, cancelled]
+        priority:
+          type: string
+        project_id:
+          type: string
+        procurement_list_id:
+          type: string
+        current_card:
+          $ref: '#/components/schemas/DemandCard'
+        total_quotes:
+          type: integer
+        total_contacts:
+          type: integer
+        total_changes:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        last_activity_at:
+          type: string
+          format: date-time
+
+    PurchaseSessionDetail:
+      allOf:
+        - $ref: '#/components/schemas/PurchaseSession'
+        - type: object
+          properties:
+            sellers:
+              type: array
+              items:
+                $ref: '#/components/schemas/SellerParticipation'
+            timeline:
+              type: array
+              items:
+                $ref: '#/components/schemas/SessionEvent'
+
+    PaginatedSessions:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseSession'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    AggregatedView:
+      type: object
+      properties:
+        session:
+          $ref: '#/components/schemas/PurchaseSession'
+        top_quotes:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuoteAggregated'
+        other_quotes_count:
+          type: integer
+        timeline:
+          type: array
+          items:
+            $ref: '#/components/schemas/SessionEvent'
+
+    SessionEvent:
+      type: object
+      properties:
+        event_id:
+          type: string
+        event_type:
+          type: string
+        actor_id:
+          type: string
+        payload:
+          type: object
+        created_at:
+          type: string
+          format: date-time
+
+    # ----- DemandCard -----
+    DemandCard:
+      type: object
+      properties:
+        card_id:
+          type: string
+        session_id:
+          type: string
+        version:
+          type: integer
+        is_current:
+          type: boolean
+        product_category:
+          type: string
+        material_grade:
+          type: string
+        spec:
+          type: string
+        quantity_ton:
+          type: number
+        delivery_city:
+          type: string
+        delivery_district:
+          type: string
+        delivery_date_start:
+          type: string
+          format: date
+        delivery_date_end:
+          type: string
+          format: date
+        payment_terms:
+          type: string
+        note:
+          type: string
+        changed_fields:
+          type: array
+          items:
+            type: string
+        changed_by:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    # ----- ListLine -----
+    ListLine:
+      type: object
+      properties:
+        line_id:
+          type: string
+        list_id:
+          type: string
+        line_number:
+          type: integer
+        product_category:
+          type: string
+        material_grade:
+          type: string
+        spec:
+          type: string
+        quantity_ton:
+          type: number
+        delivery_date:
+          type: string
+          format: date
+        delivery_location:
+          type: string
+        notes:
+          type: string
+        ai_extracted:
+          type: boolean
+        ai_confidence:
+          type: number
+        ai_uncertain:
+          type: boolean
+        raw_text:
+          type: string
+        user_corrected:
+          type: boolean
+
+    # ----- Quote -----
+    QuoteCreate:
+      type: object
+      required: [session_id, base_unit_price, available_qty, valid_until]
+      properties:
+        session_id:
+          type: string
+        base_unit_price:
+          type: number
+        available_qty:
+          type: number
+        valid_until:
+          type: string
+          format: date-time
+        tier_pricing:
+          type: array
+          items:
+            $ref: '#/components/schemas/TierPricing'
+        spec_adjustments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpecAdjustment'
+        add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddOn'
+        notes:
+          type: string
+
+    Quote:
+      type: object
+      properties:
+        quote_id:
+          type: string
+        session_id:
+          type: string
+        card_version:
+          type: integer
+        seller_id:
+          type: string
+        status:
+          type: string
+        base_unit_price:
+          type: number
+        available_qty:
+          type: number
+        valid_until:
+          type: string
+          format: date-time
+        tier_pricing:
+          type: array
+          items:
+            $ref: '#/components/schemas/TierPricing'
+        spec_adjustments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpecAdjustment'
+        add_ons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddOn'
+        market_reference_price:
+          type: number
+        estimated_profit_margin:
+          type: number
+        created_at:
+          type: string
+          format: date-time
+
+    QuoteAggregated:
+      type: object
+      properties:
+        quote_id:
+          type: string
+        seller_anonymous_id:
+          type: string
+        seller_credit_score:
+          type: integer
+        seller_distance_km:
+          type: number
+        seller_historical_deals:
+          type: integer
+        display_price:
+          type: number
+        display_total:
+          type: number
+        valid_until:
+          type: string
+          format: date-time
+        services:
+          type: object
+        match_score:
+          type: number
+
+    TierPricing:
+      type: object
+      properties:
+        quantity_threshold:
+          type: number
+        unit_price:
+          type: number
+
+    SpecAdjustment:
+      type: object
+      properties:
+        spec:
+          type: string
+        price_delta:
+          type: number
+
+    AddOn:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [include_freight, urgent_delivery, normal_invoice, special_invoice, payment_term_30d, quality_certificate, custom]
+        label:
+          type: string
+        price_delta:
+          type: number
+
+    Negotiation:
+      type: object
+      properties:
+        negotiation_id:
+          type: string
+        quote_id:
+          type: string
+        initiator:
+          type: string
+        proposed_price:
+          type: number
+        reason:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    # ----- Dispatch / Seller -----
+    SellerParticipation:
+      type: object
+      properties:
+        participation_id:
+          type: string
+        session_id:
+          type: string
+        seller_id:
+          type: string
+        dispatch_score:
+          type: number
+        pool_level:
+          type: string
+          enum: [pilot, standard, premium]
+        status:
+          type: string
+        joined_at:
+          type: string
+          format: date-time
+
+    PaginatedDispatches:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+
+    SellerPreference:
+      type: object
+      properties:
+        accept_pools:
+          type: array
+          items:
+            type: string
+        categories:
+          type: array
+          items:
+            type: string
+        regions:
+          type: array
+          items:
+            type: string
+        daily_max:
+          type: integer
+        min_order_amount:
+          type: number
+        max_order_amount:
+          type: number
+        min_profit_margin:
+          type: number
+
+    # ----- Credit -----
+    CreditScore:
+      type: object
+      properties:
+        user_id:
+          type: string
+        role:
+          type: string
+        current_score:
+          type: integer
+        level:
+          type: string
+        base_score:
+          type: integer
+        computed_at:
+          type: string
+          format: date-time
+
+    Appeal:
+      type: object
+      properties:
+        appeal_id:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    # ----- Optimal Combo -----
+    OptimalCombo:
+      type: object
+      properties:
+        combo_id:
+          type: string
+        strategy:
+          type: string
+        total_cost:
+          type: number
+        total_sellers:
+          type: integer
+        estimated_delivery_days:
+          type: integer
+        avg_credit_score:
+          type: number
+        line_assignments:
+          type: array
+          items:
+            type: object
+            properties:
+              line_id:
+                type: string
+              assigned_seller_id:
+                type: string
+              unit_price:
+                type: number
+              total_price:
+                type: number
+
+    # ----- Commercial -----
+    Membership:
+      type: object
+      properties:
+        membership_id:
+          type: string
+        tier:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        status:
+          type: string
+
+    TrafficWallet:
+      type: object
+      properties:
+        wallet_id:
+          type: string
+        balance:
+          type: number
+        total_recharged:
+          type: number
+        total_consumed:
+          type: number
+        free_quota_remaining:
+          type: integer
+
+    SaaSContract:
+      type: object
+      properties:
+        contract_id:
+          type: string
+        company_id:
+          type: string
+        product:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        amount:
+          type: number
+        status:
+          type: string
+
+    # ----- Risk -----
+    MarketReference:
+      type: object
+      properties:
+        product_category:
+          type: string
+        material_grade:
+          type: string
+        region:
+          type: string
+        median_price:
+          type: number
+        p25:
+          type: number
+        p75:
+          type: number
+        sample_count:
+          type: integer
+        computed_at:
+          type: string
+          format: date-time
