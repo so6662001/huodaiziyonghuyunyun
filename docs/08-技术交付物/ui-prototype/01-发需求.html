@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发需求 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- 顶部导航 -->
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">发布需求</span>
+      <div class="actions">
+        <span>草稿</span>
+      </div>
+    </div>
+
+    <!-- 三种快速发起方式 -->
+    <div class="card">
+      <div class="card-title">⚡ 快速发起</div>
+      <div class="upload-options">
+        <div class="item">
+          <span class="icon">🎤</span>
+          <div>语音发需求</div>
+        </div>
+        <div class="item">
+          <span class="icon">📷</span>
+          <div>拍照识别</div>
+        </div>
+        <div class="item">
+          <span class="icon">📋</span>
+          <div>上传清单</div>
+        </div>
+        <div class="item">
+          <span class="icon">🔁</span>
+          <div>复制上次</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 我的常用需求 -->
+    <div class="card">
+      <div class="card-title">📌 我的常用需求 <span style="font-size:12px;color:var(--text-muted);font-weight:normal;">（自动学习）</span></div>
+
+      <div class="list-item" style="margin: -16px;">
+        <div class="icon-wrap">🔁</div>
+        <div class="info">
+          <div class="title">热轧 Q235B 5.5mm 50 吨 → 天津</div>
+          <div class="meta">用了 12 次 · 上次 3 天前</div>
+        </div>
+        <div class="extra"><span class="badge badge-primary">一键发</span></div>
+      </div>
+
+      <div class="list-item" style="margin: 0 -16px;">
+        <div class="icon-wrap">🔁</div>
+        <div class="info">
+          <div class="title">螺纹 HRB400E Φ18 100 吨 → 唐山</div>
+          <div class="meta">用了 8 次 · 上次上周</div>
+        </div>
+        <div class="extra"><span class="badge badge-primary">一键发</span></div>
+      </div>
+
+      <div class="list-item" style="margin: 0 -16px -16px;">
+        <div class="icon-wrap">🔁</div>
+        <div class="info">
+          <div class="title">镀锌 SGCC 0.5mm 30 吨 → 聊城</div>
+          <div class="meta">用了 5 次 · 上次 2 周前</div>
+        </div>
+        <div class="extra"><span class="badge badge-primary">一键发</span></div>
+      </div>
+    </div>
+
+    <!-- 表单 -->
+    <div class="card">
+      <div class="card-title">✏️ 新建需求</div>
+
+      <div class="form-row">
+        <span class="form-label"><span class="required">*</span>品名</span>
+        <select class="form-select">
+          <option>热轧卷板</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <span class="form-label"><span class="required">*</span>材质</span>
+        <select class="form-select">
+          <option>Q235B</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <span class="form-label"><span class="required">*</span>规格</span>
+        <input class="form-input" type="text" value="5.5×1500×C" placeholder="厚×宽×长">
+      </div>
+      <div class="form-row">
+        <span class="form-label"><span class="required">*</span>数量</span>
+        <input class="form-input" type="number" value="50" style="max-width: 100px;">
+        <span style="margin-left: 8px;">吨</span>
+      </div>
+      <div class="form-row">
+        <span class="form-label"><span class="required">*</span>到货地</span>
+        <select class="form-select">
+          <option>天津 · 北辰</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 高级选项 -->
+    <div class="card">
+      <div class="card-title" style="color:var(--text-secondary);font-weight:normal;">⚙️ 高级选项 <span style="font-size:12px;">（可选）</span></div>
+
+      <div class="form-row">
+        <span class="form-label">交货时间</span>
+        <select class="form-select">
+          <option>3 天内</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <span class="form-label">期望账期</span>
+        <select class="form-select">
+          <option>现款</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <span class="form-label">备注</span>
+        <input class="form-input" placeholder="特殊要求（探伤/定尺等）">
+      </div>
+    </div>
+
+    <!-- 加速档位 -->
+    <div class="card" style="background: linear-gradient(to bottom right, #f0f9ff, #ffffff); border: 1px solid var(--primary-light);">
+      <div class="card-title">🚀 加速档位</div>
+
+      <label style="display:flex;align-items:center;gap:10px;padding:10px 0;cursor:pointer;border-bottom: 1px solid var(--border);">
+        <input type="radio" name="priority" checked>
+        <div style="flex:1;">
+          <div style="font-weight:500;">普通</div>
+          <div style="font-size:12px;color:var(--text-muted);">30 分钟内多家报价（免费）</div>
+        </div>
+      </label>
+
+      <label style="display:flex;align-items:center;gap:10px;padding:10px 0;cursor:pointer;border-bottom: 1px solid var(--border);">
+        <input type="radio" name="priority">
+        <div style="flex:1;">
+          <div style="font-weight:500;">加急 ¥9.9</div>
+          <div style="font-size:12px;color:var(--text-muted);">10 分钟必有报价 + 置顶</div>
+        </div>
+      </label>
+
+      <label style="display:flex;align-items:center;gap:10px;padding:10px 0;cursor:pointer;">
+        <input type="radio" name="priority">
+        <div style="flex:1;">
+          <div style="font-weight:500;">悬赏 ¥99</div>
+          <div style="font-size:12px;color:var(--text-muted);">全网精准匹配 + 卖家优先响应</div>
+        </div>
+      </label>
+    </div>
+
+    <!-- 提交按钮 -->
+    <div style="padding: 16px;">
+      <button class="btn btn-primary btn-block">立即发布需求</button>
+      <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-muted);">💡 平均 12 分钟内您将收到 5+ 报价</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卖家接单 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">新询价</span>
+      <div class="actions"><span>历史</span></div>
+    </div>
+
+    <!-- 买家信息 -->
+    <div class="card">
+      <div class="card-title">👤 买家信息</div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div>
+          <div style="font-size:15px;font-weight:600;">天津 XX 钢结构</div>
+          <div style="font-size:12px;color:var(--text-muted);">已认证 · 钢结构厂 · 中型规模</div>
+        </div>
+        <span class="badge badge-success">🟢 主力买家</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:12px;border-top:1px solid var(--border);">
+        <div>
+          <div style="font-size:12px;color:var(--text-muted);">90 天成交</div>
+          <div style="font-weight:600;color:var(--success);">5 单</div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--text-muted);">月均采购</div>
+          <div style="font-weight:600;">约 50 吨</div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--text-muted);">合作历史</div>
+          <div style="font-weight:600;">首次合作</div>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--text-muted);">信用分</div>
+          <div style="font-weight:600;color:var(--primary);">85 / 优质</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 需求详情 -->
+    <div class="demand-card">
+      <div class="header">
+        <div class="title">📋 询价需求</div>
+        <span class="badge badge-gold" style="background:rgba(255,255,255,0.2);color:white;">🟡 优质池</span>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <div class="field-label">品名 / 材质</div>
+          <div>热轧 Q235B</div>
+        </div>
+        <div class="field">
+          <div class="field-label">规格</div>
+          <div>5.5×1500×C</div>
+        </div>
+        <div class="field">
+          <div class="field-label">数量</div>
+          <div>50 吨</div>
+        </div>
+        <div class="field">
+          <div class="field-label">到货地</div>
+          <div>天津 · 北辰</div>
+        </div>
+        <div class="field">
+          <div class="field-label">交期</div>
+          <div>3 天内</div>
+        </div>
+        <div class="field">
+          <div class="field-label">账期</div>
+          <div>现款</div>
+        </div>
+      </div>
+      <div style="font-size:12px;opacity:0.8;margin-top:10px;">⏱ 剩余响应时间：28 分钟</div>
+    </div>
+
+    <!-- 卡片变更通知 -->
+    <div class="card" style="border-left: 4px solid var(--warning);">
+      <div class="card-title" style="color:var(--warning);">
+        🔔 买家变更需求
+      </div>
+      <div style="font-size:14px;margin-bottom:12px;">
+        买家把 <strong style="color:var(--danger);text-decoration:line-through;">数量 50 吨</strong> 改为 <strong style="color:var(--success);">80 吨</strong>
+      </div>
+      <div style="background:var(--bg-light);padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px;">
+        您当前报价：<strong>¥4280/吨 × 50 吨</strong><br>
+        是否调整？
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-primary" style="flex:1;">维持 ¥4280</button>
+        <button class="btn btn-secondary" style="flex:1;">设阶梯价</button>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:8px;">
+        <button class="btn btn-secondary" style="flex:1;">调整为 ¥____</button>
+        <button class="btn btn-secondary" style="flex:1;color:var(--danger);">退出会话</button>
+      </div>
+    </div>
+
+    <!-- 报价表单 -->
+    <div class="card">
+      <div class="card-title">💰 您的报价</div>
+
+      <div class="form-row">
+        <span class="form-label"><span class="required">*</span>单价（含税）</span>
+        <input class="form-input" type="number" value="4280" placeholder="元/吨" style="max-width:120px;">
+        <span style="margin-left:8px;font-size:13px;color:var(--text-muted);">/吨</span>
+      </div>
+      <div class="form-row">
+        <span class="form-label"><span class="required">*</span>可供数量</span>
+        <input class="form-input" type="number" value="80" style="max-width:100px;">
+        <span style="margin-left:8px;font-size:13px;color:var(--text-muted);">吨</span>
+      </div>
+      <div class="form-row">
+        <span class="form-label">含运</span>
+        <label style="display:flex;align-items:center;gap:6px;font-size:14px;">
+          <input type="checkbox" checked> 含 +¥150
+        </label>
+      </div>
+      <div class="form-row">
+        <span class="form-label">有效期</span>
+        <select class="form-select">
+          <option>4 小时</option>
+          <option>2 小时</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 阶梯定价（可选） -->
+    <div class="card">
+      <div class="card-title" style="font-size:14px;color:var(--text-secondary);">
+        📊 阶梯定价 <span style="font-size:12px;font-weight:normal;">（鼓励填，提高匹配度）</span>
+      </div>
+
+      <div class="form-row">
+        <span class="form-label" style="width:auto;">50 吨</span>
+        <input class="form-input" type="number" value="4280" style="max-width:120px;">
+        <span style="margin-left:8px;font-size:13px;">/吨</span>
+      </div>
+      <div class="form-row">
+        <span class="form-label" style="width:auto;">80 吨</span>
+        <input class="form-input" type="number" value="4260" style="max-width:120px;">
+        <span style="margin-left:8px;font-size:13px;">/吨</span>
+      </div>
+      <div class="form-row">
+        <span class="form-label" style="width:auto;">100 吨</span>
+        <input class="form-input" type="number" value="4240" style="max-width:120px;">
+        <span style="margin-left:8px;font-size:13px;">/吨</span>
+      </div>
+    </div>
+
+    <!-- 利润保护提示 -->
+    <div class="profit-hint" style="margin: 12px 16px;">
+      💡 <strong>利润保护提示</strong><br>
+      市场参考价：¥4280-¥4350/吨 · 您的报价利润空间约 1.8%
+    </div>
+
+    <!-- 提交 -->
+    <div style="padding: 16px;">
+      <button class="btn btn-primary btn-block">提交报价</button>
+      <button class="btn btn-secondary btn-block" style="margin-top:8px;">拒绝此询价</button>
+    </div>
+  </div>
+</body>
+</html>

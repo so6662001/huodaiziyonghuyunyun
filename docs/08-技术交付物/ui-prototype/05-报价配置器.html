@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报价配置器 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">报价详情</span>
+      <div class="actions"><span>分享</span></div>
+    </div>
+
+    <!-- 卖家信息 -->
+    <div class="card" style="background: linear-gradient(to bottom right, #fdf6e3, #ffffff); border: 1px solid var(--gold);">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:48px;height:48px;border-radius:50%;background:var(--gold-light);display:flex;align-items:center;justify-content:center;font-size:24px;">🏆</div>
+        <div style="flex:1;">
+          <div style="font-size:15px;font-weight:600;">优选 卖家 A</div>
+          <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">
+            <span class="stars" style="color:var(--warning);">⭐⭐⭐⭐⭐</span>
+            <span style="margin:0 6px;">95 分</span>
+            <span class="badge badge-gold">S 级</span>
+          </div>
+        </div>
+        <button class="btn btn-secondary" style="padding:6px 12px;font-size:13px;">查看资质</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">
+        <div style="text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:var(--primary);">234</div>
+          <div style="font-size:11px;color:var(--text-muted);">累计成交</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:var(--success);">96%</div>
+          <div style="font-size:11px;color:var(--text-muted);">好评率</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:18px;font-weight:700;">18km</div>
+          <div style="font-size:11px;color:var(--text-muted);">距您</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 配置器：数量选择 -->
+    <div class="configurator">
+      <div class="configurator-row">
+        <div class="label">📦 数量（阶梯定价）</div>
+        <div class="configurator-options">
+          <div class="option-chip with-delta">
+            50 吨 <span class="delta">¥4280</span>
+          </div>
+          <div class="option-chip with-delta selected">
+            80 吨 <span class="delta">¥4260</span>
+          </div>
+          <div class="option-chip with-delta">
+            100 吨 <span class="delta">¥4240</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 规格选择 -->
+      <div class="configurator-row">
+        <div class="label">📏 规格</div>
+        <div class="configurator-options">
+          <div class="option-chip with-delta">
+            5.5mm <span class="delta">基础价</span>
+          </div>
+          <div class="option-chip with-delta selected">
+            6mm <span class="delta">-¥60</span>
+          </div>
+          <div class="option-chip with-delta">
+            8mm <span class="delta">-¥100</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 加项 -->
+      <div class="configurator-row">
+        <div class="label">⚙️ 加项</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <label style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--primary-light);border-radius:8px;cursor:pointer;">
+            <input type="checkbox" checked>
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:500;">含运输</div>
+              <div style="font-size:11px;color:var(--text-muted);">送货到指定地点</div>
+            </div>
+            <span style="color:var(--primary);font-weight:500;">+¥150/吨</span>
+          </label>
+
+          <label style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--primary-light);border-radius:8px;cursor:pointer;">
+            <input type="checkbox" checked>
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:500;">3 天加急</div>
+              <div style="font-size:11px;color:var(--text-muted);">优先发货</div>
+            </div>
+            <span style="color:var(--primary);font-weight:500;">+¥200/吨</span>
+          </label>
+
+          <label style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--bg-light);border-radius:8px;cursor:pointer;">
+            <input type="checkbox">
+            <div style="flex:1;">
+              <div style="font-size:14px;">开专票</div>
+              <div style="font-size:11px;color:var(--text-muted);">增值税专用发票</div>
+            </div>
+            <span style="color:var(--text-secondary);">+¥120/吨</span>
+          </label>
+
+          <label style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--bg-light);border-radius:8px;cursor:pointer;">
+            <input type="checkbox">
+            <div style="flex:1;">
+              <div style="font-size:14px;">30 天账期</div>
+              <div style="font-size:11px;color:var(--text-muted);">月结</div>
+            </div>
+            <span style="color:var(--text-secondary);">+¥40/吨</span>
+          </label>
+
+          <label style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--bg-light);border-radius:8px;cursor:pointer;">
+            <input type="checkbox">
+            <div style="flex:1;">
+              <div style="font-size:14px;">质量检测报告</div>
+              <div style="font-size:11px;color:var(--text-muted);">第三方检测</div>
+            </div>
+            <span style="color:var(--text-secondary);">+¥30/吨</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 总价显示 -->
+      <div class="configurator-total">
+        <div class="label">综合单价</div>
+        <div class="price">¥4,550<span style="font-size:14px;color:var(--text-secondary);margin-left:6px;">/吨</span></div>
+        <div class="total">
+          总价：<strong style="color:var(--primary);">¥36.4 万</strong> · 80 吨 × 6mm × 含运 × 加急
+        </div>
+
+        <div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);font-size:12px;color:var(--text-secondary);">
+          <div>明细：</div>
+          <div style="margin-top:4px;">
+            基础价 ¥4260 - 规格 ¥60 + 含运 ¥150 + 加急 ¥200 = <strong>¥4,550</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 服务标签 -->
+    <div class="card">
+      <div class="card-title">🏷️ 卖家提供的服务</div>
+      <div class="tags">
+        <span class="tag">✓ 实地核验</span>
+        <span class="tag">✓ 视频展示 5 个</span>
+        <span class="tag">✓ 24h 响应</span>
+        <span class="tag">✓ 提供检测报告</span>
+        <span class="tag">✓ 含税开票</span>
+        <span class="tag">✓ 平台担保</span>
+      </div>
+    </div>
+
+    <!-- 操作按钮 -->
+    <div style="padding: 16px;">
+      <div style="display:flex;gap:8px;margin-bottom:8px;">
+        <button class="btn btn-warning" style="flex:1;">💬 还价</button>
+        <button class="btn btn-secondary" style="flex:1;">📞 联系卖家</button>
+      </div>
+      <button class="btn btn-primary btn-block">✓ 选择此方案</button>
+      <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-muted);">
+        ⏱ 报价有效期：还剩 1 小时 47 分钟
+      </div>
+    </div>
+  </div>
+</body>
+</html>

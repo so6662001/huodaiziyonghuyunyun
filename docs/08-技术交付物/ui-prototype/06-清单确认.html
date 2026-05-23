@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>清单 AI 解析确认 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">清单确认</span>
+      <div class="actions"><span>原图</span></div>
+    </div>
+
+    <!-- 解析结果概览 -->
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div style="font-size:18px;font-weight:600;display:flex;align-items:center;gap:6px;">
+            <span style="font-size:24px;">🤖</span>
+            AI 已识别 23 行
+          </div>
+          <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">耗时 7.2 秒 · 整体置信度 92%</div>
+        </div>
+        <span class="badge badge-success" style="padding:6px 12px;font-size:13px;">解析完成</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">
+        <div style="text-align:center;">
+          <div style="font-size:22px;font-weight:700;color:var(--success);">21</div>
+          <div style="font-size:11px;color:var(--text-muted);">已确认</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:22px;font-weight:700;color:var(--warning);">2</div>
+          <div style="font-size:11px;color:var(--text-muted);">需确认</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:22px;font-weight:700;">23</div>
+          <div style="font-size:11px;color:var(--text-muted);">合计</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 不确定的行（需要用户确认） -->
+    <div class="card">
+      <div class="card-title">
+        ⚠️ 我有 2 行不确定，请您看一下
+      </div>
+
+      <div class="uncertain-line">
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">第 7 行 · 置信度 75%</div>
+        <div class="raw">📷 原文识别："角钢 L100×8"</div>
+        <div class="ai-guess">
+          🤖 我猜：<strong>角钢 Q235B L100×100×8 5 吨</strong>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">→ 角钢边长 100mm，厚 8mm（行业标准简写）</div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary">✓ 对的</button>
+          <button class="btn btn-secondary">✏️ 修改</button>
+        </div>
+      </div>
+
+      <div class="uncertain-line">
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">第 18 行 · 置信度 68%</div>
+        <div class="raw">📷 原文识别："螺18 20T"</div>
+        <div class="ai-guess">
+          🤖 我猜：<strong>螺纹钢 HRB400 Φ18 20 吨</strong>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">→ "螺18"=螺纹钢直径 18mm，"20T"=20 吨（行话）</div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary">✓ 对的</button>
+          <button class="btn btn-secondary">✏️ 修改</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 已确认行（折叠显示） -->
+    <div class="card">
+      <div class="card-title" style="display:flex;justify-content:space-between;">
+        <span>📋 已确认行（21 行）</span>
+        <span style="font-size:13px;color:var(--primary);font-weight:normal;">展开 ▼</span>
+      </div>
+
+      <div class="list-line" style="margin:0 -16px;border-bottom:1px solid var(--border);">
+        <div class="content">
+          <div class="line-number">第 1 行</div>
+          <div class="product">热轧板 Q355B 10×2000×6000</div>
+          <div class="meta">25 吨 · 天津 · 6/1 前</div>
+        </div>
+        <span class="badge badge-success">95%</span>
+      </div>
+
+      <div class="list-line" style="margin:0 -16px;border-bottom:1px solid var(--border);">
+        <div class="content">
+          <div class="line-number">第 2 行</div>
+          <div class="product">热轧板 Q355B 12×2000×6000</div>
+          <div class="meta">18 吨 · 天津 · 6/1 前</div>
+        </div>
+        <span class="badge badge-success">94%</span>
+      </div>
+
+      <div class="list-line" style="margin:0 -16px;border-bottom:1px solid var(--border);">
+        <div class="content">
+          <div class="line-number">第 3 行</div>
+          <div class="product">热轧板 Q235B 8×1500×6000</div>
+          <div class="meta">32 吨 · 天津 · 6/3 前</div>
+        </div>
+        <span class="badge badge-success">96%</span>
+      </div>
+
+      <div class="list-line" style="margin:0 -16px -16px;">
+        <div class="content" style="color:var(--text-muted);text-align:center;">
+          + 18 行（点击展开查看）
+        </div>
+      </div>
+    </div>
+
+    <!-- 智能拆单预览 -->
+    <div class="card" style="background: linear-gradient(to bottom right, #f0f9ff, #ffffff); border: 1px solid var(--primary-light);">
+      <div class="card-title">⚙️ 平台将自动拆单</div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">系统会按品类拆分，分别派给专精卖家：</div>
+
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--bg-white);border-radius:6px;">
+          <span>📦 板材类（热轧/中厚板）</span>
+          <span style="color:var(--primary);font-weight:500;">10 行 → 板材专精卖家 Top 15</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--bg-white);border-radius:6px;">
+          <span>📐 型材类（H 钢/角钢）</span>
+          <span style="color:var(--primary);font-weight:500;">8 行 → 型材专精卖家 Top 10</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--bg-white);border-radius:6px;">
+          <span>🔩 螺纹类</span>
+          <span style="color:var(--primary);font-weight:500;">5 行 → 螺纹专精卖家 Top 12</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部按钮 -->
+    <div style="padding: 16px;">
+      <button class="btn btn-primary btn-block">✅ 全部正确，发起询价</button>
+      <button class="btn btn-secondary btn-block" style="margin-top:8px;">查看全部明细 ▼</button>
+    </div>
+
+    <!-- 底部提示 -->
+    <div style="padding: 0 16px 20px; text-align:center; font-size:12px; color:var(--text-muted);">
+      💡 估算总值约 ¥130 万 · 预计 30 分钟内收到首批报价
+    </div>
+  </div>
+</body>
+</html>

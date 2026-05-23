@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>采购会话 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">采购会话 #001</span>
+      <div class="actions"><span>分享</span><span>⋯</span></div>
+    </div>
+
+    <!-- 动态需求卡片 -->
+    <div class="demand-card">
+      <div class="header">
+        <div class="title">📝 我的需求</div>
+        <button class="edit-btn">✎ 编辑</button>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <div class="field-label">品名 / 材质</div>
+          <div>热轧 Q235B</div>
+        </div>
+        <div class="field">
+          <div class="field-label">规格</div>
+          <div>5.5×1500×C</div>
+        </div>
+        <div class="field">
+          <div class="field-label">数量</div>
+          <div>50 吨</div>
+        </div>
+        <div class="field">
+          <div class="field-label">到货地</div>
+          <div>天津 · 北辰</div>
+        </div>
+        <div class="field">
+          <div class="field-label">交期</div>
+          <div>3 天内</div>
+        </div>
+        <div class="field">
+          <div class="field-label">账期</div>
+          <div>现款</div>
+        </div>
+      </div>
+      <div style="font-size:12px;opacity:0.8;margin-top:10px;">🕒 已发布 8 分钟 · v1（最新）</div>
+    </div>
+
+    <!-- AI 识变确认条 -->
+    <div class="ai-confirm">
+      <div class="header">🤖 AI 助手识别到变更</div>
+      <div class="content">您是要把<strong>数量从 50 吨改为 80 吨</strong>吗？</div>
+      <div class="actions">
+        <button class="btn btn-primary">✓ 是，更新需求</button>
+        <button class="btn btn-secondary">否，继续聊</button>
+      </div>
+    </div>
+
+    <!-- 报价聚合 Top 3 -->
+    <div class="card">
+      <div class="card-title">
+        💰 收到报价 <span class="badge badge-success">3 / 6</span>
+        <span style="margin-left:auto;font-size:12px;color:var(--text-muted);font-weight:normal;">显示综合最优</span>
+      </div>
+
+      <!-- Top 1 卖家（金色突出） -->
+      <div class="quote-card premium">
+        <div class="header">
+          <div class="seller">
+            <span style="font-size:24px;">🏆</span>
+            <div>
+              <div class="seller-name">优选 卖家 A</div>
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span class="badge badge-gold" style="margin-left:4px;">S 级</span>
+            </div>
+          </div>
+          <div class="price">¥4280<span class="unit">/吨</span></div>
+        </div>
+        <div class="meta">
+          <div class="item"><span class="label">距离:</span> 18km</div>
+          <div class="item"><span class="label">历史:</span> 234 单</div>
+          <div class="item"><span class="label">账期:</span> 现款</div>
+          <div class="item"><span class="label">含运:</span> ✓</div>
+          <div class="item"><span class="label">交期:</span> 2 天</div>
+        </div>
+        <div class="tags">
+          <span class="tag">实地核验</span>
+          <span class="tag">视频展示 5 个</span>
+          <span class="tag">96% 好评</span>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary">查看详情</button>
+          <button class="btn btn-primary">一键联系</button>
+        </div>
+      </div>
+
+      <!-- Top 2 -->
+      <div class="quote-card">
+        <div class="header">
+          <div class="seller">
+            <div>
+              <div class="seller-name">优选 卖家 B</div>
+              <span class="stars">⭐⭐⭐⭐</span>
+              <span class="badge badge-primary" style="margin-left:4px;">A 级</span>
+            </div>
+          </div>
+          <div class="price">¥4310<span class="unit">/吨</span></div>
+        </div>
+        <div class="meta">
+          <div class="item"><span class="label">距离:</span> 35km</div>
+          <div class="item"><span class="label">历史:</span> 156 单</div>
+          <div class="item"><span class="label">含运:</span> ✗</div>
+          <div class="item"><span class="label">交期:</span> 3 天</div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary">查看详情</button>
+          <button class="btn btn-primary">一键联系</button>
+        </div>
+      </div>
+
+      <!-- Top 3 -->
+      <div class="quote-card">
+        <div class="header">
+          <div class="seller">
+            <div>
+              <div class="seller-name">优选 卖家 C</div>
+              <span class="stars">⭐⭐⭐⭐</span>
+              <span class="badge badge-primary" style="margin-left:4px;">A 级</span>
+            </div>
+          </div>
+          <div class="price">¥4250<span class="unit">/吨</span></div>
+        </div>
+        <div class="meta">
+          <div class="item"><span class="label">距离:</span> 25km</div>
+          <div class="item"><span class="label">账期:</span> 30 天</div>
+          <div class="item"><span class="label">交期:</span> 5 天</div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary">查看详情</button>
+          <button class="btn btn-primary">一键联系</button>
+        </div>
+      </div>
+
+      <button class="btn btn-secondary btn-block" style="margin-top:12px;">
+        显示其他 3 家报价 ▼
+      </button>
+    </div>
+
+    <!-- 批量操作 -->
+    <div class="card">
+      <div class="card-title">⚡ 批量操作</div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn btn-secondary" style="flex:1;">一键全聊</button>
+        <button class="btn btn-secondary" style="flex:1;">对比方案</button>
+        <button class="btn btn-warning" style="flex:1;">发起还价</button>
+      </div>
+    </div>
+
+    <!-- 时间线 -->
+    <div class="card">
+      <div class="card-title">⏱ 时间线</div>
+      <div class="timeline">
+        <div class="item">
+          <div class="time">3 分钟前</div>
+          <div class="content">您把数量从 50 改成 80 吨</div>
+        </div>
+        <div class="item">
+          <div class="time">3 分钟前</div>
+          <div class="content">卖家 A 更新报价 ¥4260（80 吨阶梯）</div>
+        </div>
+        <div class="item">
+          <div class="time">5 分钟前</div>
+          <div class="content">卖家 A 报价 ¥4280</div>
+        </div>
+        <div class="item">
+          <div class="time">6 分钟前</div>
+          <div class="content">卖家 B/C/D/E/F 收到推送</div>
+        </div>
+        <div class="item">
+          <div class="time">8 分钟前</div>
+          <div class="content">您发布需求 · 6 家卖家匹配</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+      <div class="tab">
+        <span class="icon">🏠</span>
+        <div>首页</div>
+      </div>
+      <div class="tab">
+        <span class="icon">🔍</span>
+        <div>找货</div>
+      </div>
+      <div class="tab active">
+        <span class="icon">💬</span>
+        <div>会话</div>
+      </div>
+      <div class="tab">
+        <span class="icon">📂</span>
+        <div>项目</div>
+      </div>
+      <div class="tab">
+        <span class="icon">👤</span>
+        <div>我的</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
