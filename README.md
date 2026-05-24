@@ -95,12 +95,29 @@ docs/
 │   ├── 12-3-12个月行动清单.md       每月做什么 + 月度复盘 SOP
 │   └── 渠道ROI计算器.xlsx           6 sheets 工作版
 │
-└── 13-Figma设计规范/                 # ⭐ 设计师可复现的高保真规范（NEW）
-    ├── 01-设计系统总览.md            色彩/字体/间距/动效
-    ├── 02-Figma文件结构说明.md       工程组织 + 协作流程
-    ├── design-tokens/tokens.json    W3C 标准 Design Tokens
-    └── components/                  30+ 组件精确规格
+├── 13-Figma设计规范/                 # ⭐ 设计师可复现的高保真规范
+│   ├── 01-设计系统总览.md            色彩/字体/间距/动效
+│   ├── 02-Figma文件结构说明.md       工程组织 + 协作流程
+│   ├── design-tokens/tokens.json    W3C 标准 Design Tokens
+│   └── components/                  30+ 组件精确规格
+│
+└── 14-AI开发提示词/                  # ⭐⭐⭐ AI 开发提示词工程包（NEW）
+    ├── README.md                    使用指引 + 文件导航
+    ├── 00-核心系统提示词.md          ⭐⭐⭐ 每次会话必喂
+    ├── 01-前端开发提示词.md          uni-app + Vue3
+    ├── 02-后端Java微服务提示词.md    Spring Boot 业务
+    ├── 03-UI高保真还原提示词.md      Figma → 代码
+    ├── 04-API开发提示词.md           严格按 OpenAPI
+    ├── 05-测试用例生成提示词.md      单测/集成/E2E
+    ├── 06-代码评审提示词.md          Code Review AI
+    ├── 07-Bug修复与需求拆解.md       
+    ├── 10-验收checklist.md          ⭐⭐⭐ 100 项打勾
+    ├── 11-AI开发工作流SOP.md        ⭐⭐⭐ 6 阶段流程
+    ├── 12-反模式与禁区.md           ⭐⭐⭐ AI 不能做的事
+    └── templates/                   可直接复制的 6 个模板
 ```
+
+仓库根目录还有 `.cursorrules` 文件，Cursor 用户会自动加载。
 
 完整 Java 后端骨架在仓库根目录 `backend/`：
 

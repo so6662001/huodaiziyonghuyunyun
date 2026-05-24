@@ -1,0 +1,90 @@
+【任务】新增后端功能：[在这里填写功能名]
+
+【任务卡】
+- 对应 PRD：docs/07-产品PRD-v2/[在这里填写文件名].md 第 [X.Y] 节
+- 涉及表：[填写表名，用逗号分隔]
+- 涉及 API：[METHOD] [path]（来自 openapi.yaml）
+- 所属服务：huodaizi-[xxx]-service
+- 依赖其他服务：[填写或写"无"]
+- 估算工作量：[小时数]
+
+【请按以下顺序工作】
+
+## Step 1：需求理解（不要立即写代码）
+
+请输出：
+1. PRD 中提到的所有功能点（编号 1、2、3...）
+2. PRD 中提到的所有边界状态
+3. PRD 中提到的所有错误码
+4. PRD 中提到的所有性能要求
+5. 涉及的数据库表 + 关键字段（去 DDL 验证）
+6. 涉及的 API 契约（去 openapi.yaml 验证）
+7. 涉及的既有代码文件（去 backend/ 找）
+
+## Step 2：技术方案
+
+请输出：
+1. 数据流图（Mermaid 序列图）
+2. 状态机（如适用）
+3. 错误处理策略
+4. 缓存策略（如需）
+5. 异步策略（如需）
+6. 监控埋点
+7. 关键决策（方案 A vs B）
+
+## Step 3：实现
+
+按以下顺序：
+1. Entity（com.huodaizi.xxx.entity）
+2. Mapper（com.huodaizi.xxx.mapper）
+3. DTO（com.huodaizi.xxx.dto）
+4. Converter（MapStruct）
+5. Service 接口
+6. ServiceImpl
+7. Controller
+8. 单元测试
+9. 集成测试
+
+每个文件：
+- 给完整代码（不用 ... 省略）
+- 给完整路径
+- 解释关键设计
+
+## Step 4：自评
+
+按【docs/14-AI开发提示词/06-代码评审提示词】评审自己的代码。
+按【docs/14-AI开发提示词/10-验收checklist.md】打勾。
+
+## Step 5：输出报告
+
+```
+## 实现报告
+
+### 文件清单
+新增：...
+修改：...
+
+### 测试结果
+mvn test 输出：...
+
+### 验收 Checklist 完成度
+xx / 100
+
+### 已知 Trade-off
+1. ...
+
+### 未实现的部分（如有）
+1. ...
+```
+
+【红线提醒】
+
+🚫 不准编造字段
+🚫 不准编造 API
+🚫 不准创造 PRD 没写的业务规则
+🚫 不准 catch (Exception e) {} 黑洞
+🚫 不准日志输出敏感字段
+🚫 不准修改公共模块（huodaizi-common/domain）
+🚫 不准跳过测试
+
+【请开始 Step 1】
