@@ -89,11 +89,36 @@ docs/
 │   ├── 11-7 周月报对账模板
 │   └── 5 个 Excel 工作版
 │
-└── 12-用户增长终版/                  # ⭐ 资金约束版增长方案（NEW）
-    ├── 12-1-用户增长总体方案.md      5 大引擎 + 资金分配
-    ├── 12-2-用户裂变机制.md          5 大裂变机制详细设计
-    ├── 12-3-12个月行动清单.md       每月做什么 + 月度复盘 SOP
-    └── 渠道ROI计算器.xlsx           6 sheets 工作版
+├── 12-用户增长终版/                  # ⭐ 资金约束版增长方案
+│   ├── 12-1-用户增长总体方案.md      5 大引擎 + 资金分配
+│   ├── 12-2-用户裂变机制.md          5 大裂变机制详细设计
+│   ├── 12-3-12个月行动清单.md       每月做什么 + 月度复盘 SOP
+│   └── 渠道ROI计算器.xlsx           6 sheets 工作版
+│
+└── 13-Figma设计规范/                 # ⭐ 设计师可复现的高保真规范（NEW）
+    ├── 01-设计系统总览.md            色彩/字体/间距/动效
+    ├── 02-Figma文件结构说明.md       工程组织 + 协作流程
+    ├── design-tokens/tokens.json    W3C 标准 Design Tokens
+    └── components/                  30+ 组件精确规格
+```
+
+完整 Java 后端骨架在仓库根目录 `backend/`：
+
+```
+backend/                              # ⭐ Java Spring Boot 微服务（NEW）
+├── pom.xml                           父项目（Maven 多模块）
+├── huodaizi-common/                  通用响应/异常/工具（完整）
+├── huodaizi-domain/                  领域模型/枚举（完整）
+├── huodaizi-user-service/            用户认证服务（完整示例）
+├── huodaizi-session-service/         采购会话 + AI 识变（完整核心）
+├── huodaizi-dispatch-service/        三级池派单算法（完整核心）
+├── huodaizi-gateway/                 API 网关（完整路由）
+├── huodaizi-list/quote/credit/.../   其他 7 个服务（骨架 + README）
+└── deploy/                           Docker Compose + K8s
+
+技术栈：Java 17 + Spring Boot 3.2 + Spring Cloud Alibaba（Nacos）
+       MyBatis Plus + Sa-Token + Redis + RocketMQ + Knife4j
+✓ Maven 编译验证通过（7 个核心模块全部 BUILD SUCCESS）
 ```
 
 ## 二、阅读建议（按角色）
