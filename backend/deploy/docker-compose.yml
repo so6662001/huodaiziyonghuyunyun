@@ -1,0 +1,193 @@
+version: "3.8"
+
+services:
+  # ===========================================
+  # 基础设施
+  # ===========================================
+  mysql:
+    image: mysql:8.0
+    container_name: huodaizi-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: huodaizi@2026
+      MYSQL_DATABASE: huodaizi
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ../../docs/08-技术交付物/db/01-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ../../docs/08-技术交付物/db/02-initial-data.sql:/docker-entrypoint-initdb.d/02-data.sql:ro
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --default-time-zone=+08:00
+    networks:
+      - huodaizi-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: huodaizi-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --requirepass ""
+    networks:
+      - huodaizi-net
+
+  nacos:
+    image: nacos/nacos-server:v2.3.2
+    container_name: huodaizi-nacos
+    restart: unless-stopped
+    environment:
+      MODE: standalone
+      JVM_XMS: 512m
+      JVM_XMX: 512m
+      SPRING_DATASOURCE_PLATFORM: ""
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+    volumes:
+      - nacos-logs:/home/nacos/logs
+    networks:
+      - huodaizi-net
+
+  rocketmq-namesrv:
+    image: apache/rocketmq:5.2.0
+    container_name: huodaizi-rmq-namesrv
+    restart: unless-stopped
+    ports:
+      - "9876:9876"
+    command: sh mqnamesrv
+    networks:
+      - huodaizi-net
+
+  rocketmq-broker:
+    image: apache/rocketmq:5.2.0
+    container_name: huodaizi-rmq-broker
+    restart: unless-stopped
+    depends_on:
+      - rocketmq-namesrv
+    ports:
+      - "10911:10911"
+      - "10912:10912"
+    environment:
+      NAMESRV_ADDR: rocketmq-namesrv:9876
+    command: sh mqbroker -n rocketmq-namesrv:9876 -c /home/rocketmq/rocketmq-5.2.0/conf/broker.conf
+    networks:
+      - huodaizi-net
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.0
+    container_name: huodaizi-es
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    networks:
+      - huodaizi-net
+
+  # ===========================================
+  # 应用服务
+  # ===========================================
+  gateway:
+    build:
+      context: ../huodaizi-gateway
+      dockerfile: Dockerfile
+    image: huodaizi/gateway:latest
+    container_name: huodaizi-gateway
+    restart: unless-stopped
+    depends_on:
+      - nacos
+    environment:
+      NACOS_ADDR: nacos:8848
+    ports:
+      - "8000:8000"
+    networks:
+      - huodaizi-net
+
+  user-service:
+    build:
+      context: ../huodaizi-user-service
+      dockerfile: Dockerfile
+    image: huodaizi/user-service:latest
+    container_name: huodaizi-user
+    restart: unless-stopped
+    depends_on:
+      - mysql
+      - redis
+      - nacos
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: huodaizi@2026
+      MYSQL_DB: huodaizi
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      NACOS_ADDR: nacos:8848
+    ports:
+      - "8001:8001"
+    networks:
+      - huodaizi-net
+
+  session-service:
+    build:
+      context: ../huodaizi-session-service
+    image: huodaizi/session-service:latest
+    container_name: huodaizi-session
+    restart: unless-stopped
+    depends_on:
+      - mysql
+      - redis
+      - nacos
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: huodaizi@2026
+      MYSQL_DB: huodaizi
+      REDIS_HOST: redis
+      NACOS_ADDR: nacos:8848
+    ports:
+      - "8002:8002"
+    networks:
+      - huodaizi-net
+
+  dispatch-service:
+    build:
+      context: ../huodaizi-dispatch-service
+    image: huodaizi/dispatch-service:latest
+    container_name: huodaizi-dispatch
+    restart: unless-stopped
+    depends_on:
+      - mysql
+      - redis
+      - nacos
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: huodaizi@2026
+      MYSQL_DB: huodaizi
+      REDIS_HOST: redis
+      NACOS_ADDR: nacos:8848
+    ports:
+      - "8005:8005"
+    networks:
+      - huodaizi-net
+
+networks:
+  huodaizi-net:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  redis-data:
+  nacos-logs:
+  es-data:

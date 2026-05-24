@@ -1,0 +1,76 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: huodaizi-gateway
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:localhost:8848}
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: user-service
+          uri: lb://huodaizi-user-service
+          predicates:
+            - Path=/api/v1/auth/**,/api/v1/users/**,/api/v1/companies/**
+
+        - id: session-service
+          uri: lb://huodaizi-session-service
+          predicates:
+            - Path=/api/v1/sessions/**
+
+        - id: list-service
+          uri: lb://huodaizi-list-service
+          predicates:
+            - Path=/api/v1/lists/**
+
+        - id: quote-service
+          uri: lb://huodaizi-quote-service
+          predicates:
+            - Path=/api/v1/quotes/**,/api/v1/negotiations/**
+
+        - id: dispatch-service
+          uri: lb://huodaizi-dispatch-service
+          predicates:
+            - Path=/api/v1/dispatch/**
+
+        - id: credit-service
+          uri: lb://huodaizi-credit-service
+          predicates:
+            - Path=/api/v1/credits/**,/api/v1/appeals/**
+
+        - id: commercial-service
+          uri: lb://huodaizi-commercial-service
+          predicates:
+            - Path=/api/v1/memberships/**,/api/v1/billing/**
+
+        - id: ai-service
+          uri: lb://huodaizi-ai-service
+          predicates:
+            - Path=/api/v1/ai/**
+
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+            allowed-headers: "*"
+            allow-credentials: false
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
