@@ -3,168 +3,260 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>卖家接单 · 货袋子</title>
+  <title>卖家接单（多规格）· 货袋子</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="phone-frame">
+    <!-- 顶部导航 -->
     <div class="nav-bar">
       <span class="back">←</span>
-      <span class="title">新询价</span>
-      <div class="actions"><span>历史</span></div>
+      <span class="title">新询价 · 多规格</span>
+      <div class="actions">
+        <span>⋯</span>
+      </div>
     </div>
 
-    <!-- 买家信息 -->
-    <div class="card">
-      <div class="card-title">👤 买家信息</div>
-
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+    <!-- 买家信息条（脱敏） -->
+    <div style="padding: 12px 16px; background: #fff; border-bottom: 1px solid var(--border);">
+      <div style="display:flex; justify-content:space-between; align-items: center; margin-bottom: 6px;">
         <div>
-          <div style="font-size:15px;font-weight:600;">天津 XX 钢结构</div>
-          <div style="font-size:12px;color:var(--text-muted);">已认证 · 钢结构厂 · 中型规模</div>
+          <span style="font-size: 16px; font-weight: 600;">华*建工集团（认证）</span>
+          <span class="badge badge-primary" style="margin-left: 8px;">主力买家</span>
         </div>
-        <span class="badge badge-success">🟢 主力买家</span>
+        <span style="font-size: 12px; color: var(--text-muted);">2 分钟前</span>
       </div>
+      <div style="font-size: 13px; color: var(--text-secondary);">
+        💼 已成交 12 单 · 履约率 100% · 月均采购 580 吨
+      </div>
+    </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:12px;border-top:1px solid var(--border);">
-        <div>
-          <div style="font-size:12px;color:var(--text-muted);">90 天成交</div>
-          <div style="font-weight:600;color:var(--success);">5 单</div>
+    <!-- 询价汇总条 -->
+    <div style="padding: 12px 16px;">
+      <div class="list-summary">
+        <div class="list-summary__head">
+          <div>
+            <div class="list-summary__count">8 条规格</div>
+            <div class="list-summary__hint">总量 320 吨 · 全部您可供</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size: 13px; opacity: 0.85;">您匹配</div>
+            <div style="font-size: 22px; font-weight: 700;">5/8 行</div>
+          </div>
         </div>
-        <div>
-          <div style="font-size:12px;color:var(--text-muted);">月均采购</div>
-          <div style="font-weight:600;">约 50 吨</div>
-        </div>
-        <div>
-          <div style="font-size:12px;color:var(--text-muted);">合作历史</div>
-          <div style="font-weight:600;">首次合作</div>
-        </div>
-        <div>
-          <div style="font-size:12px;color:var(--text-muted);">信用分</div>
-          <div style="font-weight:600;color:var(--primary);">85 / 优质</div>
+        <div class="list-summary__stats">
+          <div class="list-summary__stat">
+            <div class="list-summary__stat-label">到货地</div>
+            <div class="list-summary__stat-value">天津/唐山</div>
+          </div>
+          <div class="list-summary__stat">
+            <div class="list-summary__stat-label">距您仓库</div>
+            <div class="list-summary__stat-value">12-35km</div>
+          </div>
+          <div class="list-summary__stat">
+            <div class="list-summary__stat-label">交期</div>
+            <div class="list-summary__stat-value">3 天</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 需求详情 -->
-    <div class="demand-card">
-      <div class="header">
-        <div class="title">📋 询价需求</div>
-        <span class="badge badge-gold" style="background:rgba(255,255,255,0.2);color:white;">🟡 优质池</span>
-      </div>
-      <div class="fields">
-        <div class="field">
-          <div class="field-label">品名 / 材质</div>
-          <div>热轧 Q235B</div>
-        </div>
-        <div class="field">
-          <div class="field-label">规格</div>
-          <div>5.5×1500×C</div>
-        </div>
-        <div class="field">
-          <div class="field-label">数量</div>
-          <div>50 吨</div>
-        </div>
-        <div class="field">
-          <div class="field-label">到货地</div>
-          <div>天津 · 北辰</div>
-        </div>
-        <div class="field">
-          <div class="field-label">交期</div>
-          <div>3 天内</div>
-        </div>
-        <div class="field">
-          <div class="field-label">账期</div>
-          <div>现款</div>
-        </div>
-      </div>
-      <div style="font-size:12px;opacity:0.8;margin-top:10px;">⏱ 剩余响应时间：28 分钟</div>
+    <!-- 操作说明 -->
+    <div style="padding: 0 16px 12px; font-size: 13px; color: var(--text-secondary); display: flex; justify-content: space-between;">
+      <span>勾选您能供货的规格 →</span>
+      <span style="color: var(--primary);">全选可供</span>
     </div>
 
-    <!-- 卡片变更通知 -->
-    <div class="card" style="border-left: 4px solid var(--warning);">
-      <div class="card-title" style="color:var(--warning);">
-        🔔 买家变更需求
-      </div>
-      <div style="font-size:14px;margin-bottom:12px;">
-        买家把 <strong style="color:var(--danger);text-decoration:line-through;">数量 50 吨</strong> 改为 <strong style="color:var(--success);">80 吨</strong>
-      </div>
-      <div style="background:var(--bg-light);padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px;">
-        您当前报价：<strong>¥4280/吨 × 50 吨</strong><br>
-        是否调整？
-      </div>
-      <div style="display:flex;gap:8px;">
-        <button class="btn btn-primary" style="flex:1;">维持 ¥4280</button>
-        <button class="btn btn-secondary" style="flex:1;">设阶梯价</button>
-      </div>
-      <div style="display:flex;gap:8px;margin-top:8px;">
-        <button class="btn btn-secondary" style="flex:1;">调整为 ¥____</button>
-        <button class="btn btn-secondary" style="flex:1;color:var(--danger);">退出会话</button>
+    <!-- 规格 1：可供 + 价格优势 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row spec-row--matched">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <input type="checkbox" checked style="width:18px;height:18px;margin-right:10px;">
+            <div class="spec-row__no" style="background: var(--success); color: #fff;">1</div>
+            <div class="spec-row__title">热轧 Q235B 5.5×1500×C · 50 吨</div>
+          </div>
+          <span class="seller-row-status seller-row-status--full">现货</span>
+        </div>
+        <div class="spec-row__body">
+          <div class="spec-row__field"><span class="spec-row__field-label">您库存</span><span class="spec-row__field-value" style="color: var(--success);">120 吨 ✓</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">买家目标</span><span class="spec-row__field-value">≤ ¥3,950</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">您的报价</span><span class="spec-row__field-value" style="color: var(--primary);">¥3,920/吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">小计</span><span class="spec-row__field-value">¥196,000</span></div>
+        </div>
+        <div class="spec-row__footer">
+          <span style="color: var(--success);">💰 利润 +¥3,500</span>
+          <span style="color: var(--primary);">调价 ›</span>
+        </div>
       </div>
     </div>
 
-    <!-- 报价表单 -->
-    <div class="card">
-      <div class="card-title">💰 您的报价</div>
-
-      <div class="form-row">
-        <span class="form-label"><span class="required">*</span>单价（含税）</span>
-        <input class="form-input" type="number" value="4280" placeholder="元/吨" style="max-width:120px;">
-        <span style="margin-left:8px;font-size:13px;color:var(--text-muted);">/吨</span>
-      </div>
-      <div class="form-row">
-        <span class="form-label"><span class="required">*</span>可供数量</span>
-        <input class="form-input" type="number" value="80" style="max-width:100px;">
-        <span style="margin-left:8px;font-size:13px;color:var(--text-muted);">吨</span>
-      </div>
-      <div class="form-row">
-        <span class="form-label">含运</span>
-        <label style="display:flex;align-items:center;gap:6px;font-size:14px;">
-          <input type="checkbox" checked> 含 +¥150
-        </label>
-      </div>
-      <div class="form-row">
-        <span class="form-label">有效期</span>
-        <select class="form-select">
-          <option>4 小时</option>
-          <option>2 小时</option>
-        </select>
+    <!-- 规格 2：可供 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row spec-row--matched">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <input type="checkbox" checked style="width:18px;height:18px;margin-right:10px;">
+            <div class="spec-row__no" style="background: var(--success); color: #fff;">2</div>
+            <div class="spec-row__title">热轧 Q235B 4.0×1500×C · 30 吨</div>
+          </div>
+          <span class="seller-row-status seller-row-status--full">现货</span>
+        </div>
+        <div class="spec-row__body">
+          <div class="spec-row__field"><span class="spec-row__field-label">您库存</span><span class="spec-row__field-value" style="color: var(--success);">80 吨 ✓</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">您的报价</span><span class="spec-row__field-value" style="color: var(--primary);">¥3,980/吨</span></div>
+        </div>
       </div>
     </div>
 
-    <!-- 阶梯定价（可选） -->
-    <div class="card">
-      <div class="card-title" style="font-size:14px;color:var(--text-secondary);">
-        📊 阶梯定价 <span style="font-size:12px;font-weight:normal;">（鼓励填，提高匹配度）</span>
-      </div>
-
-      <div class="form-row">
-        <span class="form-label" style="width:auto;">50 吨</span>
-        <input class="form-input" type="number" value="4280" style="max-width:120px;">
-        <span style="margin-left:8px;font-size:13px;">/吨</span>
-      </div>
-      <div class="form-row">
-        <span class="form-label" style="width:auto;">80 吨</span>
-        <input class="form-input" type="number" value="4260" style="max-width:120px;">
-        <span style="margin-left:8px;font-size:13px;">/吨</span>
-      </div>
-      <div class="form-row">
-        <span class="form-label" style="width:auto;">100 吨</span>
-        <input class="form-input" type="number" value="4240" style="max-width:120px;">
-        <span style="margin-left:8px;font-size:13px;">/吨</span>
+    <!-- 规格 3：可供 + 数量不足 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row spec-row--quoted">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <input type="checkbox" checked style="width:18px;height:18px;margin-right:10px;">
+            <div class="spec-row__no" style="background: var(--warning); color: #fff;">3</div>
+            <div class="spec-row__title">螺纹 HRB400E Φ18×12m · 100 吨</div>
+          </div>
+          <span class="seller-row-status seller-row-status--partial">部分</span>
+        </div>
+        <div class="spec-row__body">
+          <div class="spec-row__field"><span class="spec-row__field-label">您库存</span><span class="spec-row__field-value" style="color: var(--warning);">60 吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">差额</span><span class="spec-row__field-value" style="color: var(--warning);">-40 吨</span></div>
+        </div>
+        <div style="background: #fff7ed; border-radius: 6px; padding: 6px 10px; margin-top: 6px; font-size: 12px; color: var(--warning);">
+          ⚠️ 库存 60 吨，可报 60 吨或追加调货
+        </div>
       </div>
     </div>
 
-    <!-- 利润保护提示 -->
-    <div class="profit-hint" style="margin: 12px 16px;">
-      💡 <strong>利润保护提示</strong><br>
-      市场参考价：¥4280-¥4350/吨 · 您的报价利润空间约 1.8%
+    <!-- 规格 4：可供 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row spec-row--matched">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <input type="checkbox" checked style="width:18px;height:18px;margin-right:10px;">
+            <div class="spec-row__no" style="background: var(--success); color: #fff;">4</div>
+            <div class="spec-row__title">螺纹 HRB400E Φ20×12m · 80 吨</div>
+          </div>
+          <span class="seller-row-status seller-row-status--full">现货</span>
+        </div>
+      </div>
     </div>
 
-    <!-- 提交 -->
+    <!-- 规格 5：可供 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row spec-row--matched">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <input type="checkbox" checked style="width:18px;height:18px;margin-right:10px;">
+            <div class="spec-row__no" style="background: var(--success); color: #fff;">5</div>
+            <div class="spec-row__title">镀锌 SGCC 0.5×1200×C · 30 吨</div>
+          </div>
+          <span class="seller-row-status seller-row-status--full">现货</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 规格 6：无 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row" style="opacity: 0.6;">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <input type="checkbox" style="width:18px;height:18px;margin-right:10px;">
+            <div class="spec-row__no">6</div>
+            <div class="spec-row__title" style="color: var(--text-muted); text-decoration: line-through;">镀锌 SGCC 0.6×1250×C · 20 吨</div>
+          </div>
+          <span class="seller-row-status seller-row-status--miss">无货</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 规格 7：可供（建议改规） -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row spec-row--active">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <input type="checkbox" style="width:18px;height:18px;margin-right:10px;">
+            <div class="spec-row__no" style="background: var(--primary); color: #fff;">7</div>
+            <div class="spec-row__title">H 型钢 HW200×200 · 5 吨</div>
+          </div>
+          <span class="seller-row-status seller-row-status--partial">提议改规</span>
+        </div>
+        <div style="background: var(--primary-light); border-radius: 6px; padding: 8px 10px; margin-top: 6px; font-size: 12px; color: var(--primary);">
+          💡 您有新国标 HW194×150（仅相差 6mm），价格便宜 ¥150/吨。
+          <div style="margin-top: 4px;">
+            <span style="font-weight: 600;">向买家提议改规 →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 规格 8：无 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row" style="opacity: 0.6;">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <input type="checkbox" style="width:18px;height:18px;margin-right:10px;">
+            <div class="spec-row__no">8</div>
+            <div class="spec-row__title" style="color: var(--text-muted); text-decoration: line-through;">不锈钢 304 1.0×1219×C · 5 吨</div>
+          </div>
+          <span class="seller-row-status seller-row-status--miss">无货</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 批量报价区域 -->
     <div style="padding: 16px;">
-      <button class="btn btn-primary btn-block">提交报价</button>
-      <button class="btn btn-secondary btn-block" style="margin-top:8px;">拒绝此询价</button>
+      <div class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); border: 1px solid var(--primary);">
+        <div style="font-weight: 600; color: var(--primary); margin-bottom: 8px;">📤 批量报价（已选 5 行）</div>
+        <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">
+          您可一次性给所有勾选行报价，也可逐行细调
+        </div>
+
+        <div class="form-row">
+          <span class="form-label">利润加成</span>
+          <input class="form-input" type="number" value="50" style="max-width: 100px;">
+          <span style="margin-left: 6px;">元/吨</span>
+          <span style="margin-left: 12px; color: var(--success); font-size: 13px;">预计净利 ¥14,250</span>
+        </div>
+        <div class="form-row">
+          <span class="form-label">默认账期</span>
+          <select class="form-select">
+            <option>现款</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <span class="form-label">报价有效</span>
+          <select class="form-select">
+            <option>60 分钟</option>
+          </select>
+        </div>
+
+        <div style="background: var(--success-light); border-radius: 8px; padding: 12px; margin-top: 12px;">
+          <div style="font-size: 13px; color: var(--success); font-weight: 600; margin-bottom: 4px;">📊 利润预估</div>
+          <div style="display: flex; justify-content: space-between; font-size: 13px;">
+            <span>本单总金额：</span>
+            <span style="font-weight: 600;">¥1,016,800</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 13px;">
+            <span>预计成本：</span>
+            <span>¥1,002,550</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 600; color: var(--success); margin-top: 4px;">
+            <span>净利润：</span>
+            <span>¥14,250</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部操作 -->
+    <div class="batch-bar">
+      <div class="batch-bar__info">
+        已选 <strong>5</strong>/8 行 · 总额 <strong>¥1,016,800</strong>
+      </div>
+      <button class="btn btn-warning" style="height: 44px; padding: 0 16px;">提交报价 →</button>
     </div>
   </div>
 </body>

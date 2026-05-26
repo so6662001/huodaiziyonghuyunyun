@@ -53,15 +53,33 @@
 </head>
 <body>
   <div class="container">
-    <h1>货袋子 UI 高保真原型 v1.0</h1>
-    <div class="subtitle">基于 PRD v2 设计的关键页面原型。在浏览器中点击查看，可在桌面或手机分辨率下预览。</div>
+    <h1>货袋子 UI 高保真原型 v2.0</h1>
+    <div class="subtitle">基于 PRD v2 设计的关键页面原型。<strong style="color: var(--warning);">v2 重大修正：默认多规格场景</strong>（钢贸 80%+ 询价是多规格）。</div>
+
+    <!-- v2 改造说明 -->
+    <div style="background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%); border: 1px solid var(--warning); border-radius: 12px; padding: 20px; margin-bottom: 28px;">
+      <div style="font-weight: 600; color: var(--warning); margin-bottom: 8px; font-size: 16px;">🔧 v2 关键修正</div>
+      <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">
+        v1 原型只展示单条规格询价，但实际钢贸采购 <strong>80%+ 是 5-30 行规格的清单</strong>。
+        v2 把多规格作为默认场景：发需求即多行表单、聚合视图按行展开、卖家可按行响应、报价用矩阵对比。
+        <br><br>
+        👉 <a href="07-多规格全流程.html" style="color: var(--primary); font-weight: 600;">查看完整多规格全流程说明 →</a>
+      </div>
+    </div>
 
     <div class="pages-grid">
 
-      <a href="01-发需求.html" class="page-card">
+      <a href="07-多规格全流程.html" class="page-card" style="border: 1px solid var(--warning); background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%);">
+        <span class="badge" style="background: var(--warning); color: #fff;">NEW · v2</span>
+        <div class="title">🔧 多规格全流程总览</div>
+        <div class="desc">真实钢贸场景说明 + 8 步全流程 + 数据模型说明。先看这个！</div>
+        <div class="module">v2 改造 · 必读</div>
+      </a>
+
+      <a href="01-发需求.html" class="page-card" style="border-left: 3px solid var(--warning);">
         <span class="badge badge-primary">买家端</span>
-        <div class="title">📝 极简发需求</div>
-        <div class="desc">30 秒发出需求 + 复用上次模板 + 语音/拍照辅助。这是买家的第一次价值体验。</div>
+        <div class="title">📝 发需求（多规格）</div>
+        <div class="desc">⭐ <strong>v2 重写</strong>：默认多规格清单 + 行内编辑 + Excel 导入 + 智能拆单。</div>
         <div class="module">M2 采购会话 · P0 核心</div>
       </a>
 
@@ -72,25 +90,25 @@
         <div class="module">M3 清单采购 · P1 核心</div>
       </a>
 
-      <a href="03-采购会话.html" class="page-card">
+      <a href="03-采购会话.html" class="page-card" style="border-left: 3px solid var(--warning);">
         <span class="badge badge-primary">买家端</span>
-        <div class="title">💬 采购会话聚合看板</div>
-        <div class="desc">动态需求卡片 + Top 3 盲价报价 + AI 识变 + 时间线。货袋子最核心的产品。</div>
+        <div class="title">💬 采购会话（多规格聚合）</div>
+        <div class="desc">⭐ <strong>v2 重写</strong>：8 行规格分别展示进展 · 已成交/可选/派单中/无供应 4 态 · AI 整单优化建议。</div>
         <div class="module">M2 采购会话 · P0 核心</div>
       </a>
 
-      <a href="04-卖家接单.html" class="page-card">
+      <a href="04-卖家接单.html" class="page-card" style="border-left: 3px solid var(--warning);">
         <span class="badge badge-success">卖家端</span>
-        <div class="title">🔔 卖家接单与变更响应</div>
-        <div class="desc">买家标签可见 + 一键报价 + 字段级变更响应（维持/调整/退出）。</div>
+        <div class="title">🔔 卖家接单（多规格）</div>
+        <div class="desc">⭐ <strong>v2 重写</strong>：勾选可供货行 · 库存自动核对 · 可仅报部分行/部分数量 · 改规建议。</div>
         <div class="module">M5 智能匹配 · P0 核心</div>
       </a>
 
-      <a href="05-报价配置器.html" class="page-card">
+      <a href="05-报价配置器.html" class="page-card" style="border-left: 3px solid var(--warning);">
         <span class="badge badge-primary">买家端</span>
-        <div class="title">⚙️ 报价配置器</div>
-        <div class="desc">买家自由选择数量/规格/加项，系统实时算价。6 维方案不再"一眼挑最低"。</div>
-        <div class="module">M4 报价系统 · P1</div>
+        <div class="title">⊞ 报价对比（多卖家×多规格）</div>
+        <div class="desc">⭐ <strong>v2 重写</strong>：矩阵视图（17 家×8 行）+ AI 最优组合方案 + 多卖家分单成交。</div>
+        <div class="module">M4 报价系统 · P0 核心</div>
       </a>
 
       <a href="06-清单确认.html" class="page-card">

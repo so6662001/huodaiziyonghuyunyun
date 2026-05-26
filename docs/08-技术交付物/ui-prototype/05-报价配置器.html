@@ -3,172 +3,231 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>报价配置器 · 货袋子</title>
+  <title>报价对比（多卖家×多规格）· 货袋子</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="phone-frame">
+  <div class="phone-frame" style="max-width: 480px;">
+    <!-- 顶部导航 -->
     <div class="nav-bar">
       <span class="back">←</span>
-      <span class="title">报价详情</span>
-      <div class="actions"><span>分享</span></div>
-    </div>
-
-    <!-- 卖家信息 -->
-    <div class="card" style="background: linear-gradient(to bottom right, #fdf6e3, #ffffff); border: 1px solid var(--gold);">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <div style="width:48px;height:48px;border-radius:50%;background:var(--gold-light);display:flex;align-items:center;justify-content:center;font-size:24px;">🏆</div>
-        <div style="flex:1;">
-          <div style="font-size:15px;font-weight:600;">优选 卖家 A</div>
-          <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">
-            <span class="stars" style="color:var(--warning);">⭐⭐⭐⭐⭐</span>
-            <span style="margin:0 6px;">95 分</span>
-            <span class="badge badge-gold">S 级</span>
-          </div>
-        </div>
-        <button class="btn btn-secondary" style="padding:6px 12px;font-size:13px;">查看资质</button>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">
-        <div style="text-align:center;">
-          <div style="font-size:18px;font-weight:700;color:var(--primary);">234</div>
-          <div style="font-size:11px;color:var(--text-muted);">累计成交</div>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-size:18px;font-weight:700;color:var(--success);">96%</div>
-          <div style="font-size:11px;color:var(--text-muted);">好评率</div>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-size:18px;font-weight:700;">18km</div>
-          <div style="font-size:11px;color:var(--text-muted);">距您</div>
-        </div>
+      <span class="title">报价对比 · 8 行 / 17 家</span>
+      <div class="actions">
+        <span>📤</span>
       </div>
     </div>
 
-    <!-- 配置器：数量选择 -->
-    <div class="configurator">
-      <div class="configurator-row">
-        <div class="label">📦 数量（阶梯定价）</div>
-        <div class="configurator-options">
-          <div class="option-chip with-delta">
-            50 吨 <span class="delta">¥4280</span>
+    <!-- 摘要 -->
+    <div style="padding: 12px 16px; background: var(--bg-light); font-size: 13px; color: var(--text-secondary);">
+      共 <strong style="color: var(--primary);">17 家卖家</strong> 对您的 <strong style="color: var(--primary);">8 条规格</strong> 报价，
+      <strong style="color: var(--success);">最优组合可省 ¥18,400</strong>
+    </div>
+
+    <!-- 视图切换 -->
+    <div style="display:flex; padding: 12px 16px 0; gap: 6px;">
+      <div style="flex:1; padding: 8px; text-align:center; font-size:13px; border-radius:6px; background: var(--primary); color:#fff;">
+        ⊞ 矩阵对比
+      </div>
+      <div style="flex:1; padding: 8px; text-align:center; font-size:13px; border-radius:6px; background: #fff; border: 1px solid var(--border); color: var(--text-secondary);">
+        📋 按规格
+      </div>
+      <div style="flex:1; padding: 8px; text-align:center; font-size:13px; border-radius:6px; background: #fff; border: 1px solid var(--border); color: var(--text-secondary);">
+        🏪 按卖家
+      </div>
+    </div>
+
+    <!-- 排序条 -->
+    <div style="padding: 8px 16px 12px; display: flex; align-items: center; gap: 6px; font-size: 12px;">
+      <span style="color: var(--text-muted);">排序：</span>
+      <span style="padding: 3px 8px; background: var(--primary-light); color: var(--primary); border-radius: 4px;">总价↑</span>
+      <span style="padding: 3px 8px; background: #fff; border: 1px solid var(--border); color: var(--text-secondary); border-radius: 4px;">能供条数↓</span>
+      <span style="padding: 3px 8px; background: #fff; border: 1px solid var(--border); color: var(--text-secondary); border-radius: 4px;">距离↑</span>
+      <span style="padding: 3px 8px; background: #fff; border: 1px solid var(--border); color: var(--text-secondary); border-radius: 4px;">信用↓</span>
+    </div>
+
+    <!-- 矩阵对比表 -->
+    <div style="padding: 0 16px 16px;">
+      <div class="compare-matrix">
+        <table>
+          <thead>
+            <tr>
+              <th class="compare-matrix__spec" style="text-align:left;">规格 \ 卖家</th>
+              <th>天津荣昌<br><span style="color:var(--gold); font-size:10px;">★ 96</span></th>
+              <th>唐山润成<br><span style="color:var(--success); font-size:10px;">★ 94</span></th>
+              <th>聊城金海<br><span style="font-size:10px; color:var(--text-muted);">★ 88</span></th>
+              <th>... 14 家</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="compare-matrix__spec">① 热轧 5.5<br><span style="color: var(--text-muted); font-weight: normal;">50t</span></td>
+              <td class="compare-matrix__best">3920</td>
+              <td class="compare-matrix__good">3950</td>
+              <td>3980</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td class="compare-matrix__spec">② 热轧 4.0<br><span style="color: var(--text-muted); font-weight: normal;">30t</span></td>
+              <td class="compare-matrix__best">3980</td>
+              <td class="compare-matrix__good">4000</td>
+              <td>4050</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td class="compare-matrix__spec">③ 螺纹 Φ18<br><span style="color: var(--text-muted); font-weight: normal;">100t</span></td>
+              <td class="compare-matrix__miss">—</td>
+              <td class="compare-matrix__best">4080</td>
+              <td class="compare-matrix__good">4100</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td class="compare-matrix__spec">④ 螺纹 Φ20<br><span style="color: var(--text-muted); font-weight: normal;">80t</span></td>
+              <td class="compare-matrix__miss">—</td>
+              <td class="compare-matrix__best">4120</td>
+              <td class="compare-matrix__good">4140</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td class="compare-matrix__spec">⑤ 镀锌 0.5<br><span style="color: var(--text-muted); font-weight: normal;">30t</span></td>
+              <td class="compare-matrix__good">5680</td>
+              <td class="compare-matrix__miss">—</td>
+              <td class="compare-matrix__best">5650</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td class="compare-matrix__spec">⑥ 镀锌 0.6<br><span style="color: var(--text-muted); font-weight: normal;">20t</span></td>
+              <td class="compare-matrix__miss">—</td>
+              <td class="compare-matrix__miss">—</td>
+              <td class="compare-matrix__best">5750</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td class="compare-matrix__spec">⑦ H 型钢<br><span style="color: var(--text-muted); font-weight: normal;">5t</span></td>
+              <td class="compare-matrix__miss">—</td>
+              <td class="compare-matrix__best">4280</td>
+              <td class="compare-matrix__miss">—</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td class="compare-matrix__spec">⑧ 不锈 304<br><span style="color: var(--text-muted); font-weight: normal;">5t</span></td>
+              <td class="compare-matrix__miss">—</td>
+              <td class="compare-matrix__miss">—</td>
+              <td class="compare-matrix__miss">—</td>
+              <td>...</td>
+            </tr>
+            <tr style="background: var(--bg-light); font-weight: 600;">
+              <td class="compare-matrix__spec" style="background: var(--bg-light);">能供条数</td>
+              <td>3 / 8</td>
+              <td>5 / 8</td>
+              <td>4 / 8</td>
+              <td>...</td>
+            </tr>
+            <tr style="background: var(--bg-light); font-weight: 600;">
+              <td class="compare-matrix__spec" style="background: var(--bg-light);">小计</td>
+              <td>¥366,400</td>
+              <td>¥863,400</td>
+              <td>¥411,500</td>
+              <td>...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px; padding: 0 4px;">
+        <span style="background: var(--gold-light); color: var(--gold); padding: 1px 6px; border-radius: 3px;">金</span> 最低价 ·
+        <span style="background: #d1fae5; color: var(--success); padding: 1px 6px; border-radius: 3px;">绿</span> 价优 ·
+        <span style="color: var(--text-muted);">— 无供应</span>
+      </div>
+    </div>
+
+    <!-- AI 最优组合 -->
+    <div style="padding: 0 16px;">
+      <div class="card" style="background: linear-gradient(135deg, #fdf6e3 0%, #ffffff 100%); border: 1px solid var(--gold);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <div style="font-weight: 700; color: var(--gold); font-size: 16px;">🏆 最优组合方案</div>
+          <span class="badge" style="background: var(--gold); color: #fff;">AI 推荐</span>
+        </div>
+
+        <div style="background: #fff; border-radius: 8px; padding: 12px; margin-bottom: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">
+            <div>
+              <div style="font-weight: 600;">🏢 天津荣昌</div>
+              <div style="font-size: 12px; color: var(--text-muted);">规格 ①+②</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-weight: 600;">¥316,400</div>
+              <div style="font-size: 11px; color: var(--text-muted);">80 吨</div>
+            </div>
           </div>
-          <div class="option-chip with-delta selected">
-            80 吨 <span class="delta">¥4260</span>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">
+            <div>
+              <div style="font-weight: 600;">🏢 唐山润成</div>
+              <div style="font-size: 12px; color: var(--text-muted);">规格 ③+④+⑦</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-weight: 600;">¥755,000</div>
+              <div style="font-size: 11px; color: var(--text-muted);">185 吨</div>
+            </div>
           </div>
-          <div class="option-chip with-delta">
-            100 吨 <span class="delta">¥4240</span>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 600;">🏢 聊城金海</div>
+              <div style="font-size: 12px; color: var(--text-muted);">规格 ⑤+⑥</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-weight: 600;">¥284,500</div>
+              <div style="font-size: 11px; color: var(--text-muted);">50 吨</div>
+            </div>
           </div>
+        </div>
+
+        <div style="background: var(--bg-light); border-radius: 6px; padding: 8px 12px; font-size: 12px;">
+          <div style="display: flex; justify-content: space-between;">
+            <span>3 家共供应 7/8 行（不锈钢延后处理）</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 4px;">
+            <span style="color: var(--text-secondary);">合计：</span>
+            <span style="font-weight: 700; font-size: 16px; color: var(--text-primary);">¥1,355,900</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 2px;">
+            <span style="color: var(--success);">vs 单一卖家方案省：</span>
+            <span style="font-weight: 600; color: var(--success);">¥18,400</span>
+          </div>
+        </div>
+
+        <button class="btn btn-warning" style="margin-top: 12px; width: 100%; height: 44px;">
+          采纳此组合（分 3 单成交）→
+        </button>
+      </div>
+    </div>
+
+    <!-- 其他可选方案 -->
+    <div style="padding: 12px 16px 0;">
+      <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">其他方案：</div>
+
+      <div class="list-item" style="margin-bottom: 8px;">
+        <div class="info">
+          <div class="title">方案 B：唐山润成单家 5/8 行</div>
+          <div class="meta">¥863,400 · 省 ¥12,000 · 仅 1 家对账</div>
+        </div>
+        <div class="extra">
+          <span style="font-size: 13px; color: var(--primary);">查看 ›</span>
         </div>
       </div>
 
-      <!-- 规格选择 -->
-      <div class="configurator-row">
-        <div class="label">📏 规格</div>
-        <div class="configurator-options">
-          <div class="option-chip with-delta">
-            5.5mm <span class="delta">基础价</span>
-          </div>
-          <div class="option-chip with-delta selected">
-            6mm <span class="delta">-¥60</span>
-          </div>
-          <div class="option-chip with-delta">
-            8mm <span class="delta">-¥100</span>
-          </div>
+      <div class="list-item" style="margin-bottom: 8px;">
+        <div class="info">
+          <div class="title">方案 C：拒绝合并，逐行最低价</div>
+          <div class="meta">¥1,374,300 · 8 家分散 · 对账较复杂</div>
         </div>
-      </div>
-
-      <!-- 加项 -->
-      <div class="configurator-row">
-        <div class="label">⚙️ 加项</div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <label style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--primary-light);border-radius:8px;cursor:pointer;">
-            <input type="checkbox" checked>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:500;">含运输</div>
-              <div style="font-size:11px;color:var(--text-muted);">送货到指定地点</div>
-            </div>
-            <span style="color:var(--primary);font-weight:500;">+¥150/吨</span>
-          </label>
-
-          <label style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--primary-light);border-radius:8px;cursor:pointer;">
-            <input type="checkbox" checked>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:500;">3 天加急</div>
-              <div style="font-size:11px;color:var(--text-muted);">优先发货</div>
-            </div>
-            <span style="color:var(--primary);font-weight:500;">+¥200/吨</span>
-          </label>
-
-          <label style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--bg-light);border-radius:8px;cursor:pointer;">
-            <input type="checkbox">
-            <div style="flex:1;">
-              <div style="font-size:14px;">开专票</div>
-              <div style="font-size:11px;color:var(--text-muted);">增值税专用发票</div>
-            </div>
-            <span style="color:var(--text-secondary);">+¥120/吨</span>
-          </label>
-
-          <label style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--bg-light);border-radius:8px;cursor:pointer;">
-            <input type="checkbox">
-            <div style="flex:1;">
-              <div style="font-size:14px;">30 天账期</div>
-              <div style="font-size:11px;color:var(--text-muted);">月结</div>
-            </div>
-            <span style="color:var(--text-secondary);">+¥40/吨</span>
-          </label>
-
-          <label style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--bg-light);border-radius:8px;cursor:pointer;">
-            <input type="checkbox">
-            <div style="flex:1;">
-              <div style="font-size:14px;">质量检测报告</div>
-              <div style="font-size:11px;color:var(--text-muted);">第三方检测</div>
-            </div>
-            <span style="color:var(--text-secondary);">+¥30/吨</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- 总价显示 -->
-      <div class="configurator-total">
-        <div class="label">综合单价</div>
-        <div class="price">¥4,550<span style="font-size:14px;color:var(--text-secondary);margin-left:6px;">/吨</span></div>
-        <div class="total">
-          总价：<strong style="color:var(--primary);">¥36.4 万</strong> · 80 吨 × 6mm × 含运 × 加急
-        </div>
-
-        <div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);font-size:12px;color:var(--text-secondary);">
-          <div>明细：</div>
-          <div style="margin-top:4px;">
-            基础价 ¥4260 - 规格 ¥60 + 含运 ¥150 + 加急 ¥200 = <strong>¥4,550</strong>
-          </div>
+        <div class="extra">
+          <span style="font-size: 13px; color: var(--primary);">查看 ›</span>
         </div>
       </div>
     </div>
 
-    <!-- 服务标签 -->
-    <div class="card">
-      <div class="card-title">🏷️ 卖家提供的服务</div>
-      <div class="tags">
-        <span class="tag">✓ 实地核验</span>
-        <span class="tag">✓ 视频展示 5 个</span>
-        <span class="tag">✓ 24h 响应</span>
-        <span class="tag">✓ 提供检测报告</span>
-        <span class="tag">✓ 含税开票</span>
-        <span class="tag">✓ 平台担保</span>
-      </div>
-    </div>
-
-    <!-- 操作按钮 -->
+    <!-- 底部操作 -->
     <div style="padding: 16px;">
-      <div style="display:flex;gap:8px;margin-bottom:8px;">
-        <button class="btn btn-warning" style="flex:1;">💬 还价</button>
-        <button class="btn btn-secondary" style="flex:1;">📞 联系卖家</button>
-      </div>
-      <button class="btn btn-primary btn-block">✓ 选择此方案</button>
-      <div style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-muted);">
-        ⏱ 报价有效期：还剩 1 小时 47 分钟
-      </div>
+      <button class="btn" style="background: #fff; border: 1px solid var(--border); width: 100%; height: 44px; margin-bottom: 8px;">让我手动选择 ⊞</button>
     </div>
   </div>
 </body>

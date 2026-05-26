@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多规格全流程 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background: #f5f7fa; padding: 24px 12px; }
+    .flow-container { max-width: 1400px; margin: 0 auto; }
+    .flow-header { background: #fff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: var(--shadow-sm); }
+    .flow-header h1 { font-size: 22px; margin-bottom: 8px; }
+    .flow-header p { color: var(--text-secondary); margin-bottom: 12px; }
+    .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .flow-step { background: #fff; border-radius: 12px; padding: 16px; box-shadow: var(--shadow-sm); }
+    .flow-step__head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .flow-step__num { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+    .flow-step__title { font-weight: 600; font-size: 15px; }
+    .flow-step__sub { font-size: 12px; color: var(--text-muted); }
+    .flow-step__body { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+    .flow-step__body ul { padding-left: 18px; margin: 8px 0; }
+    .flow-step__body li { margin-bottom: 4px; }
+    .flow-step__link { display: inline-block; margin-top: 12px; padding: 8px 14px; background: var(--primary-light); color: var(--primary); border-radius: 6px; font-size: 13px; text-decoration: none; font-weight: 500; }
+    .flow-step__link:hover { background: var(--primary); color: #fff; }
+    .flow-arrow { text-align: center; color: var(--text-muted); font-size: 20px; margin: 0 0 16px 0; }
+    .highlight-box { background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%); border: 1px solid var(--warning); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+    .highlight-box h2 { font-size: 18px; color: var(--warning); margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+    .stat-row { display: flex; gap: 16px; margin-top: 12px; }
+    .stat-card { flex: 1; background: #fff; border-radius: 8px; padding: 12px; text-align: center; }
+    .stat-card__value { font-size: 22px; font-weight: 700; color: var(--primary); }
+    .stat-card__label { font-size: 12px; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="flow-container">
+    <div class="flow-header">
+      <h1>🔧 货袋子 · 多规格采购全流程</h1>
+      <p>钢贸采购真实场景：一份询价单 5-30 行规格，平台必须默认支持。本页展示从买家发布到 N 家卖家报价、最优组合、按行成交的完整链路。</p>
+    </div>
+
+    <!-- 真实场景说明 -->
+    <div class="highlight-box">
+      <h2>📐 真实采购场景（以华建工集团为例）</h2>
+      <p>"我们一个项目要 8 条规格：热轧 5.5 + 4.0（屋面）、螺纹 Φ18 + Φ20（梁柱）、镀锌 0.5 + 0.6（围护）、H 型钢（结构）、不锈钢（设备）。
+      过去走电话/微信群要打 8-10 个电话、问 5-6 家供应商，最后还要在 Excel 里把价格抄一遍对比，要花 4-6 小时。"</p>
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-card__value">5-30</div>
+          <div class="stat-card__label">单次询价规格条数</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__value">80%+</div>
+          <div class="stat-card__label">询价为多规格</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__value">4-6h</div>
+          <div class="stat-card__label">线下询价耗时</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__value">12 min</div>
+          <div class="stat-card__label">货袋子目标耗时</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 流程步骤 -->
+    <div class="flow-grid">
+      <!-- Step 1 -->
+      <div class="flow-step">
+        <div class="flow-step__head">
+          <div class="flow-step__num">1</div>
+          <div>
+            <div class="flow-step__title">买家：多规格发布</div>
+            <div class="flow-step__sub">支持 Excel / 拍照 / 语音 / 手动多行</div>
+          </div>
+        </div>
+        <div class="flow-step__body">
+          ✓ 默认即多规格清单<br>
+          ✓ Excel 一键导入 8 行<br>
+          ✓ AI 自动识别品名、材质、规格、数量、地址<br>
+          ✓ 行内编辑（增删改）<br>
+          ✓ 整单全局设置（默认到货地、交期、账期）
+          <ul>
+            <li>🆕 不再是"单条规格 + 高级选项"</li>
+            <li>🆕 总览条：8 条 / 320 吨 / 3 种品类</li>
+          </ul>
+          <a href="01-发需求.html" class="flow-step__link">打开原型 →</a>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flow-step">
+        <div class="flow-step__head">
+          <div class="flow-step__num">2</div>
+          <div>
+            <div class="flow-step__title">买家：清单上传深加工</div>
+            <div class="flow-step__sub">OCR + LLM 解析 + 拆单建议</div>
+          </div>
+        </div>
+        <div class="flow-step__body">
+          ✓ Excel/PDF/手写照片均可<br>
+          ✓ AI 解析准确率 95%+<br>
+          ✓ 标识"不确定"的字段让人确认<br>
+          ✓ 智能拆单建议（按品类/区域）<br>
+          ✓ 估总价
+          <a href="02-清单上传.html" class="flow-step__link">打开原型 →</a>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flow-step">
+        <div class="flow-step__head">
+          <div class="flow-step__num">3</div>
+          <div>
+            <div class="flow-step__title">系统：智能拆单 + 多池派发</div>
+            <div class="flow-step__sub">推荐 = 按品类+区域拆 3 个子单</div>
+          </div>
+        </div>
+        <div class="flow-step__body">
+          ✓ 算法把 8 行拆为子集<br>
+          ✓ 每个子集匹配最优卖家池<br>
+          ✓ 同一行可推送给多个候选卖家<br>
+          ✓ 区域保护：同省卖家 ≥ 60%<br>
+          ✓ 反围猎：单卖家 24h 接单 ≤ 30
+          <ul>
+            <li>规格 ①+② → 天津池</li>
+            <li>规格 ③+④ → 唐山池</li>
+            <li>规格 ⑤+⑥ → 聊城池</li>
+            <li>规格 ⑦ → 华北区</li>
+            <li>规格 ⑧（无供应）→ 全网精准</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="flow-step">
+        <div class="flow-step__head">
+          <div class="flow-step__num">4</div>
+          <div>
+            <div class="flow-step__title">卖家：多规格接单</div>
+            <div class="flow-step__sub">可全选 / 部分选 / 改规建议</div>
+          </div>
+        </div>
+        <div class="flow-step__body">
+          ✓ 卖家看到 8 条规格<br>
+          ✓ 系统标"现货/部分/无货"<br>
+          ✓ 可勾选能供的行<br>
+          ✓ 部分库存可仅报部分数量<br>
+          ✓ 可向买家提议改规
+          <a href="04-卖家接单.html" class="flow-step__link">打开原型 →</a>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="flow-step">
+        <div class="flow-step__head">
+          <div class="flow-step__num">5</div>
+          <div>
+            <div class="flow-step__title">卖家：批量/按行报价</div>
+            <div class="flow-step__sub">利润预估 + 一键报多行</div>
+          </div>
+        </div>
+        <div class="flow-step__body">
+          ✓ 批量加成（如统一 +50/吨）<br>
+          ✓ 按行细调（特殊规格单独议价）<br>
+          ✓ 实时利润预估<br>
+          ✓ 6 维度报价：数量/价格/交期/付款/质量/服务
+          <a href="05-报价配置器.html" class="flow-step__link">查看 ›</a>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="flow-step">
+        <div class="flow-step__head">
+          <div class="flow-step__num">6</div>
+          <div>
+            <div class="flow-step__title">买家：多卖家×多规格对比</div>
+            <div class="flow-step__sub">矩阵视图 + AI 最优组合</div>
+          </div>
+        </div>
+        <div class="flow-step__body">
+          ✓ <strong>核心创新：矩阵对比</strong><br>
+          ✓ 横轴：17 家卖家<br>
+          ✓ 纵轴：8 条规格<br>
+          ✓ 单元格：卖家对该行的报价<br>
+          ✓ AI 高亮：最低价 / 价优<br>
+          ✓ AI 推荐最优组合方案
+          <a href="05-报价配置器.html" class="flow-step__link">打开原型 →</a>
+        </div>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="flow-step">
+        <div class="flow-step__head">
+          <div class="flow-step__num">7</div>
+          <div>
+            <div class="flow-step__title">采购会话：多规格聚合</div>
+            <div class="flow-step__sub">每行独立进展 + AI 整单建议</div>
+          </div>
+        </div>
+        <div class="flow-step__body">
+          ✓ 每行独立状态（成交/报价中/派单中/无供应）<br>
+          ✓ AI 建议合并、改规、扩区域<br>
+          ✓ 卖家针对某行单独议价不影响其他行<br>
+          ✓ 一行变更触发对应卖家补报
+          <a href="03-采购会话.html" class="flow-step__link">打开原型 →</a>
+        </div>
+      </div>
+
+      <!-- Step 8 -->
+      <div class="flow-step">
+        <div class="flow-step__head">
+          <div class="flow-step__num">8</div>
+          <div>
+            <div class="flow-step__title">买家：部分成交</div>
+            <div class="flow-step__sub">不需要"全成或不成"</div>
+          </div>
+        </div>
+        <div class="flow-step__body">
+          ✓ 5/8 行先成交<br>
+          ✓ 2 行继续找供应<br>
+          ✓ 1 行延后处理（不锈钢）<br>
+          ✓ 已成交部分独立锁价<br>
+          ✓ 后续追加可挂回原会话
+          <a href="06-清单确认.html" class="flow-step__link">查看 ›</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 与单条对比 -->
+    <div style="background: #fff; border-radius: 12px; padding: 24px; margin-top: 24px;">
+      <h2 style="margin-bottom: 16px;">📊 单条 vs 多规格 对比</h2>
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="background: var(--bg-light);">
+            <th style="padding: 12px; text-align: left; font-size: 13px;">维度</th>
+            <th style="padding: 12px; text-align: left; font-size: 13px;">❌ 旧版（单条）</th>
+            <th style="padding: 12px; text-align: left; font-size: 13px;">✅ 新版（多规格）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 12px; font-weight: 500;">真实场景覆盖率</td>
+            <td style="padding: 12px; color: var(--danger);">仅 20%（单条采购很少见）</td>
+            <td style="padding: 12px; color: var(--success);">100%（单条只是多规格的特例）</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 12px; font-weight: 500;">采购员发布效率</td>
+            <td style="padding: 12px; color: var(--danger);">8 条要发 8 次（30 分钟+）</td>
+            <td style="padding: 12px; color: var(--success);">8 条一次发完（2 分钟）</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 12px; font-weight: 500;">卖家接单体验</td>
+            <td style="padding: 12px; color: var(--danger);">收到 8 条孤立询价</td>
+            <td style="padding: 12px; color: var(--success);">看到完整需求，可建议合并优化</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 12px; font-weight: 500;">议价空间</td>
+            <td style="padding: 12px; color: var(--danger);">单条单议，难有规模优惠</td>
+            <td style="padding: 12px; color: var(--success);">合并多行给同家，省运费/吨议价</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 12px; font-weight: 500;">对账复杂度</td>
+            <td style="padding: 12px; color: var(--danger);">8 个会话 8 套报价</td>
+            <td style="padding: 12px; color: var(--success);">1 个会话清晰矩阵</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px; font-weight: 500;">最优组合</td>
+            <td style="padding: 12px; color: var(--danger);">不可能（无全局视图）</td>
+            <td style="padding: 12px; color: var(--success);">AI 自动算多卖家分单最优解</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 数据模型说明 -->
+    <div style="background: #fff; border-radius: 12px; padding: 24px; margin-top: 24px;">
+      <h2 style="margin-bottom: 12px;">🛠 数据模型已经支持（无需改 DDL）</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 12px;">查 <code style="background:#f5f7fa;padding:2px 6px;border-radius:3px;">docs/08-技术交付物/db/01-schema.sql</code> 中的 <code style="background:#f5f7fa;padding:2px 6px;border-radius:3px;">demand_cards</code> 表：</p>
+      <pre style="background: #1e293b; color: #e2e8f0; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 12px; line-height: 1.6;"><code>CREATE TABLE demand_cards (
+  card_id    VARCHAR(32) PRIMARY KEY,
+  session_id VARCHAR(32),
+  version    INT,
+  items      JSON,        -- ⭐ 数组：[{productType, spec, quantity, ...}, ...]
+  ...
+);</code></pre>
+      <p style="color: var(--text-secondary); margin-top: 12px;">后端的 <code style="background:#f5f7fa;padding:2px 6px;border-radius:3px;">DemandCard.items</code> 字段（<code style="background:#f5f7fa;padding:2px 6px;border-radius:3px;">List&lt;DemandItem&gt;</code>）从 v1 起就是数组。本次只调整 UI 把多规格作为默认，无需改后端。</p>
+    </div>
+
+    <div style="text-align: center; padding: 24px 0; color: var(--text-muted); font-size: 13px;">
+      <p>← <a href="index.html" style="color: var(--primary);">返回原型索引</a></p>
+    </div>
+  </div>
+</body>
+</html>
