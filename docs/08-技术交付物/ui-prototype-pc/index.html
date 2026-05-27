@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>货袋子 PC 端原型导航</title>
+  <link rel="stylesheet" href="styles-pc.css">
+  <style>
+    body { background: linear-gradient(135deg, #f0f9ff 0%, #f5f7fa 100%); min-height: 100vh; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 40px 24px; }
+    h1 { font-size: 32px; margin-bottom: 8px; }
+    .subtitle { color: var(--text-secondary); font-size: 16px; margin-bottom: 32px; }
+    .role-section { margin-bottom: 40px; }
+    .role-section__head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--primary);
+    }
+    .role-section__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #fff;
+    }
+    .role-section__title { font-size: 20px; font-weight: 700; }
+    .role-section__desc { color: var(--text-muted); font-size: 13px; }
+    .page-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .page-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .page-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+    .page-card__title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .page-card__desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+    .page-card__meta { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+    .badge-new {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      background: var(--warning);
+      color: #fff;
+    }
+    .badge-core {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      background: var(--primary);
+      color: #fff;
+    }
+    .badge-fresh {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      background: var(--success);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>货袋子 PC 端 UI 高保真原型 v2.6</h1>
+    <div class="subtitle">
+      面向 PC 大屏的完整产品原型，覆盖三端：买家（采购方）、卖家（销售方）、平台运营管理员。
+      <strong style="color:var(--primary);">v2.6 新增 9 页</strong>：卖家会话沟通/报价管理/订单发货/客户CRM，买家清单管理/订单详情/采购分析，运营申诉处理。
+    </div>
+
+    <!-- 设计说明 -->
+    <div class="card" style="background: linear-gradient(135deg, #dbeafe 0%, #ffffff 100%); border:1px solid var(--primary);">
+      <div class="card__title" style="color:var(--primary);">📐 PC 端设计原则</div>
+      <div class="text-sm" style="line-height:1.8;">
+        <strong>1. 三端分离</strong>：买家 SaaS / 卖家工作台 / 运营后台 独立侧栏与导航<br>
+        <strong>2. 大屏优势</strong>：用矩阵表、多栏布局、数据看板替代移动端的卡片堆叠<br>
+        <strong>3. 共享设计系统</strong>：颜色 / 字体 / 圆角 / 阴影 与移动端 token 100% 一致<br>
+        <strong>4. 键盘友好</strong>：批量操作、表格编辑、快捷键 → 提升效率<br>
+        <strong>5. 多规格优先</strong>：所有交互默认按"清单 + 规格行"组织，单条只是 N=1 的退化
+      </div>
+    </div>
+
+    <!-- 买家端 -->
+    <div class="role-section">
+      <div class="role-section__head">
+        <div class="role-section__icon" style="background:var(--primary);">📋</div>
+        <div>
+          <div class="role-section__title">买家端（采购方 SaaS）· 8 页</div>
+          <div class="role-section__desc">面向大客户采购员、采购经理 · 整合询价/订单/供应商/分析</div>
+        </div>
+      </div>
+      <div class="page-grid">
+        <a href="buyer/01-dashboard.html" class="page-card">
+          <span class="badge-core">核心</span>
+          <div class="page-card__title">📊 采购工作台</div>
+          <div class="page-card__desc">KPI 看板 · 进行中询价 · 月度趋势 · AI 推荐</div>
+          <div class="page-card__meta">M2/M3 总览</div>
+        </a>
+        <a href="buyer/02-发需求.html" class="page-card">
+          <span class="badge-new">多规格</span>
+          <div class="page-card__title">📝 发布需求（多规格）</div>
+          <div class="page-card__desc">表格式批量编辑 + Excel 导入 + 智能拆单</div>
+          <div class="page-card__meta">M2 采购会话</div>
+        </a>
+        <a href="buyer/03-采购会话详情.html" class="page-card">
+          <span class="badge-core">核心</span>
+          <div class="page-card__title">💬 采购会话详情</div>
+          <div class="page-card__desc">三栏：清单进展 + 行内对比 + 时间线</div>
+          <div class="page-card__meta">M2 采购会话</div>
+        </a>
+        <a href="buyer/04-报价对比矩阵.html" class="page-card">
+          <span class="badge-new">PC 独占</span>
+          <div class="page-card__title">⊞ 报价对比矩阵</div>
+          <div class="page-card__desc">17 家 × 8 行 完整矩阵 + AI 最优组合</div>
+          <div class="page-card__meta">M4 报价系统</div>
+        </a>
+        <a href="buyer/05-供应商管理.html" class="page-card">
+          <div class="page-card__title">🏢 供应商管理</div>
+          <div class="page-card__desc">私有 CRM · 23 家分级管理</div>
+          <div class="page-card__meta">M8 买家工具包</div>
+        </a>
+        <a href="buyer/06-清单管理.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">📋 清单管理</div>
+          <div class="page-card__desc">所有清单 / 草稿 / 模板 / 项目档案</div>
+          <div class="page-card__meta">M2 采购会话</div>
+        </a>
+        <a href="buyer/07-订单详情.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">📦 订单详情</div>
+          <div class="page-card__desc">多规格按行验收 + 物流跟踪 + 财务</div>
+          <div class="page-card__meta">M2 采购会话</div>
+        </a>
+        <a href="buyer/08-采购分析.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">📈 采购分析报表</div>
+          <div class="page-card__desc">月度全景 + 品类/供应商 + AI 报告</div>
+          <div class="page-card__meta">M8 买家工具包</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 卖家端 -->
+    <div class="role-section">
+      <div class="role-section__head">
+        <div class="role-section__icon" style="background:var(--gold);">🏪</div>
+        <div>
+          <div class="role-section__title">卖家端（销售方工作台）· 8 页</div>
+          <div class="role-section__desc">面向钢贸商销售经理、老板 · 询价处理/库存/利润管理</div>
+        </div>
+      </div>
+      <div class="page-grid">
+        <a href="seller/01-dashboard.html" class="page-card">
+          <span class="badge-core">核心</span>
+          <div class="page-card__title">📊 销售工作台</div>
+          <div class="page-card__desc">利润 KPI · 待处理 · 利润趋势 · S 级特权</div>
+          <div class="page-card__meta">M7 卖家工具包</div>
+        </a>
+        <a href="seller/04-询价列表.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">📥 询价列表</div>
+          <div class="page-card__desc">多规格询价总列表 + 筛选 + 紧急度排序</div>
+          <div class="page-card__meta">M5 智能匹配</div>
+        </a>
+        <a href="seller/02-询价中心.html" class="page-card">
+          <span class="badge-new">多规格</span>
+          <div class="page-card__title">📥 询价中心（处理页）</div>
+          <div class="page-card__desc">多规格勾选 + 批量调价 + 利润预估</div>
+          <div class="page-card__meta">M5 智能匹配</div>
+        </a>
+        <a href="seller/05-会话沟通.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">💬 会话沟通</div>
+          <div class="page-card__desc">IM 三栏布局 + 上下文 + AI 助手</div>
+          <div class="page-card__meta">M2 采购会话</div>
+        </a>
+        <a href="seller/06-报价管理.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">📑 报价管理</div>
+          <div class="page-card__desc">报价历史（按行）+ 中标率 + 失败复盘</div>
+          <div class="page-card__meta">M4 报价系统</div>
+        </a>
+        <a href="seller/07-订单发货.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">🚚 订单与发货</div>
+          <div class="page-card__desc">多规格按行发货 + 物流跟踪 + 步骤条</div>
+          <div class="page-card__meta">M7 卖家工具包</div>
+        </a>
+        <a href="seller/03-库存管理.html" class="page-card">
+          <div class="page-card__title">📦 库存管理</div>
+          <div class="page-card__desc">126 SKU · 安全线告警 · 滞销分析</div>
+          <div class="page-card__meta">M7 卖家工具包</div>
+        </a>
+        <a href="seller/08-客户管理.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">👥 客户管理 CRM</div>
+          <div class="page-card__desc">私有客户 · RFM 矩阵 · AI 洞察</div>
+          <div class="page-card__meta">M7 卖家工具包</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 运营后台 -->
+    <div class="role-section">
+      <div class="role-section__head">
+        <div class="role-section__icon" style="background:var(--danger);">⚡</div>
+        <div>
+          <div class="role-section__title">运营后台（平台管理员）· 2 页</div>
+          <div class="role-section__desc">面向平台风控/运营/客服 · 风控/审计/用户/数据</div>
+        </div>
+      </div>
+      <div class="page-grid">
+        <a href="admin/01-风控看板.html" class="page-card">
+          <span class="badge-core">核心</span>
+          <div class="page-card__title">🛡 风控看板</div>
+          <div class="page-card__desc">36 规则 · 围猎检测 · 区域热力</div>
+          <div class="page-card__meta">M11 风控反作弊</div>
+        </a>
+        <a href="admin/02-申诉处理.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">⚖️ 申诉处理</div>
+          <div class="page-card__desc">申诉队列 + AI 辅助判决 + 48h 闭环</div>
+          <div class="page-card__meta">M6 信用体系</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 与移动端的关系 -->
+    <div class="card" style="margin-top: 32px;">
+      <div class="card__title">📱 与移动端的关系</div>
+      <div class="text-sm" style="line-height:1.8;">
+        <p>PC 端与移动端共享同一套：</p>
+        <ul style="padding-left: 24px; margin-top:8px;">
+          <li>✅ 后端 API（<code>docs/08-技术交付物/api/openapi.yaml</code>）</li>
+          <li>✅ 数据库 DDL（<code>docs/08-技术交付物/db/01-schema.sql</code>）</li>
+          <li>✅ 设计 token（颜色 / 字体 / 圆角 / 阴影）</li>
+          <li>✅ 业务模型（DemandCard 多规格、Result&lt;T&gt; 响应、ErrorCode 错误码）</li>
+        </ul>
+        <p class="mt-12">差异在 <strong>布局密度与交互效率</strong>：</p>
+        <ul style="padding-left: 24px; margin-top:8px;">
+          <li>📱 移动端：单列、卡片堆叠、大字大按钮、触摸友好</li>
+          <li>💻 PC 端：多栏、表格密集、键盘+鼠标、批量操作、大屏数据看板</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 移动端链接 -->
+    <div style="text-align: center; padding: 24px 0; color: var(--text-muted);">
+      <a href="../ui-prototype/index.html" style="color: var(--primary);">← 查看移动端原型 (H5)</a>
+      &nbsp;·&nbsp;
+      <a href="../../13-Figma设计规范/" style="color: var(--primary);">查看 Figma 设计规范 →</a>
+    </div>
+  </div>
+</body>
+</html>

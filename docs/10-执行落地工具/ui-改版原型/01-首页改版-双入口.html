@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>货袋子首页（改版后）· 双引擎</title>
+  <link rel="stylesheet" href="../../08-技术交付物/ui-prototype/styles.css">
+  <style>
+    .dual-entry {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 12px 16px;
+    }
+    .entry-card {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      color: white;
+      border-radius: 16px;
+      padding: 20px 16px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .entry-card.new {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    }
+    .entry-card .icon {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .entry-card .title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .entry-card .subtitle {
+      font-size: 12px;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+    .entry-card .badge-new {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #fff;
+      color: #d97706;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .market-data {
+      background: linear-gradient(to right, #f0f9ff, #e0f2fe);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 12px 16px;
+    }
+    .market-data .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .market-data .items {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .market-data .item {
+      flex-shrink: 0;
+      background: white;
+      border-radius: 8px;
+      padding: 8px 12px;
+      min-width: 100px;
+      font-size: 12px;
+    }
+    .market-data .item .name {
+      color: var(--text-secondary);
+      margin-bottom: 2px;
+    }
+    .market-data .item .price {
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 14px;
+    }
+    .market-data .item .change.up {
+      color: var(--danger);
+      font-size: 11px;
+    }
+    .market-data .item .change.down {
+      color: var(--success);
+      font-size: 11px;
+    }
+    .inventory-list {
+      margin: 12px 16px;
+    }
+    .inventory-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      margin-bottom: 8px;
+    }
+    .inventory-card {
+      background: white;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      gap: 12px;
+    }
+    .inventory-card .image {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #6b7280, #4b5563);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .inventory-card .info {
+      flex: 1;
+    }
+    .inventory-card .product-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .inventory-card .specs {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    .inventory-card .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .inventory-card .price {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .inventory-card .seller-info {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .info-banner {
+      background: linear-gradient(to right, #fef3c7, #fde68a);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 16px;
+      font-size: 13px;
+      color: #92400e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- 顶部 -->
+    <div class="nav-bar" style="border: none;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--primary);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">货</div>
+        <div>
+          <div style="font-size:15px;font-weight:600;">货袋子</div>
+          <div style="font-size:11px;color:var(--text-muted);">钢贸圈 AI 采购助手</div>
+        </div>
+      </div>
+      <div class="actions" style="display:flex;gap:12px;">
+        <span style="font-size:20px;">🔍</span>
+        <span style="font-size:20px;">📩</span>
+      </div>
+    </div>
+
+    <!-- 老用户友好提示（M5 上线时显示，30 天后消失） -->
+    <div class="info-banner">
+      💡 平台已升级！您发的库存现在能自动接询价了 · <span style="text-decoration:underline;cursor:pointer;">查看升级</span>
+    </div>
+
+    <!-- 双入口（核心改版） -->
+    <div class="dual-entry">
+      <div class="entry-card">
+        <span class="icon">🔍</span>
+        <div class="title">浏览库存</div>
+        <div class="subtitle">300+ 卖家在线<br>实时现货资源</div>
+      </div>
+      <div class="entry-card new">
+        <span class="badge-new">NEW</span>
+        <span class="icon">💬</span>
+        <div class="title">发起询价</div>
+        <div class="subtitle">买家专享<br>AI 智能撮合 10 分钟收报价</div>
+      </div>
+    </div>
+
+    <!-- 今日行情（拉留存） -->
+    <div class="market-data">
+      <div class="header">
+        <span>📊 今日行情</span>
+        <span style="color:var(--text-muted);font-size:12px;font-weight:normal;cursor:pointer;">查看更多 ></span>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="name">唐山热轧</div>
+          <div class="price">¥4280</div>
+          <div class="change up">↑ 20</div>
+        </div>
+        <div class="item">
+          <div class="name">天津螺纹</div>
+          <div class="price">¥3920</div>
+          <div class="change down">↓ 10</div>
+        </div>
+        <div class="item">
+          <div class="name">聊城镀锌</div>
+          <div class="price">¥4720</div>
+          <div class="change up">↑ 30</div>
+        </div>
+        <div class="item">
+          <div class="name">唐山螺纹</div>
+          <div class="price">¥3900</div>
+          <div class="change down">↓ 15</div>
+        </div>
+        <div class="item">
+          <div class="name">天津热轧</div>
+          <div class="price">¥4300</div>
+          <div class="change up">↑ 20</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 品类导航 -->
+    <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:4px;padding:0 16px;">
+      <div style="text-align:center;padding:8px 4px;">
+        <div style="font-size:24px;">📦</div>
+        <div style="font-size:11px;margin-top:2px;">热轧</div>
+      </div>
+      <div style="text-align:center;padding:8px 4px;">
+        <div style="font-size:24px;">🔩</div>
+        <div style="font-size:11px;margin-top:2px;">螺纹</div>
+      </div>
+      <div style="text-align:center;padding:8px 4px;">
+        <div style="font-size:24px;">📐</div>
+        <div style="font-size:11px;margin-top:2px;">型钢</div>
+      </div>
+      <div style="text-align:center;padding:8px 4px;">
+        <div style="font-size:24px;">⚙️</div>
+        <div style="font-size:11px;margin-top:2px;">管材</div>
+      </div>
+      <div style="text-align:center;padding:8px 4px;">
+        <div style="font-size:24px;">🔧</div>
+        <div style="font-size:11px;margin-top:2px;">更多</div>
+      </div>
+    </div>
+
+    <!-- 推荐库存（原有逻辑，保留） -->
+    <div class="inventory-list">
+      <div class="inventory-section-header">
+        <span style="font-size:15px;font-weight:600;">🔥 热门库存</span>
+        <span style="font-size:12px;color:var(--text-muted);">附近 ></span>
+      </div>
+
+      <div class="inventory-card">
+        <div class="image">📦</div>
+        <div class="info">
+          <div class="product-name">唐山热轧 Q235B 5.5×1500×C</div>
+          <div class="specs">80 吨现货 · 含运 · 立即可发</div>
+          <div class="meta">
+            <span class="price">¥4280<span style="font-size:11px;font-weight:normal;color:var(--text-secondary);">/吨</span></span>
+            <span class="seller-info">⭐ 优选 卖家 A · 距您 18km</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inventory-card">
+        <div class="image">🔩</div>
+        <div class="info">
+          <div class="product-name">天津螺纹 HRB400 Φ18-22</div>
+          <div class="specs">50 吨现货 · 多规格混批</div>
+          <div class="meta">
+            <span class="price">¥3920<span style="font-size:11px;font-weight:normal;color:var(--text-secondary);">/吨</span></span>
+            <span class="seller-info">⭐ 优选 卖家 B</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="inventory-card">
+        <div class="image">📐</div>
+        <div class="info">
+          <div class="product-name">聊城 H 型钢 Q345B HM350×175</div>
+          <div class="specs">30 吨现货 · 可加工剪切</div>
+          <div class="meta">
+            <span class="price">¥4520<span style="font-size:11px;font-weight:normal;color:var(--text-secondary);">/吨</span></span>
+            <span class="seller-info">⭐ 卖家 C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部 Tab Bar -->
+    <div class="tab-bar">
+      <div class="tab active">
+        <span class="icon">🏠</span>
+        <div>首页</div>
+      </div>
+      <div class="tab">
+        <span class="icon">🔍</span>
+        <div>找货</div>
+      </div>
+      <div class="tab">
+        <span class="icon">💬</span>
+        <div>消息</div>
+      </div>
+      <div class="tab">
+        <span class="icon">📂</span>
+        <div>项目</div>
+      </div>
+      <div class="tab">
+        <span class="icon">👤</span>
+        <div>我的</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

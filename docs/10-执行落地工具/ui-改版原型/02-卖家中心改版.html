@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卖家中心（改版后）· 货袋子</title>
+  <link rel="stylesheet" href="../../08-技术交付物/ui-prototype/styles.css">
+  <style>
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 12px 16px;
+    }
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-card.new {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 1px solid #f59e0b;
+    }
+    .stat-card .label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    .stat-card .number {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .stat-card .delta {
+      font-size: 11px;
+      margin-top: 2px;
+    }
+    .stat-card .delta.up { color: var(--success); }
+    .stat-card .delta.down { color: var(--danger); }
+    .stat-card .badge-new {
+      display: inline-block;
+      background: #f59e0b;
+      color: white;
+      font-size: 9px;
+      padding: 1px 5px;
+      border-radius: 3px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .nav-grid {
+      background: white;
+      margin: 12px 16px;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-item-row {
+      display: flex;
+      align-items: center;
+      padding: 12px 4px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .nav-item-row:last-child {
+      border-bottom: none;
+    }
+    .nav-item-row .icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-right: 12px;
+    }
+    .nav-item-row .info {
+      flex: 1;
+    }
+    .nav-item-row .title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .nav-item-row .desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .nav-item-row .arrow {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .nav-item-row .badge-num {
+      background: var(--danger);
+      color: white;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      margin-right: 8px;
+    }
+    .upgrade-card {
+      background: linear-gradient(135deg, #d4a73a, #b08821);
+      color: white;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .upgrade-card .icon {
+      font-size: 32px;
+    }
+    .upgrade-card .text {
+      flex: 1;
+    }
+    .upgrade-card .title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .upgrade-card .desc {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- 顶部用户信息 -->
+    <div style="background: linear-gradient(135deg, #2563eb, #1e40af); color: white; padding: 20px 16px 24px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">👤</div>
+        <div style="flex: 1;">
+          <div style="font-size: 18px; font-weight: 600;">王总 · 唐山华泰钢贸</div>
+          <div style="font-size: 12px; opacity: 0.9; margin-top: 2px;">
+            <span style="background: #d4a73a; padding: 2px 8px; border-radius: 4px; font-size: 11px;">S 级 95 分</span>
+            <span style="margin-left: 8px;">⭐ 老用户专享</span>
+          </div>
+        </div>
+        <div style="font-size: 24px;">⚙️</div>
+      </div>
+    </div>
+
+    <!-- 卖家身份切换 -->
+    <div style="background: white; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border);">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 14px;">当前身份：</span>
+        <span style="background: var(--primary-light); color: var(--primary); padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 500;">🏪 卖家</span>
+      </div>
+      <span style="font-size: 12px; color: var(--text-muted); cursor: pointer;">⇄ 切换为买家</span>
+    </div>
+
+    <!-- 数据概览 -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">本月发布库存</div>
+        <div class="number">45</div>
+        <div class="delta up">↑ 12 vs 上月</div>
+      </div>
+      <div class="stat-card new">
+        <div class="label">本月收到询价 <span class="badge-new">NEW</span></div>
+        <div class="number">12</div>
+        <div class="delta up">↑ 8 待处理</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">本月成交额</div>
+        <div class="number">¥186 万</div>
+        <div class="delta up">↑ 23%</div>
+      </div>
+      <div class="stat-card new">
+        <div class="label">询价转化率 <span class="badge-new">NEW</span></div>
+        <div class="number">25%</div>
+        <div class="delta">↑ 优于平均</div>
+      </div>
+    </div>
+
+    <!-- 老用户升级提示（限时） -->
+    <div class="upgrade-card">
+      <span class="icon">🎁</span>
+      <div class="text">
+        <div class="title">老用户专属礼包</div>
+        <div class="desc">50 条免费询价线索 + 5 折包<br>还剩 28 天有效</div>
+      </div>
+      <span style="font-size: 14px; padding: 6px 12px; background: rgba(255,255,255,0.2); border-radius: 6px;">领取</span>
+    </div>
+
+    <!-- 核心功能导航 -->
+    <div class="nav-grid">
+      <!-- 原有功能（保留，不动） -->
+      <div class="nav-item-row">
+        <div class="icon-wrap" style="background: var(--primary-light);">📦</div>
+        <div class="info">
+          <div class="title">我的库存</div>
+          <div class="desc">45 条在线 · 12 条本周新增</div>
+        </div>
+        <span class="arrow">›</span>
+      </div>
+
+      <!-- 新功能（标记 NEW） -->
+      <div class="nav-item-row">
+        <div class="icon-wrap" style="background: #fef3c7;">💬</div>
+        <div class="info">
+          <div class="title">我的询价 <span class="badge-new" style="background: #f59e0b;">NEW</span></div>
+          <div class="desc">3 条新询价待处理</div>
+        </div>
+        <span class="badge-num">3</span>
+        <span class="arrow">›</span>
+      </div>
+
+      <div class="nav-item-row">
+        <div class="icon-wrap" style="background: var(--success-light);">👥</div>
+        <div class="info">
+          <div class="title">我的客户</div>
+          <div class="desc">234 历史客户 · 12 高潜跟进</div>
+        </div>
+        <span class="arrow">›</span>
+      </div>
+
+      <div class="nav-item-row">
+        <div class="icon-wrap" style="background: #fdf6e3;">📊</div>
+        <div class="info">
+          <div class="title">收益看板 <span class="badge-new" style="background: #f59e0b;">NEW</span></div>
+          <div class="desc">本月 ROI 126 倍</div>
+        </div>
+        <span class="arrow">›</span>
+      </div>
+    </div>
+
+    <!-- 其他功能 -->
+    <div class="nav-grid">
+      <div class="nav-item-row">
+        <div class="icon-wrap" style="background: #ede9fe;">⭐</div>
+        <div class="info">
+          <div class="title">我的会员</div>
+          <div class="desc">黑金会员 · 2027/01/15 到期</div>
+        </div>
+        <span class="arrow">›</span>
+      </div>
+
+      <div class="nav-item-row">
+        <div class="icon-wrap" style="background: #ddd6fe;">💰</div>
+        <div class="info">
+          <div class="title">流量账户 <span class="badge-new" style="background: #f59e0b;">NEW</span></div>
+          <div class="desc">余额 ¥1980 · 还可用 39 条</div>
+        </div>
+        <span class="arrow">›</span>
+      </div>
+
+      <div class="nav-item-row">
+        <div class="icon-wrap" style="background: #e0f2fe;">🎁</div>
+        <div class="info">
+          <div class="title">我的邀请</div>
+          <div class="desc">已邀 12 · 成交 3 · ¥1240 奖励</div>
+        </div>
+        <span class="arrow">›</span>
+      </div>
+
+      <div class="nav-item-row">
+        <div class="icon-wrap" style="background: var(--bg-light);">📞</div>
+        <div class="info">
+          <div class="title">客户成功专属服务</div>
+          <div class="desc">您的顾问：李经理</div>
+        </div>
+        <span class="arrow">›</span>
+      </div>
+
+      <div class="nav-item-row">
+        <div class="icon-wrap" style="background: var(--bg-light);">⚙️</div>
+        <div class="info">
+          <div class="title">设置</div>
+          <div class="desc">接询价偏好 / 通知 / 安全</div>
+        </div>
+        <span class="arrow">›</span>
+      </div>
+    </div>
+
+    <!-- 帮助提示 -->
+    <div style="margin: 16px; padding: 12px 16px; background: white; border-radius: 8px; font-size: 12px; color: var(--text-muted); text-align: center;">
+      不想用新功能？<a href="javascript:void(0)" style="color: var(--primary); text-decoration: underline;">一键关闭</a> 不影响您的任何权益
+    </div>
+
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+      <div class="tab">
+        <span class="icon">🏠</span>
+        <div>首页</div>
+      </div>
+      <div class="tab">
+        <span class="icon">🔍</span>
+        <div>找货</div>
+      </div>
+      <div class="tab">
+        <span class="icon">💬</span>
+        <div>消息</div>
+      </div>
+      <div class="tab">
+        <span class="icon">📦</span>
+        <div>库存</div>
+      </div>
+      <div class="tab active">
+        <span class="icon">👤</span>
+        <div>我的</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

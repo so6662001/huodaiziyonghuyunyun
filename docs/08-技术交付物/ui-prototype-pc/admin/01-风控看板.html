@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>风控看板 · 货袋子运营后台（PC）</title>
+  <link rel="stylesheet" href="../styles-pc.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon" style="background:var(--danger);">⚡</div>
+      <div class="sidebar__logo-text">货袋子 · 运营</div>
+    </div>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar" style="background:var(--danger);">陈</div>
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-name">陈风控</div>
+        <div class="sidebar__user-role">风控管理员</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__group">概览</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📊</span>平台总览</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📈</span>数据看板</div>
+      <div class="sidebar__group">风控</div>
+      <div class="sidebar__item sidebar__item--active"><span class="sidebar__item-icon">🛡</span>风控看板<span class="sidebar__item-badge">5</span></div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📋</span>规则管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🚨</span>事件审计</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">⚖️</span>申诉处理</div>
+      <div class="sidebar__group">运营</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">👥</span>用户管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🏢</span>企业认证</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💬</span>内容审核</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📜</span>规则配置</div>
+      <div class="sidebar__group">财务</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💰</span>对账</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📑</span>开票</div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <div class="header__breadcrumb">风控 / <strong>看板</strong></div>
+      <div class="header__actions">
+        <span class="tag tag--danger">🚨 3 个高危事件待处理</span>
+        <button class="btn btn--sm">⚙️ 规则配置</button>
+        <button class="btn btn--primary btn--sm">导出审计报告</button>
+      </div>
+    </div>
+
+    <div class="content" style="max-width:none;">
+      <div class="page-title">风控看板</div>
+      <div class="page-subtitle">实时监控 36 条反作弊规则的命中情况、围猎检测、用户信用变化。</div>
+
+      <!-- 风险概览 -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-card__label">今日命中规则</div>
+          <div class="kpi-card__value text-warning">142</div>
+          <div class="kpi-card__sub">
+            <span class="text-warning">高危 <strong>3</strong></span>
+            <span class="text-muted">中危 <strong>12</strong></span>
+          </div>
+          <div class="kpi-card__icon">🚨</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">围猎检测命中</div>
+          <div class="kpi-card__value text-danger">2</div>
+          <div class="kpi-card__sub">
+            <span class="text-danger">2 起待人工复审</span>
+          </div>
+          <div class="kpi-card__icon">🎯</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">待审申诉</div>
+          <div class="kpi-card__value">8</div>
+          <div class="kpi-card__sub">
+            <span class="text-warning">3 个超 24h</span>
+          </div>
+          <div class="kpi-card__icon">⚖️</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">禁用用户</div>
+          <div class="kpi-card__value">15</div>
+          <div class="kpi-card__sub">
+            <span class="text-secondary">本月封禁 <strong>+4</strong></span>
+          </div>
+          <div class="kpi-card__icon">🚫</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">平台整体健康度</div>
+          <div class="kpi-card__value text-success">92<span style="font-size:18px;">分</span></div>
+          <div class="kpi-card__sub">
+            <span class="text-success">↑ 较上周 +2</span>
+          </div>
+          <div class="kpi-card__icon">❤️</div>
+        </div>
+      </div>
+
+      <!-- 三栏 -->
+      <div style="display:grid; grid-template-columns: 1fr 400px; gap:20px;">
+        <!-- 左：高危事件 -->
+        <div>
+          <div class="card">
+            <div class="card__title">
+              <div class="flex items-center gap-8">
+                <span>🚨 待处理高危事件</span>
+                <span class="tag tag--danger">3</span>
+              </div>
+              <button class="btn btn--ghost btn--sm">查看全部</button>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>事件 ID</th>
+                  <th>类型</th>
+                  <th>命中规则</th>
+                  <th>涉及用户</th>
+                  <th>风险评分</th>
+                  <th>触发时间</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background:var(--danger-light);">
+                  <td><strong>EVT-2026-04821</strong></td>
+                  <td>围猎检测</td>
+                  <td><span class="text-danger">R-014 R-022 R-035</span></td>
+                  <td>5 个卖家关联</td>
+                  <td><span class="tag tag--danger">98 分</span></td>
+                  <td>12 分钟前</td>
+                  <td><span class="tag tag--danger">待人工复审</span></td>
+                  <td>
+                    <button class="btn btn--danger btn--sm">立即处理</button>
+                  </td>
+                </tr>
+                <tr style="background:var(--warning-light);">
+                  <td><strong>EVT-2026-04820</strong></td>
+                  <td>异常报价</td>
+                  <td>R-018</td>
+                  <td>1 个卖家</td>
+                  <td><span class="tag tag--warning">85 分</span></td>
+                  <td>34 分钟前</td>
+                  <td><span class="tag tag--warning">待复审</span></td>
+                  <td><button class="btn btn--warning btn--sm">处理</button></td>
+                </tr>
+                <tr style="background:var(--warning-light);">
+                  <td><strong>EVT-2026-04815</strong></td>
+                  <td>询价党行为</td>
+                  <td>R-009 R-011</td>
+                  <td>1 个买家</td>
+                  <td><span class="tag tag--warning">82 分</span></td>
+                  <td>1 h 前</td>
+                  <td><span class="tag tag--warning">待复审</span></td>
+                  <td><button class="btn btn--warning btn--sm">处理</button></td>
+                </tr>
+                <tr>
+                  <td><strong>EVT-2026-04810</strong></td>
+                  <td>设备指纹异常</td>
+                  <td>R-002</td>
+                  <td>3 个账号同 IP</td>
+                  <td><span class="tag">68 分</span></td>
+                  <td>2 h 前</td>
+                  <td><span class="tag">已自动处理</span></td>
+                  <td><button class="btn btn--ghost btn--sm">详情</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 36 规则命中分布 -->
+          <div class="card">
+            <div class="card__title">📊 36 条规则今日命中分布</div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>模块</th>
+                  <th>规则数</th>
+                  <th>今日命中</th>
+                  <th>命中率趋势</th>
+                  <th>高危占比</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>注册风险</td>
+                  <td>6</td>
+                  <td><strong>23</strong></td>
+                  <td><span class="text-success">↓ -12%</span></td>
+                  <td>4.3%</td>
+                  <td><button class="btn btn--ghost btn--sm">查看</button></td>
+                </tr>
+                <tr>
+                  <td>邀请反作弊</td>
+                  <td>5</td>
+                  <td><strong>18</strong></td>
+                  <td><span class="text-secondary">→ +2%</span></td>
+                  <td>11.1%</td>
+                  <td><button class="btn btn--ghost btn--sm">查看</button></td>
+                </tr>
+                <tr>
+                  <td>需求异常</td>
+                  <td>5</td>
+                  <td><strong>32</strong></td>
+                  <td><span class="text-warning">↑ +18%</span></td>
+                  <td>6.3%</td>
+                  <td><button class="btn btn--ghost btn--sm">查看</button></td>
+                </tr>
+                <tr style="background:var(--danger-light);">
+                  <td><strong>报价/围猎</strong></td>
+                  <td>8</td>
+                  <td><strong>45</strong></td>
+                  <td><span class="text-danger">↑ +35%</span></td>
+                  <td><strong>20.0%</strong></td>
+                  <td><button class="btn btn--danger btn--sm">紧急 →</button></td>
+                </tr>
+                <tr>
+                  <td>联系方式</td>
+                  <td>4</td>
+                  <td><strong>12</strong></td>
+                  <td><span class="text-secondary">→ -3%</span></td>
+                  <td>8.3%</td>
+                  <td><button class="btn btn--ghost btn--sm">查看</button></td>
+                </tr>
+                <tr>
+                  <td>成交风险</td>
+                  <td>5</td>
+                  <td><strong>8</strong></td>
+                  <td><span class="text-success">↓ -8%</span></td>
+                  <td>12.5%</td>
+                  <td><button class="btn btn--ghost btn--sm">查看</button></td>
+                </tr>
+                <tr>
+                  <td>流量费</td>
+                  <td>3</td>
+                  <td><strong>4</strong></td>
+                  <td><span class="text-secondary">→</span></td>
+                  <td>0%</td>
+                  <td><button class="btn btn--ghost btn--sm">查看</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 用户分级变化 -->
+          <div class="card">
+            <div class="card__title">📈 信用变化（今日）</div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>用户</th>
+                  <th>类型</th>
+                  <th>变化前</th>
+                  <th>变化后</th>
+                  <th>变化值</th>
+                  <th>原因</th>
+                  <th>时间</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>天津荣昌</td>
+                  <td>卖家</td>
+                  <td>94</td>
+                  <td><span class="text-success">96</span></td>
+                  <td><span class="text-success">+2</span></td>
+                  <td>履约率提升</td>
+                  <td>1 h 前</td>
+                </tr>
+                <tr>
+                  <td>河北宇恒商贸</td>
+                  <td>卖家</td>
+                  <td>76</td>
+                  <td><span class="text-danger">68</span></td>
+                  <td><span class="text-danger">-8</span></td>
+                  <td>延期发货 2 次</td>
+                  <td>3 h 前</td>
+                </tr>
+                <tr>
+                  <td>京*建材</td>
+                  <td>买家</td>
+                  <td>80</td>
+                  <td><span class="text-warning">72</span></td>
+                  <td><span class="text-warning">-8</span></td>
+                  <td>询价无成交（询价党）</td>
+                  <td>5 h 前</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 右：地域热力 + 规则配置 -->
+        <div>
+          <!-- 地域风险 -->
+          <div class="card" style="margin:0 0 20px;">
+            <div class="card__title">🗺 区域风险热力</div>
+            <div style="display:flex; flex-direction:column; gap:10px; font-size:13px;">
+              <div>
+                <div class="flex justify-between mb-8"><span>天津</span><span class="text-secondary">42 事件</span></div>
+                <div class="progress"><div class="progress__bar progress__bar--success" style="width:30%;"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-8"><span>唐山</span><span class="text-warning">68 事件</span></div>
+                <div class="progress"><div class="progress__bar progress__bar--warning" style="width:55%;"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-8"><span>聊城</span><span class="text-danger">35 事件</span></div>
+                <div class="progress"><div class="progress__bar" style="background:var(--danger); width:48%;"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-8"><span>沧州</span><span class="text-secondary">18 事件</span></div>
+                <div class="progress"><div class="progress__bar progress__bar--success" style="width:15%;"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-8"><span>其他</span><span class="text-secondary">22 事件</span></div>
+                <div class="progress"><div class="progress__bar progress__bar--success" style="width:18%;"></div></div>
+              </div>
+            </div>
+            <div class="text-muted text-sm mt-12">⚠️ 聊城地区今日围猎检测命中较高，建议关注</div>
+          </div>
+
+          <!-- 规则热度 -->
+          <div class="card" style="margin:0 0 20px;">
+            <div class="card__title">🔥 命中 Top 10 规则</div>
+            <div style="font-size:13px; line-height:2;">
+              <div class="flex justify-between"><span>R-014 卖家围猎相似度</span><strong class="text-danger">28</strong></div>
+              <div class="flex justify-between"><span>R-018 报价远离市场</span><strong class="text-warning">22</strong></div>
+              <div class="flex justify-between"><span>R-009 询价无成交</span><strong>18</strong></div>
+              <div class="flex justify-between"><span>R-011 询价频率异常</span><strong>14</strong></div>
+              <div class="flex justify-between"><span>R-022 多账号同 IP</span><strong>12</strong></div>
+              <div class="flex justify-between"><span>R-005 短信轰炸防御</span><strong>11</strong></div>
+              <div class="flex justify-between"><span>R-002 设备指纹</span><strong>9</strong></div>
+              <div class="flex justify-between"><span>R-027 联系方式异常</span><strong>8</strong></div>
+              <div class="flex justify-between"><span>R-031 成交后失联</span><strong>6</strong></div>
+              <div class="flex justify-between"><span>R-035 团伙图谱</span><strong>5</strong></div>
+            </div>
+          </div>
+
+          <!-- 处置统计 -->
+          <div class="card" style="margin:0;">
+            <div class="card__title">⚡ 今日处置统计</div>
+            <div style="font-size:13px; line-height:1.9;">
+              <div class="flex justify-between"><span>自动放行</span><strong>118</strong></div>
+              <div class="flex justify-between"><span>人工复审</span><strong>15</strong></div>
+              <div class="flex justify-between"><span>降权处理</span><strong>6</strong></div>
+              <div class="flex justify-between"><span>临时禁言</span><strong>2</strong></div>
+              <div class="flex justify-between"><span>永久封禁</span><strong class="text-danger">1</strong></div>
+              <div class="divider"></div>
+              <div class="flex justify-between"><span class="text-bold">误报率</span><strong class="text-success">4.2%</strong></div>
+              <div class="flex justify-between"><span class="text-bold">平均处理时长</span><strong>18 分钟</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

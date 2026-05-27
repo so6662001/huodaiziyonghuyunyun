@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的客户 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame page-bg-gray">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">我的客户</span>
+      <div class="actions"><span>+ 新增</span></div>
+    </div>
+
+    <!-- S 级特权 -->
+    <div style="background: linear-gradient(135deg, var(--gold-light) 0%, #fff 100%); padding:10px 16px; border-bottom:1px solid var(--gold); font-size:12px; color:var(--gold);">
+      🔒 S 级特权：客户数据完全私有，不与同行共享
+    </div>
+
+    <div class="mini-kpi" style="padding-top:12px;">
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">68</div>
+        <div class="mini-kpi__label">客户总数</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-gold">12</div>
+        <div class="mini-kpi__label">A 核心</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-success">42</div>
+        <div class="mini-kpi__label">本月活跃</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-warning">8</div>
+        <div class="mini-kpi__label">沉睡</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="filter-chip filter-chip--active">全部</div>
+      <div class="filter-chip">A 核心 12</div>
+      <div class="filter-chip">B 合作 30</div>
+      <div class="filter-chip">C 备选 18</div>
+      <div class="filter-chip">沉睡 8</div>
+    </div>
+
+    <div class="search-bar">
+      <input class="search-bar__input" placeholder="搜索企业 / 联系人">
+    </div>
+
+    <div style="padding-top:8px;">
+      <!-- A 级核心 -->
+      <div class="list-card" style="background: linear-gradient(135deg, var(--gold-light) 0%, #fff 50%); border:1px solid var(--gold);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">🏆 华*建工集团</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">王采购 · 138****9999 · 建筑</div>
+          </div>
+          <span class="badge" style="background:var(--gold); color:#fff;">A · 核心</span>
+        </div>
+        <div style="font-size:12px; line-height:1.7; margin-top:8px;">
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">合作时长</span><strong>2 年 6 月</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">累计成交</span><strong>¥6.82M · 68 单</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">近 3 月</span><strong>¥1.86M</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">利润率</span><strong class="text-success">3.2%</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">最近询价</span><strong>今天</strong></div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <button class="btn" style="flex:1; padding:8px; font-size:12px;">📞 电话</button>
+          <button class="btn" style="flex:1; padding:8px; font-size:12px;">💬 沟通</button>
+          <button class="btn btn-primary" style="flex:1; padding:8px; font-size:12px;">📤 主动报价</button>
+        </div>
+      </div>
+
+      <div class="list-card" style="border-left:3px solid var(--gold);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">秦*港务</div>
+            <div style="font-size:11px; color:var(--text-muted);">张经理 · 仓储物流</div>
+          </div>
+          <span class="badge" style="background:var(--gold); color:#fff;">A</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+          ¥3.42M · 32 单 · 2.8% 利润率 · 1h 前询价
+        </div>
+      </div>
+
+      <div class="list-card" style="border-left:3px solid var(--gold);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">河*农机</div>
+            <div style="font-size:11px; color:var(--text-muted);">刘总 · 制造</div>
+          </div>
+          <span class="badge" style="background:var(--gold); color:#fff;">A</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+          ¥1.86M · 28 单 · 2.5% · 3 天前
+        </div>
+      </div>
+
+      <div class="list-card" style="border-left:3px solid var(--success);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">沧*建材</div>
+            <div style="font-size:11px; color:var(--text-muted);">吴经理 · 建材</div>
+          </div>
+          <span class="badge badge-success">B · 合作</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+          ¥820K · 15 单 · 1.8% · 活跃
+        </div>
+      </div>
+
+      <!-- 新客户 -->
+      <div class="list-card" style="border-left:3px solid var(--primary); background: linear-gradient(to right, var(--primary-light) 0%, #fff 30%);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">天*钢构</div>
+            <div style="font-size:11px; color:var(--text-muted);">林总 · 钢构 · 首次</div>
+          </div>
+          <span class="badge badge-primary">🆕 首次</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+          2h 前发起 15 行询价（580 吨）
+        </div>
+        <button class="btn btn-primary btn-block" style="margin-top:8px; padding:8px; font-size:12px;">把握首单 →</button>
+      </div>
+
+      <!-- 沉睡 -->
+      <div class="list-card" style="opacity:0.65;">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">石*建筑（沉睡）</div>
+            <div style="font-size:11px; color:var(--text-muted);">陈总 · 89 天未询价</div>
+          </div>
+          <span class="badge badge-warning">需唤回</span>
+        </div>
+        <button class="btn" style="width:100%; margin-top:8px; padding:8px; font-size:12px; color:var(--warning); border-color:var(--warning);">📨 主动联系</button>
+      </div>
+    </div>
+
+    <div style="height:80px;"></div>
+
+    <div class="tab-bar">
+      <div class="tab"><div class="icon">🏠</div><div>首页</div></div>
+      <div class="tab"><div class="icon">📥</div><div>询价</div></div>
+      <div class="tab"><div class="icon">💬</div><div>消息</div></div>
+      <div class="tab active"><div class="icon">👥</div><div>客户</div></div>
+    </div>
+  </div>
+</body>
+</html>

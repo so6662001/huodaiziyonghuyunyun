@@ -1,0 +1,112 @@
+【任务】新增前端页面：[在这里填写页面名]
+
+【任务卡】
+- 对应 PRD：docs/07-产品PRD-v2/[在这里填写文件名].md 第 [X.Y] 节
+- 对应 HTML 原型：docs/08-技术交付物/ui-prototype/[xx].html
+- 对应 Figma 规范：docs/13-Figma设计规范/pages/[xx].md（如有）
+- 端：[买家小程序 / 卖家小程序 / Web 后台]
+- 路由：pages/[buyer|seller|common]/[xxx]/index.vue
+- 涉及 API：[METHOD] [path]
+- 估算：[小时数]
+
+【请按以下顺序工作】
+
+## Step 1：需求理解（不要立即写代码）
+
+请打开 HTML 原型 + Figma 规范，并输出：
+
+1. 页面包含的所有元素（标题、表单、列表、按钮...）
+2. 所有用到的 design token（颜色 / 字号 / 间距）
+3. 所有用到的基础组件（Button / Input / Card / ...）
+4. 所有用到的业务组件
+5. 所有调用的 API（path + method + 字段）
+6. 所有状态（默认 / 加载 / 空 / 错 / 成功）
+7. 所有交互（点击 / 提交 / 验证 / ...）
+8. 所有边界（未登录 / 无权限 / 数据不存在）
+9. 移动端 375 / 414 是否有特殊处理
+
+## Step 2：技术方案
+
+请输出：
+1. 页面文件结构（拆几个子组件？）
+2. 状态管理（用 ref 还是 Pinia store？）
+3. API 调用顺序
+4. 表单校验规则
+5. 错误处理策略
+
+## Step 3：实现
+
+按以下顺序：
+1. tokens.scss 中引用必要的 token
+2. 新建子组件（如需）
+3. 实现页面 .vue 文件
+4. 在 pages.json 注册路由
+5. 在 stores/ 中加 store（如需）
+6. 在 api/ 中加 API 调用
+7. 写测试（Vitest 单测 + Cypress E2E）
+
+每个文件：
+- 给完整代码
+- 给完整路径
+- 注释关键设计
+
+## Step 4：自查 UI
+
+严格按【docs/14-AI开发提示词/03-UI高保真还原提示词】检查：
+
+```
+□ 所有颜色用 token（无硬编码）
+□ 所有字号用 token，最小 12px
+□ 所有间距 4 的倍数
+□ 所有按钮 ≥ 44pt
+□ 圆角符合规范
+□ 包含 5 个状态
+□ 移动端 375 / 414 双适配
+□ 长文本省略
+□ 数字千分位
+□ 价格保留 2 位小数
+□ 时间相对显示
+□ 图片加载失败 fallback
+□ 表单防双击
+□ 错误提示是人话
+□ 关键操作二次确认
+```
+
+## Step 5：输出报告
+
+```
+## 实现报告
+
+### 文件清单
+新增：
+- pages/buyer/demand/create/index.vue
+- components/business/quantity-input/index.vue
+...
+
+### Token 使用清单
+颜色：$color-primary-600（CTA）, $color-text-primary（标题）...
+字号：$font-size-15（正文）, $font-size-18（标题）...
+
+### 状态覆盖
+✓ 默认
+✓ 加载（骨架屏）
+✓ 空（插画 + 提示）
+✓ 错误（重试按钮）
+✓ 成功（toast + 跳转）
+
+### 已知差异（与原型对比）
+1. ...
+```
+
+【红线提醒】
+
+🚫 不准硬编码颜色 / 字号 / 间距
+🚫 不准字号 < 11px
+🚫 不准按钮 < 44pt（关键 CTA）
+🚫 不准 wx.request 直接调用（必须走封装）
+🚫 不准内联 style 复杂样式
+🚫 不准 localStorage 存 token
+🚫 不准 v-html 渲染用户输入
+🚫 不准忽略边界状态
+
+【请开始 Step 1】

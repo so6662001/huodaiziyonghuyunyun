@@ -1,0 +1,185 @@
+【任务】为 [类名] 编写测试
+
+【输入】
+- 待测试类：[完整类名，如 com.huodaizi.session.service.impl.PurchaseSessionServiceImpl]
+- 业务文档：docs/07-产品PRD-v2/[xx].md（理解业务规则）
+- 既有代码：[文件路径]
+
+---
+
+请按以下顺序工作：
+
+## Step 1：列出所有测试场景
+
+请阅读待测试类，列出：
+
+### 1.1 公开方法清单
+
+| # | 方法签名 | 业务含义 |
+|---|---|---|
+| 1 | createSession(buyerId, request) | 创建采购会话 |
+| 2 | sendMessage(sessionId, userId, request) | 发送消息 |
+| 3 | ... | ... |
+
+### 1.2 每个方法的测试场景
+
+#### 方法 1：createSession
+
+##### 正常路径
+- N1：标准参数 → 成功创建会话 + 创建 DemandCard v1
+- N2：带 bountyAmount → 成功创建并记录悬赏
+
+##### 异常路径
+- E1：items 为空 → 抛 INVALID_PARAM
+- E2：items 超过 100 项 → 抛 INVALID_PARAM
+- E3：deliveryDeadline 在过去 → 抛 INVALID_PARAM
+
+##### 边界
+- B1：items 恰好 100 项 → 成功
+- B2：items 恰好 1 项 → 成功
+- B3：bountyAmount = 0 → 等同于不带悬赏
+
+##### 依赖失败
+- D1：DB 插入失败 → 抛异常 + 回滚
+- D2：cardMapper 插入失败 → 抛异常 + 回滚 session 插入
+
+##### 并发
+- C1：同一 buyer 重复调用（idempotencyKey 相同）→ 返回相同结果
+
+#### 方法 2：sendMessage
+
+[同上展开]
+
+#### 方法 3：...
+
+## Step 2：实现测试代码
+
+按以下结构：
+
+```java
+@ExtendWith(MockitoExtension.class)
+class PurchaseSessionServiceImplTest {
+
+    @InjectMocks
+    private PurchaseSessionServiceImpl sessionService;
+
+    @Mock
+    private PurchaseSessionMapper sessionMapper;
+
+    @Mock
+    private DemandCardMapper cardMapper;
+
+    @Mock
+    private AIIntentService aiIntentService;
+
+    // ============ createSession - 正常路径 ============
+
+    @Test
+    @DisplayName("[N1] 创建会话 - 标准参数 - 应成功创建会话 + Card v1")
+    void createSession_normal_shouldCreateSessionAndCard() {
+        // Arrange
+        ...
+
+        // Act
+        PurchaseSession result = sessionService.createSession("u_001", request);
+
+        // Assert
+        assertThat(result).isNotNull();
+        assertThat(result.getSessionId()).startsWith("ps_");
+        assertThat(result.getStatus()).isEqualTo(SessionStatus.ACTIVE);
+        verify(sessionMapper, times(1)).insert(any(PurchaseSession.class));
+        verify(cardMapper, times(1)).insert(any(DemandCard.class));
+    }
+
+    // ============ createSession - 异常路径 ============
+
+    @Test
+    @DisplayName("[E1] 创建会话 - items 为空 - 应抛 INVALID_PARAM")
+    void createSession_emptyItems_shouldThrowInvalidParam() {
+        // Arrange
+        CreateSessionRequest request = new CreateSessionRequest();
+        request.setItems(Collections.emptyList());
+
+        // Act + Assert
+        assertThatThrownBy(() -> sessionService.createSession("u_001", request))
+                .isInstanceOf(BusinessException.class)
+                .hasFieldOrPropertyWithValue("code", ErrorCode.INVALID_PARAM.getCode());
+    }
+
+    // ... 其他测试
+
+    // ============ Helper ============
+
+    private CreateSessionRequest validRequest() {
+        ...
+    }
+
+    private DemandCard.DemandItem standardItem() {
+        ...
+    }
+}
+```
+
+要求：
+- @DisplayName 用中文 + 编号（如 [N1]）
+- 严格 AAA 结构
+- 必须 verify 关键调用
+- 必须 AssertJ 链式断言
+- 必须每个测试独立（不依赖顺序）
+- helper 方法提取到底部
+
+## Step 3：跑测试
+
+请描述：
+1. 应执行的命令（mvn test -pl xxx -Dtest=YyyTest）
+2. 预期输出（Tests run: N, Failures: 0）
+3. 覆盖率（约 X%）
+
+## Step 4：输出报告
+
+```
+## 测试报告
+
+### 文件清单
+新增：
+- xxx_Test.java（X 行，N 个测试方法）
+
+### 场景覆盖
+
+| 方法 | 正常 | 异常 | 边界 | 依赖失败 | 并发 |
+|---|---|---|---|---|---|
+| createSession | 2 | 3 | 3 | 2 | 1 |
+| sendMessage | 3 | 4 | 2 | 1 | 0 |
+| ... | | | | | |
+| 合计 | X | Y | Z | W | V |
+
+### 覆盖率（自估）
+
+- Service 层代码：92%
+- 异常路径：100%
+- 关键业务规则：100%
+
+### 未覆盖（需后续补）
+
+1. Service.method3 的并发场景（需要 RedisLock，留待集成测试）
+2. ...
+
+### 运行结果
+
+```
+$ mvn test -pl huodaizi-session-service
+Tests run: 18, Failures: 0, Errors: 0, Skipped: 0
+BUILD SUCCESS
+```
+```
+
+【红线】
+
+🚫 不准跳过测试（@Disabled）
+🚫 不准只测 happy path
+🚫 不准用 Thread.sleep
+🚫 不准依赖网络
+🚫 不准依赖时间
+🚫 不准只断言"不为 null"（要断关键字段）
+
+【请开始 Step 1】

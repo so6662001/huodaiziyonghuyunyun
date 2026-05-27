@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>发布采购需求 · 货袋子（PC）</title>
+  <link rel="stylesheet" href="../styles-pc.css">
+  <style>
+    .demand-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .demand-table th {
+      background: var(--bg-light);
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-size: 12px;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .demand-table th .req { color: var(--danger); }
+    .demand-table td {
+      padding: 8px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .demand-table tr:hover td { background: var(--bg-subtle); }
+    .demand-table input, .demand-table select {
+      width: 100%;
+      height: 32px;
+      padding: 0 8px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background: transparent;
+      font-size: 13px;
+    }
+    .demand-table input:focus, .demand-table select:focus {
+      background: #fff;
+      border-color: var(--primary);
+      outline: 0;
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.1);
+    }
+    .demand-table .col-no { width: 40px; text-align: center; color: var(--text-muted); }
+    .demand-table .col-action { width: 80px; text-align: center; }
+    .demand-table .col-num { width: 90px; }
+    .demand-table .col-unit { width: 70px; }
+    .demand-table .col-price { width: 110px; }
+    .demand-table .col-date { width: 130px; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <!-- 侧栏（精简） -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon">📦</div>
+      <div class="sidebar__logo-text">货袋子</div>
+    </div>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar">王</div>
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-name">王采购</div>
+        <div class="sidebar__user-role">华建工集团 · 采购部</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__group">采购</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📊</span>工作台</div>
+      <div class="sidebar__item sidebar__item--active"><span class="sidebar__item-icon">📝</span>发布需求</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💬</span>采购会话<span class="sidebar__item-badge">3</span></div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📋</span>清单管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">⊞</span>报价对比</div>
+      <div class="sidebar__group">订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📦</span>我的订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🚚</span>物流跟踪</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💳</span>对账中心</div>
+      <div class="sidebar__group">企业</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🏢</span>供应商管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📈</span>采购分析</div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <div class="header__breadcrumb">
+        采购 / 发布需求 / <strong>新建多规格清单</strong>
+      </div>
+      <div class="header__actions">
+        <button class="btn">💾 保存草稿</button>
+        <button class="btn">👁 预览</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="page-title">发布采购需求（多规格清单）</div>
+      <div class="page-subtitle">PC 端表格模式：批量编辑 + Excel 导入 + 行内验证。适合 5-30 行规格的复杂询价。</div>
+
+      <!-- 快速发起 -->
+      <div class="card">
+        <div class="card__title">⚡ 快速发起</div>
+        <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:12px;">
+          <div style="padding:16px; background:linear-gradient(135deg, #dbeafe 0%, #ffffff 100%); border:1px solid var(--primary); border-radius:8px; text-align:center; cursor:pointer;">
+            <div style="font-size:28px;">📋</div>
+            <div class="text-bold mt-8">导入 Excel</div>
+            <div class="text-muted text-sm mt-8">推荐 · 一键 8-30 行</div>
+          </div>
+          <div style="padding:16px; background:#fff; border:1px solid var(--border); border-radius:8px; text-align:center; cursor:pointer;">
+            <div style="font-size:28px;">📑</div>
+            <div class="text-bold mt-8">粘贴清单</div>
+            <div class="text-muted text-sm mt-8">从 Excel / Word 复制</div>
+          </div>
+          <div style="padding:16px; background:#fff; border:1px solid var(--border); border-radius:8px; text-align:center; cursor:pointer;">
+            <div style="font-size:28px;">📷</div>
+            <div class="text-bold mt-8">上传图片/PDF</div>
+            <div class="text-muted text-sm mt-8">AI 自动识别</div>
+          </div>
+          <div style="padding:16px; background:#fff; border:1px solid var(--border); border-radius:8px; text-align:center; cursor:pointer;">
+            <div style="font-size:28px;">🔁</div>
+            <div class="text-bold mt-8">复用上次</div>
+            <div class="text-muted text-sm mt-8">8 个常用模板</div>
+          </div>
+          <div style="padding:16px; background:#fff; border:1px solid var(--border); border-radius:8px; text-align:center; cursor:pointer;">
+            <div style="font-size:28px;">✏️</div>
+            <div class="text-bold mt-8">手动新建</div>
+            <div class="text-muted text-sm mt-8">逐行填写</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 整单信息 -->
+      <div class="card">
+        <div class="card__title">📋 整单信息（应用到所有行，可单独覆盖）</div>
+        <div class="form-grid" style="grid-template-columns: repeat(4, 1fr);">
+          <div class="form-row">
+            <span class="form-row__label"><span class="req">*</span>项目名称</span>
+            <input class="form-row__input" value="天津滨海新区 5 号厂房项目">
+          </div>
+          <div class="form-row">
+            <span class="form-row__label"><span class="req">*</span>默认到货地</span>
+            <select class="form-row__select"><option>天津 · 滨海新区</option></select>
+          </div>
+          <div class="form-row">
+            <span class="form-row__label"><span class="req">*</span>默认交期</span>
+            <select class="form-row__select"><option>2026-05-30 前</option></select>
+          </div>
+          <div class="form-row">
+            <span class="form-row__label">账期</span>
+            <select class="form-row__select"><option>现款</option><option>3 天</option><option>7 天</option><option>30 天</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 多规格清单（表格） -->
+      <div class="card">
+        <div class="card__title">
+          <div class="flex items-center gap-12">
+            <span>📝 采购清单</span>
+            <span class="tag tag--primary">8 行</span>
+            <span class="tag">总量 320 吨</span>
+            <span class="tag">3 个品类</span>
+          </div>
+          <div class="flex gap-8">
+            <button class="btn btn--sm">📋 导入 Excel</button>
+            <button class="btn btn--sm">📤 导出</button>
+            <button class="btn btn--sm">🗑 清空</button>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="demand-table">
+            <thead>
+              <tr>
+                <th class="col-no">#</th>
+                <th><span class="req">*</span>品名</th>
+                <th><span class="req">*</span>材质</th>
+                <th><span class="req">*</span>规格</th>
+                <th class="col-num"><span class="req">*</span>数量</th>
+                <th class="col-unit">单位</th>
+                <th>到货地</th>
+                <th class="col-date">交期</th>
+                <th class="col-price">目标价</th>
+                <th>质量/工艺</th>
+                <th class="col-action">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-no">1</td>
+                <td><select><option>热轧卷板</option></select></td>
+                <td><select><option>Q235B</option></select></td>
+                <td><input value="5.5×1500×C"></td>
+                <td><input type="number" value="50"></td>
+                <td><select><option>吨</option></select></td>
+                <td><select><option>天津·滨海</option></select></td>
+                <td><input type="date" value="2026-05-30"></td>
+                <td><input type="number" value="3950" placeholder="可空"></td>
+                <td><input placeholder="无"></td>
+                <td class="col-action">
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px;">📋</button>
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px; color:var(--danger);">🗑</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-no">2</td>
+                <td><select><option>热轧卷板</option></select></td>
+                <td><select><option>Q235B</option></select></td>
+                <td><input value="4.0×1500×C"></td>
+                <td><input type="number" value="30"></td>
+                <td><select><option>吨</option></select></td>
+                <td><select><option>天津·滨海</option></select></td>
+                <td><input type="date" value="2026-05-30"></td>
+                <td><input type="number" value="4000"></td>
+                <td><input placeholder="无"></td>
+                <td class="col-action">
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px;">📋</button>
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px; color:var(--danger);">🗑</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-no">3</td>
+                <td><select><option>螺纹钢</option></select></td>
+                <td><select><option>HRB400E</option></select></td>
+                <td><input value="Φ18×12m"></td>
+                <td><input type="number" value="100"></td>
+                <td><select><option>吨</option></select></td>
+                <td><select><option>唐山·路北</option></select></td>
+                <td><input type="date" value="2026-05-30"></td>
+                <td><input type="number" value="4100"></td>
+                <td><input placeholder="无"></td>
+                <td class="col-action">
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px;">📋</button>
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px; color:var(--danger);">🗑</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-no">4</td>
+                <td><select><option>螺纹钢</option></select></td>
+                <td><select><option>HRB400E</option></select></td>
+                <td><input value="Φ20×12m"></td>
+                <td><input type="number" value="80"></td>
+                <td><select><option>吨</option></select></td>
+                <td><select><option>唐山·路北</option></select></td>
+                <td><input type="date" value="2026-05-30"></td>
+                <td><input type="number" value="4150"></td>
+                <td><input placeholder="无"></td>
+                <td class="col-action">
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px;">📋</button>
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px; color:var(--danger);">🗑</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-no">5</td>
+                <td><select><option>镀锌板</option></select></td>
+                <td><select><option>SGCC</option></select></td>
+                <td><input value="0.5×1200×C"></td>
+                <td><input type="number" value="30"></td>
+                <td><select><option>吨</option></select></td>
+                <td><select><option>天津·滨海</option></select></td>
+                <td><input type="date" value="2026-05-30"></td>
+                <td><input type="number" placeholder="AI 估"></td>
+                <td><input placeholder="无"></td>
+                <td class="col-action">
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px;">📋</button>
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px; color:var(--danger);">🗑</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-no">6</td>
+                <td><select><option>镀锌板</option></select></td>
+                <td><select><option>SGCC</option></select></td>
+                <td><input value="0.6×1250×C"></td>
+                <td><input type="number" value="20"></td>
+                <td><select><option>吨</option></select></td>
+                <td><select><option>天津·滨海</option></select></td>
+                <td><input type="date" value="2026-05-30"></td>
+                <td><input type="number" placeholder="AI 估"></td>
+                <td><input placeholder="无"></td>
+                <td class="col-action">
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px;">📋</button>
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px; color:var(--danger);">🗑</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-no">7</td>
+                <td><select><option>H 型钢</option></select></td>
+                <td><select><option>Q235B</option></select></td>
+                <td><input value="HW200×200"></td>
+                <td><input type="number" value="5"></td>
+                <td><select><option>吨</option></select></td>
+                <td><select><option>唐山·路北</option></select></td>
+                <td><input type="date" value="2026-05-30"></td>
+                <td><input type="number" value="4280"></td>
+                <td><input placeholder="无"></td>
+                <td class="col-action">
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px;">📋</button>
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px; color:var(--danger);">🗑</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="col-no">8</td>
+                <td><select><option>不锈钢</option></select></td>
+                <td><select><option>304</option></select></td>
+                <td><input value="1.0×1219×C"></td>
+                <td><input type="number" value="5"></td>
+                <td><select><option>吨</option></select></td>
+                <td><select><option>天津·滨海</option></select></td>
+                <td><input type="date" value="2026-05-30"></td>
+                <td><input type="number" placeholder="AI 估"></td>
+                <td><input value="探伤"></td>
+                <td class="col-action">
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px;">📋</button>
+                  <button class="btn btn--ghost btn--sm" style="padding:0 6px; color:var(--danger);">🗑</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="padding:12px; border:1px dashed var(--primary); border-radius:8px; text-align:center; color:var(--primary); margin-top:12px; cursor:pointer;">
+          + 添加规格行（或按 Enter 在最后一行后回车）
+        </div>
+      </div>
+
+      <!-- 拆单与加速 -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+        <div class="card">
+          <div class="card__title">🤖 拆单策略</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <label style="display:flex; gap:12px; align-items:flex-start; padding:12px; border:1px solid var(--primary); border-radius:8px; background:var(--primary-50); cursor:pointer;">
+              <input type="radio" name="split" checked style="margin-top:4px;">
+              <div>
+                <div class="text-bold">推荐：智能拆单（按品类 + 区域）</div>
+                <div class="text-muted text-sm mt-8">系统按品类拆 3 个子单：板材 → 天津、螺纹 → 唐山、其他 → 全网。可分单成交。</div>
+              </div>
+            </label>
+            <label style="display:flex; gap:12px; align-items:flex-start; padding:12px; border:1px solid var(--border); border-radius:8px; cursor:pointer;">
+              <input type="radio" name="split" style="margin-top:4px;">
+              <div>
+                <div class="text-bold">整单打包</div>
+                <div class="text-muted text-sm mt-8">仅推送给能供全部 8 条规格的卖家。适合需要单一开票场景。</div>
+              </div>
+            </label>
+            <label style="display:flex; gap:12px; align-items:flex-start; padding:12px; border:1px solid var(--border); border-radius:8px; cursor:pointer;">
+              <input type="radio" name="split" style="margin-top:4px;">
+              <div>
+                <div class="text-bold">我自己拆</div>
+                <div class="text-muted text-sm mt-8">手动指定哪几行打包给同一卖家。</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__title">🚀 优先级</div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <label style="display:flex; gap:12px; align-items:center; padding:12px; border:1px solid var(--primary); border-radius:8px; background:var(--primary-50); cursor:pointer;">
+              <input type="radio" name="priority" checked>
+              <div style="flex:1;">
+                <div class="text-bold">普通（免费）</div>
+                <div class="text-muted text-sm">30 分钟内多家报价</div>
+              </div>
+            </label>
+            <label style="display:flex; gap:12px; align-items:center; padding:12px; border:1px solid var(--border); border-radius:8px; cursor:pointer;">
+              <input type="radio" name="priority">
+              <div style="flex:1;">
+                <div class="text-bold">加急 ¥9.9</div>
+                <div class="text-muted text-sm">10 分钟必有报价 + 卖家端置顶</div>
+              </div>
+            </label>
+            <label style="display:flex; gap:12px; align-items:center; padding:12px; border:1px solid var(--border); border-radius:8px; cursor:pointer;">
+              <input type="radio" name="priority">
+              <div style="flex:1;">
+                <div class="text-bold">悬赏 ¥99（大单推荐）</div>
+                <div class="text-muted text-sm">全网精准匹配 + 卖家优先响应</div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部固定提交 -->
+      <div style="position:sticky; bottom:0; background:#fff; padding:16px 20px; border-top:1px solid var(--border); margin: 20px -24px -24px; box-shadow: 0 -4px 12px rgba(0,0,0,0.04);">
+        <div class="flex items-center justify-between">
+          <div class="flex gap-20">
+            <div>
+              <div class="text-muted text-sm">规格行数</div>
+              <div class="text-xl text-bold">8 行</div>
+            </div>
+            <div>
+              <div class="text-muted text-sm">总数量</div>
+              <div class="text-xl text-bold">320 吨</div>
+            </div>
+            <div>
+              <div class="text-muted text-sm">预算估算</div>
+              <div class="text-xl text-bold text-primary">¥1,280,000</div>
+            </div>
+            <div>
+              <div class="text-muted text-sm">预计收到</div>
+              <div class="text-xl text-bold text-success">5+ 家报价</div>
+            </div>
+          </div>
+          <div class="flex gap-8">
+            <button class="btn">💾 保存草稿</button>
+            <button class="btn btn--primary btn--lg">立即发布 →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

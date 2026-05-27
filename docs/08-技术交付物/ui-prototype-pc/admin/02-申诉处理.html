@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>申诉处理 · 货袋子运营后台（PC）</title>
+  <link rel="stylesheet" href="../styles-pc.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon" style="background:var(--danger);">⚡</div>
+      <div class="sidebar__logo-text">货袋子 · 运营</div>
+    </div>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar" style="background:var(--danger);">陈</div>
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-name">陈风控</div>
+        <div class="sidebar__user-role">风控管理员</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__group">概览</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📊</span>平台总览</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📈</span>数据看板</div>
+      <div class="sidebar__group">风控</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🛡</span>风控看板<span class="sidebar__item-badge">5</span></div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📋</span>规则管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🚨</span>事件审计</div>
+      <div class="sidebar__item sidebar__item--active"><span class="sidebar__item-icon">⚖️</span>申诉处理<span class="sidebar__item-badge">8</span></div>
+      <div class="sidebar__group">运营</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">👥</span>用户管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🏢</span>企业认证</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💬</span>内容审核</div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <div class="header__breadcrumb">风控 / <strong>申诉处理</strong></div>
+      <div class="header__actions">
+        <span class="tag tag--warning">⚠️ 3 个超 24h 未处理</span>
+        <button class="btn btn--sm">📊 申诉统计</button>
+        <button class="btn btn--sm">⚙️ 申诉规则</button>
+      </div>
+    </div>
+
+    <div class="content" style="max-width:none;">
+      <div class="page-title">申诉处理中心</div>
+      <div class="page-subtitle">交易申诉、评价申诉、订单纠纷的处理队列。<strong style="color:var(--primary);">SLA 承诺：48 小时内闭环</strong>。</div>
+
+      <!-- KPI -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-card__label">待处理</div>
+          <div class="kpi-card__value text-warning">8</div>
+          <div class="kpi-card__sub"><span class="text-danger">3 个超 24h</span></div>
+          <div class="kpi-card__icon">⏰</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">本月已处理</div>
+          <div class="kpi-card__value">42</div>
+          <div class="kpi-card__sub"><span class="text-secondary">闭环率 100%</span></div>
+          <div class="kpi-card__icon">✅</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">平均处理时长</div>
+          <div class="kpi-card__value text-success">18 <span style="font-size:14px;color:var(--text-muted);">小时</span></div>
+          <div class="kpi-card__sub"><span class="text-success">SLA 内 95%</span></div>
+          <div class="kpi-card__icon">⏱</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">买家胜率</div>
+          <div class="kpi-card__value">62%</div>
+          <div class="kpi-card__sub"><span class="text-secondary">卖家胜率 28%</span></div>
+          <div class="kpi-card__icon">⚖️</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">用户满意度</div>
+          <div class="kpi-card__value text-success">4.6 <span style="font-size:14px;color:var(--text-muted);">/ 5</span></div>
+          <div class="kpi-card__sub"><span class="text-success">公正性获认可</span></div>
+          <div class="kpi-card__icon">⭐</div>
+        </div>
+      </div>
+
+      <!-- 两栏：申诉列表 + 详情 -->
+      <div style="display:grid; grid-template-columns: 420px 1fr; gap:20px;">
+        <!-- 左：申诉队列 -->
+        <div class="card" style="margin:0; padding:0;">
+          <div style="padding:14px 16px; border-bottom:1px solid var(--border);">
+            <div class="flex items-center justify-between mb-12">
+              <strong>待处理申诉</strong>
+              <span class="text-muted text-sm">按紧急度排序</span>
+            </div>
+            <div class="flex gap-6">
+              <span class="tag tag--primary">全部 8</span>
+              <span class="tag tag--danger">超时 3</span>
+              <span class="tag tag--warning">评价申诉 4</span>
+              <span class="tag">交易纠纷 4</span>
+            </div>
+          </div>
+
+          <!-- 申诉条目 -->
+          <div style="max-height:calc(100vh - 360px); overflow-y:auto;">
+            <!-- 选中条目 -->
+            <div style="padding:14px 16px; border-bottom:1px solid var(--border); background:var(--primary-50); border-left:3px solid var(--primary); padding-left:13px; cursor:pointer;">
+              <div class="flex justify-between items-center mb-8">
+                <strong>#AP-2026-0142</strong>
+                <span class="tag tag--danger">超时 26h</span>
+              </div>
+              <div class="text-bold text-sm mb-8">交易纠纷 · 数量短缺</div>
+              <div class="text-muted text-sm">买家：华*建工 vs 卖家：河*钢贸</div>
+              <div class="text-muted text-sm">订单 #o_001856 · ¥360K</div>
+              <div class="flex gap-8 mt-12">
+                <span class="tag tag--warning">高优</span>
+                <span class="tag">需双方举证</span>
+              </div>
+            </div>
+
+            <div style="padding:14px 16px; border-bottom:1px solid var(--border); cursor:pointer;">
+              <div class="flex justify-between items-center mb-8">
+                <strong>#AP-2026-0141</strong>
+                <span class="tag tag--danger">超时 18h</span>
+              </div>
+              <div class="text-bold text-sm mb-8">评价申诉 · 恶意差评</div>
+              <div class="text-muted text-sm">卖家：天津 YY vs 买家：京*建材</div>
+              <div class="text-muted text-sm">订单 #o_001823 · ¥85K</div>
+              <div class="flex gap-8 mt-12">
+                <span class="tag">中</span>
+                <span class="tag">已上传证据</span>
+              </div>
+            </div>
+
+            <div style="padding:14px 16px; border-bottom:1px solid var(--border); cursor:pointer;">
+              <div class="flex justify-between items-center mb-8">
+                <strong>#AP-2026-0140</strong>
+                <span class="tag tag--warning">超时 4h</span>
+              </div>
+              <div class="text-bold text-sm mb-8">交易纠纷 · 质量问题</div>
+              <div class="text-muted text-sm">买家：唐*钢构 vs 卖家：聊城金海</div>
+              <div class="text-muted text-sm">订单 #o_001798 · ¥220K</div>
+              <div class="flex gap-8 mt-12">
+                <span class="tag tag--warning">高优</span>
+                <span class="tag">质检报告</span>
+              </div>
+            </div>
+
+            <div style="padding:14px 16px; border-bottom:1px solid var(--border); cursor:pointer;">
+              <div class="flex justify-between items-center mb-8">
+                <strong>#AP-2026-0139</strong>
+                <span class="text-muted text-sm">8 h</span>
+              </div>
+              <div class="text-bold text-sm mb-8">评价申诉 · 评价不实</div>
+              <div class="text-muted text-sm">卖家：唐山润成 vs 买家：石*工程</div>
+              <div class="text-muted text-sm">订单 #o_001789</div>
+              <div class="flex gap-8 mt-12">
+                <span class="tag">中</span>
+              </div>
+            </div>
+
+            <div style="padding:14px 16px; border-bottom:1px solid var(--border); cursor:pointer;">
+              <div class="flex justify-between items-center mb-8">
+                <strong>#AP-2026-0138</strong>
+                <span class="text-muted text-sm">12 h</span>
+              </div>
+              <div class="text-bold text-sm mb-8">交易纠纷 · 延期发货</div>
+              <div class="text-muted text-sm">买家：沧*建材 vs 卖家：邢*钢业</div>
+              <div class="text-muted text-sm">订单 #o_001782 · ¥120K</div>
+              <div class="flex gap-8 mt-12">
+                <span class="tag">中</span>
+              </div>
+            </div>
+
+            <div style="padding:14px 16px; border-bottom:1px solid var(--border); cursor:pointer;">
+              <div class="flex justify-between items-center mb-8">
+                <strong>#AP-2026-0137</strong>
+                <span class="text-muted text-sm">15 h</span>
+              </div>
+              <div class="text-bold text-sm mb-8">评价申诉 · 误标差评</div>
+              <div class="text-muted text-sm">卖家：天津荣昌 vs 买家：京*物流园</div>
+              <div class="flex gap-8 mt-12">
+                <span class="tag">低</span>
+              </div>
+            </div>
+
+            <div style="padding:14px 16px; border-bottom:1px solid var(--border); cursor:pointer;">
+              <div class="flex justify-between items-center mb-8">
+                <strong>#AP-2026-0136</strong>
+                <span class="text-muted text-sm">22 h</span>
+              </div>
+              <div class="text-bold text-sm mb-8">交易纠纷 · 规格不符</div>
+              <div class="text-muted text-sm">买家：邢*钢构 vs 卖家：河北鼎信</div>
+              <div class="text-muted text-sm">订单 #o_001775 · ¥45K</div>
+              <div class="flex gap-8 mt-12">
+                <span class="tag">中</span>
+              </div>
+            </div>
+
+            <div style="padding:14px 16px; cursor:pointer;">
+              <div class="flex justify-between items-center mb-8">
+                <strong>#AP-2026-0135</strong>
+                <span class="text-muted text-sm">23 h</span>
+              </div>
+              <div class="text-bold text-sm mb-8">评价申诉 · 评分异常</div>
+              <div class="text-muted text-sm">卖家：秦皇岛特钢 vs 买家：天*仓储</div>
+              <div class="flex gap-8 mt-12">
+                <span class="tag">低</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：申诉详情 + 处理 -->
+        <div>
+          <!-- 申诉头 -->
+          <div class="card" style="margin:0 0 20px;">
+            <div class="flex justify-between items-start mb-16">
+              <div>
+                <div class="flex items-center gap-8">
+                  <span class="text-bold text-xl">#AP-2026-0142</span>
+                  <span class="tag tag--danger">超时 26h</span>
+                  <span class="tag tag--warning">高优先级</span>
+                </div>
+                <div class="text-muted text-sm mt-8">交易纠纷 · 数量短缺 · 提交于 2026-05-26 11:30</div>
+              </div>
+              <div class="flex gap-8">
+                <button class="btn">📞 电话调解</button>
+                <button class="btn btn--sm">🚫 标记为恶意</button>
+              </div>
+            </div>
+
+            <!-- 双方信息 -->
+            <div style="display:grid; grid-template-columns:1fr 60px 1fr; gap:16px; align-items:center; padding:16px; background:var(--bg-light); border-radius:8px;">
+              <div style="text-align:center;">
+                <div style="width:48px; height:48px; margin:0 auto; border-radius:50%; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; font-size:20px;">华</div>
+                <div class="text-bold mt-8">华*建工集团（申诉方）</div>
+                <div class="text-muted text-sm mt-8">买家 · 信用 96 · 已成交 68 单</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="font-size:24px;">⚖️</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="width:48px; height:48px; margin:0 auto; border-radius:50%; background:var(--warning); color:#fff; display:flex; align-items:center; justify-content:center; font-size:20px;">河</div>
+                <div class="text-bold mt-8">河*钢贸（被申诉方）</div>
+                <div class="text-muted text-sm mt-8">卖家 · 信用 76 · 已成交 23 单</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 订单信息 -->
+          <div class="card" style="margin:0 0 20px;">
+            <div class="card__title">📦 相关订单 #o_001856</div>
+            <table class="table">
+              <thead>
+                <tr><th>#</th><th>规格</th><th>订单数量</th><th>已收</th><th>差异</th><th>单价</th><th>差额金额</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><strong>热轧 Q235B 5.5×1500</strong></td>
+                  <td>50 吨</td>
+                  <td>48.5 吨</td>
+                  <td><span class="text-danger">-1.5 吨</span></td>
+                  <td>¥3,950</td>
+                  <td><strong class="text-danger">¥5,925</strong></td>
+                </tr>
+                <tr style="background:var(--danger-light);">
+                  <td>2</td>
+                  <td><strong>螺纹 HRB400E Φ18×12m</strong></td>
+                  <td>80 吨</td>
+                  <td>76 吨</td>
+                  <td><span class="text-danger">-4 吨</span></td>
+                  <td>¥4,100</td>
+                  <td><strong class="text-danger">¥16,400</strong></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><strong>镀锌 SGCC 0.5×1200</strong></td>
+                  <td>30 吨</td>
+                  <td>30 吨</td>
+                  <td><span class="text-success">0</span></td>
+                  <td>¥5,700</td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr style="background:var(--bg-light);">
+                  <td colspan="3"><strong>合计差异</strong></td>
+                  <td><span class="text-danger">5.5 吨</span></td>
+                  <td colspan="2"></td>
+                  <td><strong class="text-danger" style="font-size:16px;">¥22,325</strong></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- 申诉理由 -->
+          <div class="card" style="margin:0 0 20px;">
+            <div class="card__title">📝 申诉详情</div>
+
+            <div style="padding:16px; background:#eff6ff; border-radius:8px; margin-bottom:16px;">
+              <div class="text-bold text-primary mb-8">买家（华*建工集团）申诉：</div>
+              <p style="font-size:14px; line-height:1.7;">
+                5/26 收货时，第 1 行实收 48.5 吨（差 1.5 吨），第 2 行实收 76 吨（差 4 吨）。
+                合计差额 ¥22,325。多次联系卖家无果，要求平台介入处理。
+              </p>
+              <div class="text-muted text-sm mt-12">📎 上传证据：</div>
+              <div style="display:flex; gap:8px; margin-top:8px;">
+                <div style="padding:8px 12px; background:#fff; border:1px solid var(--border); border-radius:4px; font-size:12px;">📄 收货过磅单.pdf</div>
+                <div style="padding:8px 12px; background:#fff; border:1px solid var(--border); border-radius:4px; font-size:12px;">📷 现场照片×6</div>
+                <div style="padding:8px 12px; background:#fff; border:1px solid var(--border); border-radius:4px; font-size:12px;">🎥 卸货录像</div>
+              </div>
+            </div>
+
+            <div style="padding:16px; background:#fffbeb; border-radius:8px;">
+              <div class="text-bold text-warning mb-8">卖家（河*钢贸）申辩：</div>
+              <p style="font-size:14px; line-height:1.7;">
+                出货时按发货过磅单已经发了 130 吨，运输途中可能有损耗。
+                建议按合同条款（≤ 2% 损耗免责）处理，差异在合理范围。
+              </p>
+              <div class="text-muted text-sm mt-12">📎 上传证据：</div>
+              <div style="display:flex; gap:8px; margin-top:8px;">
+                <div style="padding:8px 12px; background:#fff; border:1px solid var(--border); border-radius:4px; font-size:12px;">📄 发货过磅单.pdf</div>
+                <div style="padding:8px 12px; background:#fff; border:1px solid var(--border); border-radius:4px; font-size:12px;">📷 装车照片×4</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI 辅助判断 -->
+          <div class="card" style="background:linear-gradient(135deg, #dbeafe 0%, #ffffff 100%); border:1px solid var(--primary); margin:0 0 20px;">
+            <div class="card__title" style="color:var(--primary);">🤖 AI 辅助判断</div>
+            <div style="font-size:14px; line-height:1.8;">
+              <p>基于规则、证据和历史数据分析：</p>
+              <ul style="padding-left:24px; margin-top:8px;">
+                <li><strong>损耗判定</strong>：合同约定 ≤ 2% 免责。实际差异 5.5/160 = <strong style="color:var(--warning);">3.4%（超出免责范围 1.4%）</strong></li>
+                <li><strong>历史数据</strong>：河*钢贸 近 6 个月平均损耗率 2.8%，本次偏高</li>
+                <li><strong>证据完整度</strong>：买家证据较完整（含视频），卖家仅有装车照片</li>
+                <li><strong>双方信用</strong>：买家信用 96，卖家信用 76（已下降）</li>
+              </ul>
+              <p style="margin-top:12px;"><strong>推荐裁决：</strong></p>
+              <ul style="padding-left:24px; margin-top:8px;">
+                <li>✅ 卖家承担 1.4% 超损部分 = <strong>¥10,025</strong></li>
+                <li>✅ 平台承担 0% （非平台责任）</li>
+                <li>✅ 买家自担 2% 合理损耗</li>
+                <li>⚠️ 卖家信用 -3，进入观察名单</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 处理操作 -->
+          <div class="card" style="margin:0;">
+            <div class="card__title">⚖️ 处理决定</div>
+
+            <div class="form-grid">
+              <div class="form-row">
+                <span class="form-row__label">裁决</span>
+                <select class="form-row__select">
+                  <option>买家部分胜诉（推荐）</option>
+                  <option>买家全部胜诉</option>
+                  <option>卖家胜诉</option>
+                  <option>双方协商</option>
+                  <option>需补充证据</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <span class="form-row__label">赔付金额（卖家承担）</span>
+                <input class="form-row__input" type="number" value="10025">
+              </div>
+              <div class="form-row">
+                <span class="form-row__label">卖家信用调整</span>
+                <input class="form-row__input" type="number" value="-3">
+              </div>
+              <div class="form-row">
+                <span class="form-row__label">买家信用调整</span>
+                <input class="form-row__input" value="无变化">
+              </div>
+            </div>
+
+            <div class="form-row mt-16">
+              <span class="form-row__label">裁决说明（双方可见）</span>
+              <textarea class="form-row__textarea" style="height:100px;">根据合同约定及实际损耗超出情况，判定卖家承担超损部分 1.4% 共计 ¥10,025。建议卖家加强物流损耗管控。买家自担合理损耗 2%。</textarea>
+            </div>
+
+            <div class="flex justify-between items-center mt-16">
+              <div class="text-muted text-sm">
+                ⚠️ 一旦提交，裁决将立即生效并通知双方
+              </div>
+              <div class="flex gap-8">
+                <button class="btn">💾 保存草稿</button>
+                <button class="btn">🔄 退回补证</button>
+                <button class="btn btn--primary">✓ 确认裁决</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

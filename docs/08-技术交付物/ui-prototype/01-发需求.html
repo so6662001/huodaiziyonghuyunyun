@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发需求（多规格）· 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- 顶部导航 -->
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">发布采购需求</span>
+      <div class="actions">
+        <span>草稿</span>
+      </div>
+    </div>
+
+    <!-- 快速发起入口（清单模式置顶） -->
+    <div class="card">
+      <div class="card-title">⚡ 快速发起（多规格更高效）</div>
+      <div class="upload-options">
+        <div class="item" style="background: linear-gradient(135deg, #dbeafe 0%, #ffffff 100%); border: 1px solid var(--primary);">
+          <span class="icon">📋</span>
+          <div>上传清单</div>
+          <div style="font-size:11px;color:var(--primary);margin-top:2px;">Excel / PDF / 图片</div>
+        </div>
+        <div class="item">
+          <span class="icon">📷</span>
+          <div>拍照识别</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">多行自动识别</div>
+        </div>
+        <div class="item">
+          <span class="icon">🎤</span>
+          <div>语音报清单</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">连续口述</div>
+        </div>
+        <div class="item">
+          <span class="icon">🔁</span>
+          <div>复用上次</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">一键 8 条</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 清单汇总条 -->
+    <div style="padding: 0 16px;">
+      <div class="list-summary">
+        <div class="list-summary__head">
+          <div>
+            <div class="list-summary__count">8 条规格</div>
+            <div class="list-summary__hint">总量 320 吨 · 预算约 ¥1,280,000</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:28px;">📦</div>
+          </div>
+        </div>
+        <div class="list-summary__stats">
+          <div class="list-summary__stat">
+            <div class="list-summary__stat-label">品类</div>
+            <div class="list-summary__stat-value">3 种</div>
+          </div>
+          <div class="list-summary__stat">
+            <div class="list-summary__stat-label">到货地</div>
+            <div class="list-summary__stat-value">2 个</div>
+          </div>
+          <div class="list-summary__stat">
+            <div class="list-summary__stat-label">期望交期</div>
+            <div class="list-summary__stat-value">3 天内</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 工具栏 -->
+    <div style="padding: 0 16px;">
+      <div class="list-toolbar">
+        <div class="list-toolbar__btn">
+          <span>📋</span>导入 Excel
+        </div>
+        <div class="list-toolbar__btn">
+          <span>📑</span>复制粘贴
+        </div>
+        <div class="list-toolbar__btn">
+          <span>⚡</span>批量改地址
+        </div>
+        <div class="list-toolbar__btn">
+          <span>📤</span>分享给同事
+        </div>
+      </div>
+    </div>
+
+    <!-- 多规格清单 -->
+    <div class="card">
+      <div class="card-title">
+        📝 采购清单
+        <span style="font-size:12px;color:var(--text-muted);font-weight:normal;">长按可拖拽排序</span>
+      </div>
+
+      <!-- 规格 1 -->
+      <div class="spec-row spec-row--active">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no">1</div>
+            <div class="spec-row__title">热轧卷板 Q235B 5.5×1500×C</div>
+          </div>
+          <div class="spec-row__actions">
+            <div class="spec-row__action">✏️</div>
+            <div class="spec-row__action">📋</div>
+            <div class="spec-row__action spec-row__action--delete">🗑</div>
+          </div>
+        </div>
+        <div class="spec-row__body">
+          <div class="spec-row__field"><span class="spec-row__field-label">数量</span><span class="spec-row__field-value">50 吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">到货地</span><span class="spec-row__field-value">天津·北辰</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">目标价</span><span class="spec-row__field-value">≤ 3950 元/吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">交期</span><span class="spec-row__field-value">3 天内</span></div>
+        </div>
+      </div>
+
+      <!-- 规格 2 -->
+      <div class="spec-row spec-row--active">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no">2</div>
+            <div class="spec-row__title">热轧卷板 Q235B 4.0×1500×C</div>
+          </div>
+          <div class="spec-row__actions">
+            <div class="spec-row__action">✏️</div>
+            <div class="spec-row__action">📋</div>
+            <div class="spec-row__action spec-row__action--delete">🗑</div>
+          </div>
+        </div>
+        <div class="spec-row__body">
+          <div class="spec-row__field"><span class="spec-row__field-label">数量</span><span class="spec-row__field-value">30 吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">到货地</span><span class="spec-row__field-value">天津·北辰</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">目标价</span><span class="spec-row__field-value">≤ 4000 元/吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">交期</span><span class="spec-row__field-value">3 天内</span></div>
+        </div>
+      </div>
+
+      <!-- 规格 3：行内编辑态展开 -->
+      <div class="spec-row spec-row--active">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no">3</div>
+            <div class="spec-row__title" style="color:var(--text-muted);">编辑中…</div>
+          </div>
+          <div class="spec-row__actions">
+            <div class="spec-row__action" style="color:var(--success);">✓</div>
+            <div class="spec-row__action spec-row__action--delete">🗑</div>
+          </div>
+        </div>
+        <div class="row-form">
+          <div class="row-form__row">
+            <span class="row-form__label">品名*</span>
+            <select class="row-form__select">
+              <option>螺纹钢</option>
+            </select>
+          </div>
+          <div class="row-form__row">
+            <span class="row-form__label">材质*</span>
+            <select class="row-form__select" style="flex: 0 0 100px; margin-right: 6px;">
+              <option>HRB400E</option>
+            </select>
+            <span class="row-form__label" style="width:40px;">规格*</span>
+            <input class="row-form__input" type="text" value="Φ18×12m" placeholder="如 Φ18×12m">
+          </div>
+          <div class="row-form__row">
+            <span class="row-form__label">数量*</span>
+            <input class="row-form__input" type="number" value="100" style="flex: 0 0 80px;">
+            <select class="row-form__select" style="flex: 0 0 50px; margin: 0 6px;">
+              <option>吨</option>
+            </select>
+            <span class="row-form__label" style="width:50px;">到货地*</span>
+            <select class="row-form__select">
+              <option>唐山·路北</option>
+            </select>
+          </div>
+          <div class="row-form__row">
+            <span class="row-form__label">目标价</span>
+            <input class="row-form__input" type="number" placeholder="可不填，由 AI 估" style="flex: 0 0 130px;">
+            <span style="margin: 0 6px; color: var(--text-muted); font-size: 13px;">元/吨</span>
+            <select class="row-form__select">
+              <option>3 天内</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 规格 4 -->
+      <div class="spec-row">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no">4</div>
+            <div class="spec-row__title">螺纹钢 HRB400E Φ20×12m</div>
+          </div>
+          <div class="spec-row__actions">
+            <div class="spec-row__action">✏️</div>
+            <div class="spec-row__action">📋</div>
+            <div class="spec-row__action spec-row__action--delete">🗑</div>
+          </div>
+        </div>
+        <div class="spec-row__body">
+          <div class="spec-row__field"><span class="spec-row__field-label">数量</span><span class="spec-row__field-value">80 吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">到货地</span><span class="spec-row__field-value">唐山·路北</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">目标价</span><span class="spec-row__field-value">≤ 4150 元/吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">交期</span><span class="spec-row__field-value">3 天内</span></div>
+        </div>
+      </div>
+
+      <!-- 折叠占位（说明剩余 4 行） -->
+      <div style="text-align:center; padding: 10px 0; color: var(--text-muted); font-size: 13px; border-top: 1px dashed var(--border); margin-top: 10px;">
+        ⋯ 还有 4 条规格（5-8） · 点此展开 ▽
+      </div>
+
+      <!-- 添加按钮 -->
+      <div class="add-spec-row" style="margin-top: 12px;">
+        + 添加规格行
+      </div>
+    </div>
+
+    <!-- 全局选项（应用到所有行的默认值） -->
+    <div class="card">
+      <div class="card-title">⚙️ 全局选项 <span style="font-size:12px;color:var(--text-muted);font-weight:normal;">（应用到所有行，可单独覆盖）</span></div>
+      <div class="form-row">
+        <span class="form-label">默认到货地</span>
+        <select class="form-select">
+          <option>使用各行设置</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <span class="form-label">默认交期</span>
+        <select class="form-select">
+          <option>3 天内</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <span class="form-label">默认账期</span>
+        <select class="form-select">
+          <option>现款</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <span class="form-label">备注</span>
+        <input class="form-input" placeholder="探伤 / 定尺 / 特殊包装 等">
+      </div>
+    </div>
+
+    <!-- 拆单策略 -->
+    <div class="card">
+      <div class="card-title">🤖 智能拆单</div>
+      <label style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;cursor:pointer;border-bottom: 1px solid var(--border);">
+        <input type="radio" name="split" checked style="margin-top: 4px;">
+        <div style="flex:1;">
+          <div style="font-weight:500;">推荐：智能拆单（按品类+区域）</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">系统自动拆为 3 个子单分别派给最优卖家，可单独成交</div>
+        </div>
+      </label>
+      <label style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;cursor:pointer;border-bottom: 1px solid var(--border);">
+        <input type="radio" name="split" style="margin-top: 4px;">
+        <div style="flex:1;">
+          <div style="font-weight:500;">整单打包</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">只接受能供应全部 8 条规格的卖家（适合需要单一开票时）</div>
+        </div>
+      </label>
+      <label style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;cursor:pointer;">
+        <input type="radio" name="split" style="margin-top: 4px;">
+        <div style="flex:1;">
+          <div style="font-weight:500;">让我自己拆</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">手动指定哪几行打包给同一卖家</div>
+        </div>
+      </label>
+    </div>
+
+    <!-- 加速档位 -->
+    <div class="card" style="background: linear-gradient(to bottom right, #f0f9ff, #ffffff); border: 1px solid var(--primary-light);">
+      <div class="card-title">🚀 加速档位</div>
+
+      <label style="display:flex;align-items:center;gap:10px;padding:10px 0;cursor:pointer;border-bottom: 1px solid var(--border);">
+        <input type="radio" name="priority" checked>
+        <div style="flex:1;">
+          <div style="font-weight:500;">普通</div>
+          <div style="font-size:12px;color:var(--text-muted);">30 分钟内多家报价（免费）</div>
+        </div>
+      </label>
+
+      <label style="display:flex;align-items:center;gap:10px;padding:10px 0;cursor:pointer;border-bottom: 1px solid var(--border);">
+        <input type="radio" name="priority">
+        <div style="flex:1;">
+          <div style="font-weight:500;">加急 ¥9.9</div>
+          <div style="font-size:12px;color:var(--text-muted);">10 分钟必有报价 + 置顶</div>
+        </div>
+      </label>
+
+      <label style="display:flex;align-items:center;gap:10px;padding:10px 0;cursor:pointer;">
+        <input type="radio" name="priority">
+        <div style="flex:1;">
+          <div style="font-weight:500;">悬赏 ¥99（适合大单）</div>
+          <div style="font-size:12px;color:var(--text-muted);">全网精准匹配 + 卖家优先响应</div>
+        </div>
+      </label>
+    </div>
+
+    <!-- 底部固定汇总条 + 提交 -->
+    <div class="batch-bar">
+      <div class="batch-bar__info">
+        共 <strong>8</strong> 条 / <strong>320</strong> 吨
+      </div>
+      <button class="btn btn-primary" style="height: 44px; padding: 0 20px;">立即发布 →</button>
+    </div>
+    <div style="text-align:center;padding:8px 16px 16px;font-size:12px;color:var(--text-muted);">
+      💡 智能拆单后预计 12 分钟内收到 5+ 家报价
+    </div>
+  </div>
+</body>
+</html>

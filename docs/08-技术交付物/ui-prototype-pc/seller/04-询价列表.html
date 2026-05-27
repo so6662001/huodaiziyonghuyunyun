@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>询价列表 · 货袋子（PC）</title>
+  <link rel="stylesheet" href="../styles-pc.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon" style="background:var(--gold);">🏆</div>
+      <div class="sidebar__logo-text">货袋子 · 卖家</div>
+    </div>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar" style="background:var(--gold);">李</div>
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-name">李总</div>
+        <div class="sidebar__user-role">天津荣昌 · S 级</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__group">销售</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📊</span>工作台</div>
+      <div class="sidebar__item sidebar__item--active"><span class="sidebar__item-icon">📥</span>询价中心<span class="sidebar__item-badge">12</span></div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💬</span>会话沟通</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📑</span>报价管理</div>
+      <div class="sidebar__group">运营</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📦</span>库存管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🚚</span>订单与发货</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">👥</span>我的客户</div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <div class="header__breadcrumb">销售 / <strong>询价中心</strong></div>
+      <div class="header__actions">
+        <button class="btn">📊 导出</button>
+        <button class="btn">🔔 通知设置</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="page-title">询价中心</div>
+      <div class="page-subtitle">12 个待处理询价，其中 <strong style="color:var(--danger);">3 个 30 分钟内必须响应</strong>。按规格行数、买家分级、地区智能排序。</div>
+
+      <!-- 状态分类 -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-card__label">⏰ 紧急（30 分内）</div>
+          <div class="kpi-card__value text-danger">3</div>
+          <div class="kpi-card__sub"><span class="text-danger">不响应将扣分</span></div>
+          <div class="kpi-card__icon">🚨</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">待处理</div>
+          <div class="kpi-card__value">12</div>
+          <div class="kpi-card__sub"><span class="text-secondary">含 76 行规格</span></div>
+          <div class="kpi-card__icon">📥</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">议价中</div>
+          <div class="kpi-card__value text-warning">5</div>
+          <div class="kpi-card__sub"><span class="text-secondary">3 个高成交概率</span></div>
+          <div class="kpi-card__icon">💬</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">今日报价</div>
+          <div class="kpi-card__value">18</div>
+          <div class="kpi-card__sub"><span class="text-success">中标率 38.5%</span></div>
+          <div class="kpi-card__icon">📤</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">未响应（已超时）</div>
+          <div class="kpi-card__value text-danger">2</div>
+          <div class="kpi-card__sub"><span class="text-danger">影响信用</span></div>
+          <div class="kpi-card__icon">⚠️</div>
+        </div>
+      </div>
+
+      <!-- 筛选 -->
+      <div class="card">
+        <div class="flex gap-8 items-center">
+          <span class="text-secondary text-sm">筛选：</span>
+          <select class="form-row__select" style="width:140px; height:36px;">
+            <option>全部状态</option>
+            <option>待处理</option>
+            <option>已报价</option>
+            <option>议价中</option>
+            <option>已成交</option>
+            <option>已失败</option>
+          </select>
+          <select class="form-row__select" style="width:140px; height:36px;">
+            <option>全部买家分级</option>
+            <option>主力买家</option>
+            <option>活跃买家</option>
+            <option>新买家</option>
+            <option>询价党</option>
+          </select>
+          <select class="form-row__select" style="width:120px; height:36px;">
+            <option>全部品类</option>
+            <option>热轧板</option>
+            <option>螺纹钢</option>
+            <option>镀锌板</option>
+          </select>
+          <select class="form-row__select" style="width:120px; height:36px;">
+            <option>全部区域</option>
+            <option>天津</option>
+            <option>唐山</option>
+            <option>聊城</option>
+          </select>
+          <input class="form-row__input" placeholder="搜索询价编号 / 买家…" style="width:200px;">
+          <button class="btn btn--ghost btn--sm">重置</button>
+          <div style="margin-left:auto;">
+            <span class="text-secondary text-sm">排序：</span>
+            <select class="form-row__select" style="width:140px; height:36px; display:inline-block;">
+              <option>紧急度 ↑</option>
+              <option>预估利润 ↑</option>
+              <option>买家分级 ↑</option>
+              <option>规格行数 ↑</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 询价表 -->
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <div class="table-toolbar__left">
+            <input type="checkbox"> <span class="text-secondary text-sm">已选 0/12</span>
+            <button class="btn btn--ghost btn--sm">📤 批量回价</button>
+            <button class="btn btn--ghost btn--sm">⏸ 标记为暂不接</button>
+          </div>
+          <div class="table-toolbar__right">
+            <button class="btn btn--sm">🔧 列设置</button>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><input type="checkbox"></th>
+              <th>询价编号</th>
+              <th>买家</th>
+              <th>规格信息</th>
+              <th>您可供</th>
+              <th>预估利润</th>
+              <th>距截止</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 紧急组 -->
+            <tr style="background:var(--danger-light);">
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002431</strong><br><span class="text-muted text-sm">2 分钟前</span></td>
+              <td>
+                <div class="text-bold">🏆 华*建工集团</div>
+                <div class="text-muted text-sm">主力 · 已成交 12 单</div>
+              </td>
+              <td>
+                <div class="text-bold">8 行</div>
+                <div class="text-muted text-sm">320 吨 · 天津/唐山</div>
+              </td>
+              <td><span class="text-success">5/8 行</span></td>
+              <td><strong class="text-success">¥14,250</strong></td>
+              <td><span class="text-danger text-bold">⏰ 28 min</span></td>
+              <td><span class="tag tag--danger">紧急</span></td>
+              <td><a href="02-询价中心.html" class="btn btn--warning btn--sm">立即报价 →</a></td>
+            </tr>
+            <tr style="background:var(--danger-light);">
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002430</strong><br><span class="text-muted text-sm">8 分钟前</span></td>
+              <td>
+                <div class="text-bold">天*钢构</div>
+                <div class="text-muted text-sm">新买家 · 首次询价</div>
+              </td>
+              <td>
+                <div class="text-bold">15 行</div>
+                <div class="text-muted text-sm">580 吨 · 天津</div>
+              </td>
+              <td><span class="text-warning">8/15 行</span></td>
+              <td><strong>¥18,200</strong></td>
+              <td><span class="text-danger text-bold">⏰ 22 min</span></td>
+              <td><span class="tag tag--danger">紧急</span></td>
+              <td><a href="02-询价中心.html" class="btn btn--warning btn--sm">立即报价 →</a></td>
+            </tr>
+            <tr style="background:var(--danger-light);">
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002428</strong><br><span class="text-muted text-sm">12 分钟前</span></td>
+              <td>
+                <div class="text-bold">京*物流园</div>
+                <div class="text-muted text-sm">活跃 · 2 次合作</div>
+              </td>
+              <td>
+                <div class="text-bold">3 行</div>
+                <div class="text-muted text-sm">50 吨 · 天津</div>
+              </td>
+              <td><span class="text-success">3/3 行</span></td>
+              <td><strong class="text-success">¥2,800</strong></td>
+              <td><span class="text-danger text-bold">⏰ 18 min</span></td>
+              <td><span class="tag tag--danger">紧急</span></td>
+              <td><a href="02-询价中心.html" class="btn btn--warning btn--sm">立即报价 →</a></td>
+            </tr>
+            <!-- 普通组 -->
+            <tr>
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002425</strong><br><span class="text-muted text-sm">35 分钟前</span></td>
+              <td>
+                <div class="text-bold">沧*建材</div>
+                <div class="text-muted text-sm">活跃 · 3 次合作</div>
+              </td>
+              <td>
+                <div class="text-bold">5 行</div>
+                <div class="text-muted text-sm">120 吨 · 沧州</div>
+              </td>
+              <td><span class="text-warning">3/5 行</span></td>
+              <td><strong>¥5,600</strong></td>
+              <td>1h 23min</td>
+              <td><span class="tag tag--warning">待处理</span></td>
+              <td><a href="02-询价中心.html" class="btn btn--primary btn--sm">报价</a></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002421</strong><br><span class="text-muted text-sm">52 分钟前</span></td>
+              <td>
+                <div class="text-bold">河*农机</div>
+                <div class="text-muted text-sm">活跃 · 8 次合作</div>
+              </td>
+              <td>
+                <div class="text-bold">2 行</div>
+                <div class="text-muted text-sm">40 吨 · 邯郸</div>
+              </td>
+              <td><span class="text-success">2/2 行</span></td>
+              <td><strong>¥2,000</strong></td>
+              <td>2h 14min</td>
+              <td><span class="tag tag--success">熟客</span></td>
+              <td><a href="02-询价中心.html" class="btn btn--primary btn--sm">报价</a></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002418</strong><br><span class="text-muted text-sm">1 小时前</span></td>
+              <td>
+                <div class="text-bold">石*工程</div>
+                <div class="text-muted text-sm">新买家</div>
+              </td>
+              <td>
+                <div class="text-bold">10 行</div>
+                <div class="text-muted text-sm">230 吨 · 石家庄</div>
+              </td>
+              <td><span class="text-warning">6/10 行</span></td>
+              <td><strong>¥8,400</strong></td>
+              <td>3h 02min</td>
+              <td><span class="tag tag--primary">新</span></td>
+              <td><a href="02-询价中心.html" class="btn btn--primary btn--sm">报价</a></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002415</strong><br><span class="text-muted text-sm">1 h 28min 前</span></td>
+              <td>
+                <div class="text-bold">秦*港务</div>
+                <div class="text-muted text-sm">主力 · 已成交 8 单</div>
+              </td>
+              <td>
+                <div class="text-bold">6 行</div>
+                <div class="text-muted text-sm">180 吨 · 秦皇岛</div>
+              </td>
+              <td><span class="text-success">5/6 行</span></td>
+              <td><strong class="text-success">¥7,200</strong></td>
+              <td>5h 30min</td>
+              <td><span class="tag tag--gold">主力</span></td>
+              <td><a href="02-询价中心.html" class="btn btn--primary btn--sm">报价</a></td>
+            </tr>
+            <!-- 已报价等待结果 -->
+            <tr style="background:var(--bg-subtle);">
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002405</strong><br><span class="text-muted text-sm">昨天</span></td>
+              <td>
+                <div class="text-bold">华*建工集团</div>
+                <div class="text-muted text-sm">主力</div>
+              </td>
+              <td>
+                <div class="text-bold">18 行</div>
+                <div class="text-muted text-sm">820 吨 · 天津</div>
+              </td>
+              <td><span class="text-success">12/18 行</span></td>
+              <td><strong>¥22,800</strong></td>
+              <td>5 天</td>
+              <td><span class="tag tag--success">已报价</span></td>
+              <td><button class="btn btn--ghost btn--sm">查看</button></td>
+            </tr>
+            <tr style="background:var(--bg-subtle);">
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002398</strong><br><span class="text-muted text-sm">2 天前</span></td>
+              <td>
+                <div class="text-bold">廊*仓储</div>
+                <div class="text-muted text-sm">活跃 · 5 次合作</div>
+              </td>
+              <td>
+                <div class="text-bold">4 行</div>
+                <div class="text-muted text-sm">80 吨 · 廊坊</div>
+              </td>
+              <td><span class="text-success">4/4 行</span></td>
+              <td><strong>¥3,800</strong></td>
+              <td>—</td>
+              <td><span class="tag tag--warning">议价中</span></td>
+              <td><button class="btn btn--warning btn--sm">回复议价</button></td>
+            </tr>
+            <tr style="background:var(--bg-subtle);">
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002392</strong><br><span class="text-muted text-sm">3 天前</span></td>
+              <td>
+                <div class="text-bold">唐*钢结构</div>
+                <div class="text-muted text-sm">活跃 · 6 次合作</div>
+              </td>
+              <td>
+                <div class="text-bold">7 行</div>
+                <div class="text-muted text-sm">250 吨 · 唐山</div>
+              </td>
+              <td><span class="text-success">5/7 行</span></td>
+              <td><strong class="text-success">¥9,600</strong></td>
+              <td>—</td>
+              <td><span class="tag tag--success">成交</span></td>
+              <td><button class="btn btn--ghost btn--sm">查看订单</button></td>
+            </tr>
+            <tr style="background:var(--bg-subtle); opacity:0.7;">
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002387</strong><br><span class="text-muted text-sm">3 天前</span></td>
+              <td>
+                <div class="text-bold">邢*建筑</div>
+                <div class="text-muted text-sm">新买家</div>
+              </td>
+              <td>
+                <div class="text-bold">3 行</div>
+                <div class="text-muted text-sm">60 吨 · 邢台</div>
+              </td>
+              <td><span class="text-muted">3/3 行</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td><span class="tag">未中标</span></td>
+              <td><button class="btn btn--ghost btn--sm">查看复盘</button></td>
+            </tr>
+            <tr style="background:var(--bg-subtle); opacity:0.7;">
+              <td><input type="checkbox"></td>
+              <td><strong>#ps_002379</strong><br><span class="text-muted text-sm">5 天前</span></td>
+              <td>
+                <div class="text-bold">张*家装</div>
+                <div class="text-muted text-sm">新</div>
+              </td>
+              <td>
+                <div class="text-bold">2 行</div>
+                <div class="text-muted text-sm">15 吨</div>
+              </td>
+              <td><span class="text-muted">2/2 行</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td><span class="tag">已过期</span></td>
+              <td><span class="text-muted text-sm">已关闭</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>共 47 条，第 1-12 条</span>
+          <div class="pagination__pages">
+            <div class="pagination__page">«</div>
+            <div class="pagination__page pagination__page--active">1</div>
+            <div class="pagination__page">2</div>
+            <div class="pagination__page">3</div>
+            <div class="pagination__page">4</div>
+            <div class="pagination__page">»</div>
+          </div>
+          <select class="form-row__select" style="width:80px; height:28px;">
+            <option>12/页</option>
+            <option>20/页</option>
+            <option>50/页</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

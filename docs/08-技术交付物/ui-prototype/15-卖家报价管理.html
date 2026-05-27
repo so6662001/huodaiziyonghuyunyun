@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的报价 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame page-bg-gray">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">我的报价</span>
+      <div class="actions"><span>📊</span></div>
+    </div>
+
+    <!-- KPI -->
+    <div class="mini-kpi" style="padding-top:12px;">
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">142</div>
+        <div class="mini-kpi__label">本月报价</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-success">42.3%</div>
+        <div class="mini-kpi__label">中标率</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">¥4.82M</div>
+        <div class="mini-kpi__label">成交额</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-warning">28</div>
+        <div class="mini-kpi__label">报价中</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="filter-chip filter-chip--active">全部 142</div>
+      <div class="filter-chip">报价中 28</div>
+      <div class="filter-chip">议价中 12</div>
+      <div class="filter-chip">中标 60</div>
+      <div class="filter-chip">未中标 42</div>
+    </div>
+
+    <div style="padding-top:8px;">
+      <!-- 中标 -->
+      <div class="list-card" style="background: linear-gradient(to right, var(--success-light) 0%, #fff 30%); border-left:3px solid var(--success);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">#q_5821</div>
+            <div style="font-size:11px; color:var(--text-muted);">华*建工 · #ps_002431 行 1</div>
+          </div>
+          <span class="badge badge-success">✓ 中标</span>
+        </div>
+        <div class="list-card__body">热轧 Q235B 5.5×1500 · 50 吨 × ¥3920</div>
+        <div class="list-card__foot">
+          <span>15 min</span>
+          <strong>¥196,000</strong>
+        </div>
+      </div>
+
+      <!-- Top1 待选 -->
+      <div class="list-card" style="border-left:3px solid var(--gold);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">#q_5822</div>
+            <div style="font-size:11px; color:var(--text-muted);">华*建工 · #ps_002431 行 2</div>
+          </div>
+          <span class="badge" style="background:var(--gold); color:#fff;">⭐ Top1</span>
+        </div>
+        <div class="list-card__body">热轧 Q235B 4.0×1500 · 30 吨 × ¥3980</div>
+        <div class="list-card__foot">
+          <span>15 min</span>
+          <strong>¥119,400</strong>
+        </div>
+      </div>
+
+      <!-- 议价中 -->
+      <div class="list-card" style="border-left:3px solid var(--warning); background: linear-gradient(to right, var(--warning-light) 0%, #fff 30%);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">#q_5810</div>
+            <div style="font-size:11px; color:var(--text-muted);">沧*建材 · 行 2</div>
+          </div>
+          <span class="badge badge-warning">💬 议价</span>
+        </div>
+        <div class="list-card__body">买家希望降至 ¥4150（您报 ¥4180）</div>
+        <button class="btn btn-warning" style="width:100%; margin-top:8px; padding:8px; font-size:12px;">回复议价</button>
+      </div>
+
+      <!-- 未中标 + 复盘 -->
+      <div class="list-card" style="opacity:0.75; border-left:3px solid var(--danger);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">#q_5798</div>
+            <div style="font-size:11px; color:var(--text-muted);">华*建工 · #ps_002405 行 5</div>
+          </div>
+          <span class="badge">未中标</span>
+        </div>
+        <div class="list-card__body">镀锌 SGCC 0.5×1200 · 50 吨</div>
+        <div style="background:var(--danger-light); border-radius:6px; padding:6px 10px; margin-top:8px; font-size:11px; color:var(--danger);">
+          📉 输给聊城金海 ¥5650（您 ¥5680，高 ¥30）
+        </div>
+      </div>
+
+      <!-- 已成交（历史） -->
+      <div class="list-card" style="opacity:0.85; border-left:3px solid var(--success);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">#q_5786</div>
+            <div style="font-size:11px; color:var(--text-muted);">廊*仓储 · 行 2</div>
+          </div>
+          <span class="badge badge-success">✓ 已成交</span>
+        </div>
+        <div class="list-card__body">螺纹 HRB400E Φ16 · 50 吨 × ¥4030</div>
+      </div>
+    </div>
+
+    <!-- 失败原因 -->
+    <div class="section-head">
+      <div class="section-head__title">📉 失败原因（42）</div>
+    </div>
+    <div style="margin: 0 16px 12px; background:#fff; border-radius:10px; padding:14px;">
+      <div style="font-size:13px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span>价格高于对手</span>
+          <strong>26 (62%)</strong>
+        </div>
+        <div style="background:var(--bg-light); height:6px; border-radius:3px; margin-bottom:12px;">
+          <div style="background:var(--danger); width:62%; height:100%; border-radius:3px;"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span>未及时响应</span>
+          <strong>8 (19%)</strong>
+        </div>
+        <div style="background:var(--bg-light); height:6px; border-radius:3px; margin-bottom:12px;">
+          <div style="background:var(--warning); width:19%; height:100%; border-radius:3px;"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span>库存不足</span>
+          <strong>5 (12%)</strong>
+        </div>
+        <div style="background:var(--bg-light); height:6px; border-radius:3px;">
+          <div style="background:var(--text-muted); width:12%; height:100%; border-radius:3px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:80px;"></div>
+
+    <div class="tab-bar">
+      <div class="tab"><div class="icon">🏠</div><div>首页</div></div>
+      <div class="tab"><div class="icon">📥</div><div>询价</div></div>
+      <div class="tab"><div class="icon">💬</div><div>消息</div></div>
+      <div class="tab active"><div class="icon">👤</div><div>我的</div></div>
+    </div>
+  </div>
+</body>
+</html>

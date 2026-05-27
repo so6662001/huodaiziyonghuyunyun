@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的清单 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame page-bg-gray">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">我的清单</span>
+      <div class="actions"><span>+ 新建</span></div>
+    </div>
+
+    <!-- KPI -->
+    <div class="mini-kpi" style="padding-top:12px;">
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">38</div>
+        <div class="mini-kpi__label">本月清单</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-warning">5</div>
+        <div class="mini-kpi__label">草稿</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-gold">12</div>
+        <div class="mini-kpi__label">模板</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">8</div>
+        <div class="mini-kpi__label">项目</div>
+      </div>
+    </div>
+
+    <!-- Tab -->
+    <div class="filter-bar">
+      <div class="filter-chip filter-chip--active">全部 38</div>
+      <div class="filter-chip">草稿 5</div>
+      <div class="filter-chip">询价中 8</div>
+      <div class="filter-chip">已完成 25</div>
+      <div class="filter-chip">⭐ 模板 12</div>
+      <div class="filter-chip">🏗 项目 8</div>
+    </div>
+
+    <!-- 搜索 -->
+    <div class="search-bar">
+      <input class="search-bar__input" placeholder="搜索清单名称 / 项目">
+    </div>
+
+    <div style="padding-top:8px;">
+      <!-- 询价中 -->
+      <div class="list-card" style="border-left:3px solid var(--warning);">
+        <div class="list-card__head">
+          <div class="list-card__title">5 号厂房 - 主结构钢材</div>
+          <span class="badge badge-warning">询价中</span>
+        </div>
+        <div class="list-card__body">
+          <div>📦 8 行规格 · 320 吨 · 天津/唐山</div>
+          <div style="margin-top:4px;">🏗 天津滨海 5 号厂房</div>
+        </div>
+        <div class="list-card__foot">
+          <span>¥1.28M 预算 · 5/8 已报价</span>
+          <span class="text-primary">查看 ›</span>
+        </div>
+      </div>
+
+      <!-- 草稿 -->
+      <div class="list-card" style="border-left:3px solid var(--warning); background: linear-gradient(to right, var(--warning-light) 0%, #fff 30%);">
+        <div class="list-card__head">
+          <div class="list-card__title">屋面工程钢材</div>
+          <span class="badge badge-warning">草稿</span>
+        </div>
+        <div class="list-card__body">
+          <div>📦 5 行 · 180 吨 · 天津</div>
+          <div style="margin-top:4px;">🏗 5 号厂房 · 编辑于今日 08:15</div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button class="btn" style="flex:1; padding:8px; font-size:12px; color:var(--danger); border-color:var(--danger);">删除</button>
+          <button class="btn btn-warning" style="flex:1; padding:8px; font-size:12px;">继续编辑</button>
+          <button class="btn btn-primary" style="flex:1; padding:8px; font-size:12px;">立即发布</button>
+        </div>
+      </div>
+
+      <!-- 派单中 -->
+      <div class="list-card" style="border-left:3px solid var(--primary);">
+        <div class="list-card__head">
+          <div class="list-card__title">不锈钢专项清单</div>
+          <span class="badge badge-primary">派单中</span>
+        </div>
+        <div class="list-card__body">📦 12 行 · 85 吨 · 聊城商业地产</div>
+      </div>
+
+      <!-- 议价中 -->
+      <div class="list-card" style="border-left:3px solid var(--success);">
+        <div class="list-card__head">
+          <div class="list-card__title">桥梁螺纹钢 - 5 月集采</div>
+          <span class="badge badge-success">议价中</span>
+        </div>
+        <div class="list-card__body">📦 18 行 · 820 吨 · 唐山桥梁工程</div>
+        <div class="list-card__foot">
+          <span>¥3.28M 预算</span>
+          <span class="text-primary">查看 ›</span>
+        </div>
+      </div>
+
+      <!-- 模板 -->
+      <div class="list-card" style="background: linear-gradient(135deg, var(--gold-light) 0%, #fff 50%); border:1px solid var(--gold);">
+        <div class="list-card__head">
+          <div class="list-card__title">⭐ 标准 8 件套</div>
+          <span class="badge" style="background:var(--gold); color:#fff;">常用模板</span>
+        </div>
+        <div class="list-card__body">
+          📦 8 行 · 320 吨<br>
+          已使用 12 次 · 最近 3 天前
+        </div>
+        <button class="btn btn-primary btn-block" style="margin-top:10px; padding:10px; font-size:13px;">一键发起询价 →</button>
+      </div>
+
+      <!-- 模板 -->
+      <div class="list-card" style="background: linear-gradient(135deg, var(--gold-light) 0%, #fff 50%); border:1px solid var(--gold);">
+        <div class="list-card__head">
+          <div class="list-card__title">⭐ 梁柱钢筋组合</div>
+          <span class="badge" style="background:var(--gold); color:#fff;">常用模板</span>
+        </div>
+        <div class="list-card__body">📦 5 行 · 200 吨 · 用了 8 次</div>
+      </div>
+
+      <!-- 项目档案 -->
+      <div class="list-card">
+        <div class="list-card__head">
+          <div class="list-card__title">🏗 天津滨海 5 号厂房</div>
+          <span class="badge badge-primary">项目档案</span>
+        </div>
+        <div class="list-card__body">
+          12 个清单 · 96 行规格 · 已成交 ¥6.8M · 预算用度 68%
+        </div>
+      </div>
+    </div>
+
+    <div style="height:80px;"></div>
+
+    <div class="tab-bar">
+      <div class="tab"><div class="icon">🏠</div><div>首页</div></div>
+      <div class="tab active"><div class="icon">📝</div><div>清单</div></div>
+      <div class="tab"><div class="icon">📦</div><div>订单</div></div>
+      <div class="tab"><div class="icon">👤</div><div>我的</div></div>
+    </div>
+  </div>
+</body>
+</html>

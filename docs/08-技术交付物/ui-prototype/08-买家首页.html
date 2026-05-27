@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>买家首页 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame page-bg-gray">
+    <!-- 顶部状态条 -->
+    <div style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color:#fff; padding: 16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:18px;">王</div>
+          <div>
+            <div style="font-size:16px; font-weight:600;">王采购</div>
+            <div style="font-size:11px; opacity:0.85;">华*建工集团 · 采购部</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <span style="font-size:20px;">🔍</span>
+          <span style="font-size:20px;">🔔</span>
+        </div>
+      </div>
+      <div style="font-size:13px; opacity:0.85;">本月已采购</div>
+      <div style="font-size:28px; font-weight:700; margin-top:4px;">¥3.86<span style="font-size:18px;">M</span></div>
+      <div style="display:flex; gap:16px; margin-top:8px; font-size:12px;">
+        <span>↑ 12.4% vs 上月</span>
+        <span>节省 ¥48.2K</span>
+      </div>
+    </div>
+
+    <!-- 紧凑 KPI -->
+    <div class="mini-kpi" style="padding-top:12px;">
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-warning">8</div>
+        <div class="mini-kpi__label">询价中</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-primary">5</div>
+        <div class="mini-kpi__label">待发货</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-success">2</div>
+        <div class="mini-kpi__label">待收货</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">3</div>
+        <div class="mini-kpi__label">待对账</div>
+      </div>
+    </div>
+
+    <!-- 功能入口 -->
+    <div class="grid-entries">
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">📝</div>
+        <div class="grid-entries__label">发需求</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">📋</div>
+        <div class="grid-entries__label">传清单</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">⊞</div>
+        <div class="grid-entries__label">比价</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">📦</div>
+        <div class="grid-entries__label">我的单</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">🏢</div>
+        <div class="grid-entries__label">供应商</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">💰</div>
+        <div class="grid-entries__label">对账</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">📈</div>
+        <div class="grid-entries__label">分析</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">⋯</div>
+        <div class="grid-entries__label">更多</div>
+      </div>
+    </div>
+
+    <!-- 待办（AI 推荐） -->
+    <div class="section-head">
+      <div class="section-head__title">⚡ 待办（3）</div>
+      <div class="section-head__more">全部 ›</div>
+    </div>
+    <div class="list-card" style="border-left:3px solid var(--warning); background: linear-gradient(to right, #fef3c7 0%, #fff 30%);">
+      <div class="list-card__head">
+        <div class="list-card__title">#ps_002418 · 待确认成交</div>
+        <span class="badge badge-warning">紧急</span>
+      </div>
+      <div class="list-card__body">最优组合方案已生成，5 行可锁单（¥1,016,800）</div>
+      <div class="list-card__foot">
+        <span class="text-muted">距交期 1 天</span>
+        <button class="btn btn-warning" style="padding:4px 12px; font-size:12px;">立即确认</button>
+      </div>
+    </div>
+
+    <div class="list-card" style="border-left:3px solid var(--primary); background: linear-gradient(to right, #dbeafe 0%, #fff 30%);">
+      <div class="list-card__head">
+        <div class="list-card__title">#ps_002431 · 卖家提议改规</div>
+        <span class="badge badge-primary">建议</span>
+      </div>
+      <div class="list-card__body">第 7 行 H 型钢 卖家提议改 HW194×150，可降 ¥1,800</div>
+      <div class="list-card__foot">
+        <span class="text-muted">2 分钟前</span>
+        <button class="btn" style="padding:4px 12px; font-size:12px;">查看</button>
+      </div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-card__head">
+        <div class="list-card__title">订单 #o_001892 验收</div>
+        <span class="badge">提醒</span>
+      </div>
+      <div class="list-card__body">货物已到，请在 24h 内确认</div>
+    </div>
+
+    <!-- 进行中询价 -->
+    <div class="section-head">
+      <div class="section-head__title">📝 进行中询价（8）</div>
+      <div class="section-head__more">全部 ›</div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-card__head">
+        <div class="list-card__title">#ps_002431 · 8 行 / 320 吨</div>
+        <span class="badge badge-warning">5/8 报价</span>
+      </div>
+      <div class="list-card__body">天津/唐山 · 距交期 2 天 22h · 17 家参与</div>
+      <div class="list-card__foot">
+        <span class="text-primary">¥1,016,800 可成交</span>
+        <span class="text-primary">查看 ›</span>
+      </div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-card__head">
+        <div class="list-card__title">#ps_002429 · 12 行 / 85 吨</div>
+        <span class="badge badge-primary">3/12</span>
+      </div>
+      <div class="list-card__body">不锈钢全系 · 聊城 · 距交期 5 天</div>
+      <div class="list-card__foot">
+        <span class="text-muted">派单中…</span>
+        <span class="text-primary">查看 ›</span>
+      </div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-card__head">
+        <div class="list-card__title">#ps_002418 · 5 行 / 150 吨</div>
+        <span class="badge badge-success">5/5</span>
+      </div>
+      <div class="list-card__body">天津 · 距交期 1 天 · 待确认</div>
+      <div class="list-card__foot">
+        <span class="text-warning">⚠️ 待您确认成交</span>
+        <span class="text-primary">查看 ›</span>
+      </div>
+    </div>
+
+    <!-- AI 推荐 -->
+    <div style="margin: 12px 16px; padding:14px; background: linear-gradient(135deg, #dbeafe 0%, #fff 100%); border:1px solid var(--primary); border-radius:10px;">
+      <div style="font-weight:600; color:var(--primary); margin-bottom:8px;">🤖 AI 推荐</div>
+      <div style="font-size:12px; line-height:1.7;">
+        📈 热轧 Q235B 5.5mm 预计涨价 2-3%，建议尽快锁价<br>
+        🏢 天津荣昌报价优于市场 1.5%，可优先合作
+      </div>
+    </div>
+
+    <!-- 底部 Tab -->
+    <div class="tab-bar">
+      <div class="tab active">
+        <div class="icon">🏠</div>
+        <div>首页</div>
+      </div>
+      <div class="tab">
+        <div class="icon">📝</div>
+        <div>发需求</div>
+      </div>
+      <div class="tab">
+        <div class="icon">💬</div>
+        <div>消息</div>
+      </div>
+      <div class="tab">
+        <div class="icon">👤</div>
+        <div>我的</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

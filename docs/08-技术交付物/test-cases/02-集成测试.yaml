@@ -1,0 +1,641 @@
+# 货袋子集成测试用例库
+# 格式：YAML（可被 Postman/REST Assured 直接读取）
+# 命名：TC-{模块}-{编号}
+
+suite: "货袋子 API 集成测试"
+version: "v2.0"
+base_url: "http://localhost:8080/v1"
+
+# ============================================================
+# M1: 用户与认证
+# ============================================================
+test_groups:
+  - group: "M1 用户与认证"
+    cases:
+
+      - id: TC-M1-001
+        name: "微信小程序登录-成功"
+        priority: P0
+        steps:
+          - method: POST
+            path: /auth/wechat-login
+            body:
+              code: "valid_wechat_code_001"
+              user_info:
+                nickname: "张三"
+                avatar_url: "https://..."
+        expected:
+          status: 200
+          body:
+            access_token: { type: string, not_empty: true }
+            refresh_token: { type: string, not_empty: true }
+            expires_in: { type: integer, min: 3600 }
+            user.user_id: { type: string }
+
+      - id: TC-M1-002
+        name: "短信验证码-频率限制"
+        priority: P1
+        steps:
+          - method: POST
+            path: /auth/sms-send
+            body: { phone: "13800000001", scenario: "login" }
+          - method: POST
+            path: /auth/sms-send
+            body: { phone: "13800000001", scenario: "login" }
+        expected:
+          last_status: 429
+          last_body:
+            code: "RATE_LIMITED"
+
+      - id: TC-M1-003
+        name: "OCR 营业执照识别-成功"
+        priority: P0
+        steps:
+          - method: POST
+            path: /companies/ocr
+            multipart:
+              image: "@test_data/business_license_valid.jpg"
+        expected:
+          status: 200
+          body:
+            business_license_no: { pattern: "^[0-9A-Z]{18}$" }
+            company_name: { not_empty: true }
+            ocr_confidence: { min: 0.85 }
+
+      - id: TC-M1-004
+        name: "营业执照重复注册-拒绝"
+        priority: P0
+        setup:
+          - existing_company:
+              business_license_no: "91110000000000001"
+        steps:
+          - method: POST
+            path: /companies
+            body:
+              business_license_no: "91110000000000001"
+              name: "重复企业"
+        expected:
+          status: 409
+          body.code: "COMPANY_ALREADY_EXISTS"
+
+      - id: TC-M1-005
+        name: "切换买家/卖家视角"
+        priority: P1
+        auth: u_test_buyer_001
+        steps:
+          - method: POST
+            path: /users/me/switch-view
+            body: { target_view: "seller" }
+          - method: GET
+            path: /users/me
+        expected:
+          last_body.current_view: "seller"
+
+# ============================================================
+# M2: 采购会话
+# ============================================================
+  - group: "M2 采购会话"
+    cases:
+
+      - id: TC-M2-001
+        name: "买家创建采购会话-成功"
+        priority: P0
+        auth: u_test_buyer_001
+        steps:
+          - method: POST
+            path: /purchase-sessions
+            body:
+              product_category: "热轧卷板"
+              material_grade: "Q235B"
+              spec: "5.5×1500×C"
+              quantity_ton: 50
+              delivery_city: "天津"
+              delivery_district: "北辰"
+              payment_terms: "cash"
+              priority: "standard"
+              source: "app"
+        expected:
+          status: 201
+          body:
+            session_id: { pattern: "^ps_" }
+            status: "matching"
+            current_card.version: 1
+            current_card.quantity_ton: 50
+
+      - id: TC-M2-002
+        name: "变更需求卡片-创建新版本"
+        priority: P0
+        auth: u_test_buyer_001
+        setup:
+          - session_id: "ps_test_001"
+        steps:
+          - method: POST
+            path: /purchase-sessions/ps_test_001/cards
+            body:
+              quantity_ton: 80
+              changed_by: "buyer"
+        expected:
+          status: 201
+          body:
+            version: 2
+            quantity_ton: 80
+            changed_fields: ["quantity_ton"]
+
+      - id: TC-M2-003
+        name: "变更后旧版本不可见"
+        priority: P0
+        auth: u_test_buyer_001
+        steps:
+          - method: GET
+            path: /purchase-sessions/ps_test_001/cards/current
+        expected:
+          body:
+            version: 2
+            is_current: true
+
+      - id: TC-M2-004
+        name: "卖家响应卡片变更-维持原价"
+        priority: P0
+        auth: u_test_seller_001
+        steps:
+          - method: POST
+            path: /cards/card_test_v2/response
+            body:
+              action: "maintain_price"
+        expected:
+          status: 200
+
+      - id: TC-M2-005
+        name: "AI 识变-数量变更检测"
+        priority: P0
+        auth: u_test_buyer_001
+        steps:
+          - method: POST
+            path: /ai/detect-intent
+            body:
+              stream_id: "cs_test_001"
+              message_content: "要不改成 80 吨吧"
+              current_card_id: "card_test_v1"
+        expected:
+          status: 200
+          body:
+            has_intent: true
+            intent_type: "change_quantity"
+            extracted_fields.quantity_ton: 80
+            confidence: { min: 0.7 }
+
+      - id: TC-M2-006
+        name: "AI 识变-用户确认"
+        priority: P0
+        auth: u_test_buyer_001
+        steps:
+          - method: POST
+            path: /ai/intents/intent_test_001/confirm
+            body:
+              action: "confirm"
+        expected:
+          status: 200
+
+      - id: TC-M2-007
+        name: "变更次数限制-超过 5 次提示"
+        priority: P1
+        auth: u_test_buyer_001
+        repeat: 6
+        steps:
+          - method: POST
+            path: /purchase-sessions/ps_test_001/cards
+            body:
+              quantity_ton: "{{ random }}"
+        expected:
+          all_status: 201
+          last_body.warning: { contains: "反复变更" }
+
+      - id: TC-M2-008
+        name: "聚合视图-Top 3 盲价展示"
+        priority: P0
+        auth: u_test_buyer_001
+        setup:
+          - quotes_count: 6
+        steps:
+          - method: GET
+            path: /purchase-sessions/ps_test_001/aggregated
+        expected:
+          status: 200
+          body:
+            top_quotes:
+              length: 3
+              items.seller_anonymous_id: { not_empty: true }
+            other_quotes_count: 3
+
+# ============================================================
+# M3: 清单采购
+# ============================================================
+  - group: "M3 清单采购"
+    cases:
+
+      - id: TC-M3-001
+        name: "拍照上传清单"
+        priority: P0
+        auth: u_test_buyer_001
+        steps:
+          - method: POST
+            path: /procurement-lists/upload
+            multipart:
+              file: "@test_data/list_photo.jpg"
+              source: "photo"
+        expected:
+          status: 202
+          body:
+            list_id: { pattern: "^pl_" }
+            parsing_job_id: { not_empty: true }
+            estimated_seconds: { max: 30 }
+
+      - id: TC-M3-002
+        name: "OCR+LLM 解析准确率"
+        priority: P0
+        polling:
+          path: /procurement-lists/{{list_id}}/parsing-status
+          until: "body.status == 'ready_for_confirm'"
+          timeout: 30
+        expected:
+          body:
+            total_lines: { min: 20 }
+            uncertain_lines: { length_max: 3 }
+
+      - id: TC-M3-003
+        name: "确认清单+发起询价"
+        priority: P0
+        auth: u_test_buyer_001
+        steps:
+          - method: POST
+            path: /procurement-lists/pl_test_001/confirm
+            body:
+              corrections: []
+              mode: "precise"
+        expected:
+          status: 200
+
+      - id: TC-M3-004
+        name: "智能拆单-按品类"
+        priority: P0
+        steps:
+          - method: POST
+            path: /procurement-lists/pl_test_001/dispatch
+        expected:
+          status: 200
+          body:
+            sub_lists:
+              length: { min: 2 }
+              items.category: { in: ["板材", "型材", "螺纹", "管材"] }
+
+      - id: TC-M3-005
+        name: "卖家部分应答"
+        priority: P0
+        auth: u_test_seller_001
+        steps:
+          - method: POST
+            path: /procurement-lists/pl_test_001/responses
+            body:
+              responded_line_ids: ["line_001", "line_002", "line_003"]
+              not_responded_line_ids: ["line_004"]
+              pricing_method: "manual"
+        expected:
+          status: 201
+
+      - id: TC-M3-006
+        name: "最优组合算法-4 种策略"
+        priority: P0
+        auth: u_test_buyer_001
+        steps:
+          - method: POST
+            path: /procurement-lists/pl_test_001/calculate-combos
+            body:
+              strategies: ["lowest_cost", "one_stop", "fastest", "highest_credit"]
+        expected:
+          status: 200
+          body:
+            length: 4
+            items.strategy: { in: ["lowest_cost", "one_stop", "fastest", "highest_credit"] }
+
+      - id: TC-M3-007
+        name: "导出比价单 PDF"
+        priority: P1
+        auth: u_test_buyer_001
+        steps:
+          - method: GET
+            path: /procurement-lists/pl_test_001/comparison-pdf?template=detailed
+        expected:
+          status: 200
+          headers.content-type: "application/pdf"
+
+# ============================================================
+# M4: 报价系统
+# ============================================================
+  - group: "M4 报价系统"
+    cases:
+
+      - id: TC-M4-001
+        name: "卖家创建 6 维报价"
+        priority: P0
+        auth: u_test_seller_001
+        steps:
+          - method: POST
+            path: /quotes
+            body:
+              session_id: "ps_test_001"
+              base_unit_price: 4280
+              available_qty: 80
+              valid_until: "2026-05-23T18:00:00Z"
+              tier_pricing:
+                - quantity_threshold: 50
+                  unit_price: 4280
+                - quantity_threshold: 80
+                  unit_price: 4260
+                - quantity_threshold: 100
+                  unit_price: 4240
+              spec_adjustments:
+                - spec: "5.5mm"
+                  price_delta: 0
+                - spec: "6mm"
+                  price_delta: -60
+              add_ons:
+                - type: "include_freight"
+                  price_delta: 150
+                - type: "urgent_delivery"
+                  price_delta: 200
+        expected:
+          status: 201
+          body:
+            status: "active"
+            estimated_profit_margin: { min: 0.01 }
+
+      - id: TC-M4-002
+        name: "实时算价-多组合"
+        priority: P0
+        steps:
+          - method: POST
+            path: /quotes/q_test_001/calculate
+            body:
+              quantity: 80
+              spec: "6mm"
+              add_ons: ["include_freight", "urgent_delivery"]
+        expected:
+          status: 200
+          body:
+            unit_price: 4550  # 4260 - 60 + 150 + 200
+            total_price: 364000  # 4550 * 80
+
+      - id: TC-M4-003
+        name: "买家发起还价"
+        priority: P1
+        auth: u_test_buyer_001
+        steps:
+          - method: POST
+            path: /negotiations
+            body:
+              quote_id: "q_test_001"
+              proposed_price: 4250
+              reason: "现款支付"
+        expected:
+          status: 201
+          body:
+            status: "pending"
+            proposed_price: 4250
+
+      - id: TC-M4-004
+        name: "议价超上限拒绝"
+        priority: P1
+        auth: u_test_buyer_001
+        setup:
+          - existing_negotiations_count: 2
+        steps:
+          - method: POST
+            path: /negotiations
+            body:
+              quote_id: "q_test_001"
+              proposed_price: 4200
+        expected:
+          status: 429
+          body.code: "NEGOTIATION_LIMIT_EXCEEDED"
+
+# ============================================================
+# M5: 智能匹配
+# ============================================================
+  - group: "M5 智能匹配"
+    cases:
+
+      - id: TC-M5-001
+        name: "派单算法-Top 15 + 区域保护"
+        priority: P0
+        steps:
+          - method: POST
+            path: /dispatch/match
+            body:
+              session_id: "ps_test_001"
+        expected:
+          status: 202
+        post_checks:
+          - sql: "SELECT COUNT(*) FROM dispatches WHERE session_id='ps_test_001'"
+            expected: { min: 10, max: 15 }
+          - sql: "SELECT COUNT(*) FROM dispatches d JOIN companies c ON d.seller_id=c.user_id WHERE c.city != '天津' AND c.distance_km > 300"
+            expected: { value: 0, comment: "区域保护：300km 内" }
+
+      - id: TC-M5-002
+        name: "卖家偏好-不接试水池"
+        priority: P0
+        auth: u_test_seller_001
+        steps:
+          - method: PUT
+            path: /sellers/me/preferences
+            body:
+              accept_pools: ["standard", "premium"]
+              categories: ["热轧卷板"]
+              regions: ["天津"]
+              daily_max: 20
+        expected:
+          status: 200
+        post_checks:
+          - "试水池新需求不再推送给该卖家"
+
+      - id: TC-M5-003
+        name: "买家池子分配-试水→标准"
+        priority: P0
+        setup:
+          - buyer_id: "u_buyer_grow"
+            initial_pool: "pilot"
+            simulate_deals: 2
+        steps:
+          - method: POST
+            path: /jobs/recompute-pool
+            body: { buyer_id: "u_buyer_grow" }
+        expected:
+          status: 200
+        post_checks:
+          - get: /buyers/u_buyer_grow/pool-level
+            expected: { current_pool: "standard" }
+
+      - id: TC-M5-004
+        name: "市场参考价查询"
+        priority: P1
+        steps:
+          - method: GET
+            path: /market-references?category=热轧卷板&material=Q235B&region=唐山&timeframe_days=7
+        expected:
+          status: 200
+          body:
+            median_price: { type: number, min: 3000, max: 6000 }
+            p25: { type: number }
+            p75: { type: number }
+            sample_count: { min: 10 }
+
+# ============================================================
+# M6: 信用体系
+# ============================================================
+  - group: "M6 信用体系"
+    cases:
+
+      - id: TC-M6-001
+        name: "买家信用分初始化"
+        priority: P1
+        steps:
+          - method: GET
+            path: /users/u_new_buyer/credit-score
+        expected:
+          status: 200
+          body:
+            current_score: 60
+            level: "standard"
+
+      - id: TC-M6-002
+        name: "申诉发起"
+        priority: P1
+        auth: u_test_seller_001
+        steps:
+          - method: POST
+            path: /appeals
+            body:
+              target_type: "credit_score"
+              target_id: "adj_test_001"
+              reason: "误判，请复查"
+              evidence: ["url1", "url2"]
+        expected:
+          status: 201
+          body:
+            status: "submitted"
+
+# ============================================================
+# M10: 商业化
+# ============================================================
+  - group: "M10 商业化"
+    cases:
+
+      - id: TC-M10-001
+        name: "流量费充值"
+        priority: P0
+        auth: u_test_seller_001
+        steps:
+          - method: POST
+            path: /traffic-wallets/recharge
+            body:
+              amount: 1980
+              package_id: "standard_pack_100"
+        expected:
+          status: 201
+
+      - id: TC-M10-002
+        name: "CPL 扣费-有效线索"
+        priority: P0
+        auth: u_test_seller_001
+        steps:
+          - simulate_event: "valid_lead_received"
+        post_checks:
+          - sql: "SELECT amount FROM traffic_charges ORDER BY created_at DESC LIMIT 1"
+            expected: { value: 30 }  # 唐山热轧 CPL = 30 元
+
+      - id: TC-M10-003
+        name: "线索申诉-重复线索全退"
+        priority: P1
+        auth: u_test_seller_001
+        steps:
+          - method: POST
+            path: /traffic-charges/tc_test_001/appeal
+            body:
+              reason: "duplicate"
+              evidence: []
+        expected:
+          status: 201
+        post_checks:
+          - sql: "SELECT refunded FROM traffic_charges WHERE charge_id='tc_test_001'"
+            expected: { value: 1 }
+          - sql: "SELECT balance FROM traffic_wallets WHERE seller_id='u_test_seller_001'"
+            expected: { delta: +30 }
+
+# ============================================================
+# M11: 风控
+# ============================================================
+  - group: "M11 风控"
+    cases:
+
+      - id: TC-M11-001
+        name: "R001 设备同源注册-触发"
+        priority: P0
+        steps:
+          - repeat: 3
+            method: POST
+            path: /auth/sms-send
+            body: { phone: "{{ phone_{{idx}} }}" }
+            headers:
+              X-Device-Fingerprint: "same_device_fp"
+        post_checks:
+          - sql: "SELECT COUNT(*) FROM risk_events WHERE rule_id='R001'"
+            expected: { min: 1 }
+          - "第 3 个账号进入人工审核"
+
+      - id: TC-M11-002
+        name: "R013 询价党识别"
+        priority: P0
+        setup:
+          - buyer: "u_inquirer_test"
+            simulate_demands: 30
+            simulate_deals: 0
+            timeframe_days: 30
+        steps:
+          - method: POST
+            path: /risk/check
+            body:
+              user_id: "u_inquirer_test"
+              action: "create_demand"
+        expected:
+          status: 200
+          body:
+            triggered_rules: { contains: "R013" }
+            disposition: "L0"
+        post_checks:
+          - "买家池子降级为 pilot"
+
+      - id: TC-M11-003
+        name: "R020 同质化报价（串价）检测"
+        priority: P1
+        setup:
+          - session_id: "ps_collusion_test"
+          - quotes_variance: 0.003  # 方差 0.3% < 0.5%
+          - quotes_count: 5
+        steps:
+          - simulate_event: "all_quotes_received"
+        post_checks:
+          - sql: "SELECT COUNT(*) FROM risk_events WHERE rule_id='R020'"
+            expected: { min: 1 }
+          - "涉事卖家加入串价观察名单"
+
+      - id: TC-M11-004
+        name: "R023 恶意低价拦截"
+        priority: P0
+        steps:
+          - method: POST
+            path: /quotes
+            body:
+              session_id: "ps_test_001"
+              base_unit_price: 3500  # 远低于市场参考价 4280 的 -18%
+        post_checks:
+          - "报价不出现在买家聚合视图"
+          - "卖家收到提示：报价低于市场底线"

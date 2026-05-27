@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>报价对比矩阵 · 货袋子（PC）</title>
+  <link rel="stylesheet" href="../styles-pc.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon">📦</div>
+      <div class="sidebar__logo-text">货袋子</div>
+    </div>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar">王</div>
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-name">王采购</div>
+        <div class="sidebar__user-role">华建工集团</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__group">采购</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📊</span>工作台</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📝</span>发布需求</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💬</span>采购会话<span class="sidebar__item-badge">3</span></div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📋</span>清单管理</div>
+      <div class="sidebar__item sidebar__item--active"><span class="sidebar__item-icon">⊞</span>报价对比</div>
+      <div class="sidebar__group">订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📦</span>我的订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💳</span>对账中心</div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <div class="header__breadcrumb">
+        采购会话 / <strong>#ps_002431 报价矩阵</strong>
+      </div>
+      <div class="header__actions">
+        <button class="btn">📤 导出 Excel</button>
+        <button class="btn">🖨 打印</button>
+        <button class="btn btn--primary">🏆 采纳最优方案</button>
+      </div>
+    </div>
+
+    <div class="content" style="max-width:none;">
+      <div class="page-title">报价对比矩阵</div>
+      <div class="page-subtitle">17 家卖家对 8 行规格的全量报价。横向看一家卖家覆盖能力，纵向看每行最优价。</div>
+
+      <!-- 工具栏 -->
+      <div class="card">
+        <div class="flex items-center justify-between">
+          <div class="flex gap-8">
+            <span class="tag tag--primary">17 家卖家</span>
+            <span class="tag tag--primary">8 行规格</span>
+            <span class="tag tag--success">5 行已有最优</span>
+            <span class="tag tag--warning">2 行待补</span>
+            <span class="tag tag--danger">1 行无供应</span>
+          </div>
+          <div class="flex gap-8">
+            <select class="form-row__select" style="width:160px; height:36px;">
+              <option>排序：综合分数</option>
+              <option>排序：总价</option>
+              <option>排序：能供条数</option>
+              <option>排序：距离</option>
+            </select>
+            <button class="btn btn--sm">▸ 隐藏无报价卖家</button>
+            <button class="btn btn--sm">▸ 仅看综合 Top 5</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 矩阵主表 -->
+      <div class="matrix">
+        <div class="matrix__scroll">
+          <table>
+            <thead>
+              <tr>
+                <th class="matrix__spec" style="text-align:left; padding-left:16px;">规格 \ 卖家</th>
+                <th class="matrix__seller-head">
+                  <div class="matrix__seller-name">天津荣昌 🏆</div>
+                  <div class="matrix__seller-rating">★★★★★ 96</div>
+                  <div class="matrix__seller-meta">12km · S 级</div>
+                </th>
+                <th class="matrix__seller-head">
+                  <div class="matrix__seller-name">唐山润成</div>
+                  <div class="matrix__seller-rating">★★★★ 94</div>
+                  <div class="matrix__seller-meta">28km · A 级</div>
+                </th>
+                <th class="matrix__seller-head">
+                  <div class="matrix__seller-name">聊城金海</div>
+                  <div class="matrix__seller-rating">★★★★ 88</div>
+                  <div class="matrix__seller-meta">55km · A 级</div>
+                </th>
+                <th class="matrix__seller-head">
+                  <div class="matrix__seller-name">河北鼎信</div>
+                  <div class="matrix__seller-rating">★★★★ 92</div>
+                  <div class="matrix__seller-meta">45km · A 级</div>
+                </th>
+                <th class="matrix__seller-head">
+                  <div class="matrix__seller-name">天津 YY</div>
+                  <div class="matrix__seller-rating">★★★★ 91</div>
+                  <div class="matrix__seller-meta">28km · B 级</div>
+                </th>
+                <th class="matrix__seller-head">
+                  <div class="matrix__seller-name">沧州金属</div>
+                  <div class="matrix__seller-rating">★★★ 87</div>
+                  <div class="matrix__seller-meta">78km · B 级</div>
+                </th>
+                <th class="matrix__seller-head">
+                  <div class="matrix__seller-name">唐山宏达</div>
+                  <div class="matrix__seller-rating">★★★★ 89</div>
+                  <div class="matrix__seller-meta">52km · B 级</div>
+                </th>
+                <th class="matrix__seller-head">
+                  <div class="matrix__seller-name">秦皇岛特钢</div>
+                  <div class="matrix__seller-rating">★★★★ 90</div>
+                  <div class="matrix__seller-meta">120km · A 级</div>
+                </th>
+                <th class="matrix__seller-head" style="background:#f1f5f9;">
+                  <div class="matrix__seller-name text-muted">还有 9 家</div>
+                  <div class="matrix__seller-meta">查看全部 →</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="matrix__spec">
+                  ① 热轧 Q235B 5.5×1500
+                  <div class="matrix__spec-sub">50 吨 · 天津</div>
+                </td>
+                <td class="matrix__cell-best">3920</td>
+                <td class="matrix__cell-good">3950</td>
+                <td>3980</td>
+                <td>3960</td>
+                <td>3975</td>
+                <td>4000</td>
+                <td>3990</td>
+                <td>4010</td>
+                <td class="matrix__cell-miss">...</td>
+              </tr>
+              <tr>
+                <td class="matrix__spec">
+                  ② 热轧 Q235B 4.0×1500
+                  <div class="matrix__spec-sub">30 吨 · 天津</div>
+                </td>
+                <td class="matrix__cell-best">3980</td>
+                <td class="matrix__cell-good">4000</td>
+                <td>4050</td>
+                <td>4020</td>
+                <td>4030</td>
+                <td>4050</td>
+                <td>4040</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">...</td>
+              </tr>
+              <tr>
+                <td class="matrix__spec">
+                  ③ 螺纹 HRB400E Φ18×12m
+                  <div class="matrix__spec-sub">100 吨 · 唐山</div>
+                </td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-best">4080</td>
+                <td class="matrix__cell-good">4100</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td>4150</td>
+                <td>4120</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">...</td>
+              </tr>
+              <tr>
+                <td class="matrix__spec">
+                  ④ 螺纹 HRB400E Φ20×12m
+                  <div class="matrix__spec-sub">80 吨 · 唐山</div>
+                </td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-best">4120</td>
+                <td class="matrix__cell-good">4140</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td>4180</td>
+                <td>4160</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">...</td>
+              </tr>
+              <tr>
+                <td class="matrix__spec">
+                  ⑤ 镀锌 SGCC 0.5×1200
+                  <div class="matrix__spec-sub">30 吨 · 天津</div>
+                </td>
+                <td class="matrix__cell-good">5680</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-best">5650</td>
+                <td class="matrix__cell-miss">—</td>
+                <td>5720</td>
+                <td>5750</td>
+                <td class="matrix__cell-miss">—</td>
+                <td>5700</td>
+                <td class="matrix__cell-miss">...</td>
+              </tr>
+              <tr>
+                <td class="matrix__spec">
+                  ⑥ 镀锌 SGCC 0.6×1250
+                  <div class="matrix__spec-sub">20 吨 · 天津</div>
+                </td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-best">5750</td>
+                <td class="matrix__cell-miss">—</td>
+                <td>5820</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td>5800</td>
+                <td class="matrix__cell-miss">...</td>
+              </tr>
+              <tr>
+                <td class="matrix__spec">
+                  ⑦ H 型钢 HW200×200
+                  <div class="matrix__spec-sub">5 吨 · 唐山</div>
+                </td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-best">4280</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td>4320</td>
+                <td>4310</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">...</td>
+              </tr>
+              <tr>
+                <td class="matrix__spec">
+                  ⑧ 不锈钢 304 1.0×1219
+                  <div class="matrix__spec-sub">5 吨 · 天津</div>
+                </td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">—</td>
+                <td class="matrix__cell-miss">...</td>
+              </tr>
+              <!-- 汇总行 -->
+              <tr class="matrix__summary-row">
+                <td class="matrix__spec" style="background:var(--bg-light);">能供条数</td>
+                <td>3/8</td>
+                <td>5/8</td>
+                <td>4/8</td>
+                <td>2/8</td>
+                <td>3/8</td>
+                <td>3/8</td>
+                <td>3/8</td>
+                <td>2/8</td>
+                <td class="matrix__cell-miss">—</td>
+              </tr>
+              <tr class="matrix__summary-row">
+                <td class="matrix__spec" style="background:var(--bg-light);">单家小计（¥）</td>
+                <td>366,400</td>
+                <td>863,400</td>
+                <td>411,500</td>
+                <td>198,000</td>
+                <td>290,500</td>
+                <td>320,100</td>
+                <td>318,000</td>
+                <td>189,000</td>
+                <td class="matrix__cell-miss">—</td>
+              </tr>
+              <tr class="matrix__summary-row">
+                <td class="matrix__spec" style="background:var(--bg-light);">综合分</td>
+                <td><span class="tag tag--gold">96</span></td>
+                <td><span class="tag tag--success">93</span></td>
+                <td><span class="tag tag--success">87</span></td>
+                <td><span class="tag">82</span></td>
+                <td><span class="tag">80</span></td>
+                <td><span class="tag">78</span></td>
+                <td><span class="tag">77</span></td>
+                <td><span class="tag">72</span></td>
+                <td class="matrix__cell-miss">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="padding:10px 16px; border-top:1px solid var(--border); font-size:11px; color:var(--text-muted); display:flex; gap:16px;">
+          <span><span class="matrix__cell-best" style="padding:2px 6px; border-radius:3px;">金</span> 最低价</span>
+          <span><span class="text-success">绿</span> 次优（≤ 最低价 +0.5%）</span>
+          <span>普通 灰 — 无供应</span>
+        </div>
+      </div>
+
+      <!-- AI 最优组合 -->
+      <div class="card" style="background: linear-gradient(135deg, #fdf6e3 0%, #ffffff 50%); border:1px solid var(--gold); margin-top:20px;">
+        <div class="card__title">
+          <div class="flex items-center gap-12">
+            <span style="color:var(--gold);">🏆 AI 最优组合方案</span>
+            <span class="tag tag--gold">推荐</span>
+          </div>
+          <span class="text-success text-bold">预计省 ¥18,400 vs 单一卖家</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-bottom:16px;">
+          <div style="background:#fff; border-radius:8px; padding:16px;">
+            <div class="flex items-center justify-between mb-12">
+              <div>
+                <div class="text-bold">🏢 天津荣昌</div>
+                <div class="text-muted text-sm">★★★★★ 96 · 12km</div>
+              </div>
+              <span class="tag tag--gold">1+2</span>
+            </div>
+            <div class="text-2xl text-bold">¥316,400</div>
+            <div class="text-muted text-sm mt-8">80 吨 · 2 行规格</div>
+            <div class="text-success text-sm mt-8">✓ 同城配送 · 现款</div>
+          </div>
+          <div style="background:#fff; border-radius:8px; padding:16px;">
+            <div class="flex items-center justify-between mb-12">
+              <div>
+                <div class="text-bold">🏢 唐山润成</div>
+                <div class="text-muted text-sm">★★★★ 94 · 28km</div>
+              </div>
+              <span class="tag tag--gold">3+4+7</span>
+            </div>
+            <div class="text-2xl text-bold">¥755,000</div>
+            <div class="text-muted text-sm mt-8">185 吨 · 3 行规格</div>
+            <div class="text-success text-sm mt-8">✓ 主力供应商</div>
+          </div>
+          <div style="background:#fff; border-radius:8px; padding:16px;">
+            <div class="flex items-center justify-between mb-12">
+              <div>
+                <div class="text-bold">🏢 聊城金海</div>
+                <div class="text-muted text-sm">★★★★ 88 · 55km</div>
+              </div>
+              <span class="tag tag--gold">5+6</span>
+            </div>
+            <div class="text-2xl text-bold">¥284,500</div>
+            <div class="text-muted text-sm mt-8">50 吨 · 2 行规格</div>
+            <div class="text-success text-sm mt-8">✓ 镀锌专精</div>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-light); border-radius:8px; padding:16px;">
+          <div class="flex justify-between items-center mb-8">
+            <span class="text-secondary">3 家共供应 7/8 行</span>
+            <span class="text-muted text-sm">⚠️ 第 8 行（不锈钢）建议延后处理</span>
+          </div>
+          <div class="flex justify-between items-center mb-8">
+            <span class="text-secondary">合计总价：</span>
+            <span style="font-size:24px; font-weight:700;">¥1,355,900</span>
+          </div>
+          <div class="flex justify-between items-center mb-8">
+            <span class="text-success">vs 唐山润成单家方案：</span>
+            <span class="text-success text-bold">省 ¥12,000</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-success">vs 逐行最低价分散方案：</span>
+            <span class="text-success text-bold">省 ¥18,400（运费/对账）</span>
+          </div>
+        </div>
+
+        <div class="flex gap-8 mt-16">
+          <button class="btn btn--warning btn--lg" style="flex:1;">采纳此组合（分 3 单成交）</button>
+          <button class="btn">查看方案 B</button>
+          <button class="btn">查看方案 C</button>
+        </div>
+      </div>
+
+      <!-- 其他方案 -->
+      <div class="card">
+        <div class="card__title">其他备选方案</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>方案</th>
+              <th>说明</th>
+              <th>覆盖</th>
+              <th>总价</th>
+              <th>对账复杂度</th>
+              <th>vs 最优</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>方案 A（推荐）</strong></td>
+              <td>3 家分单（最优组合）</td>
+              <td>7/8 行</td>
+              <td><strong>¥1,355,900</strong></td>
+              <td>低</td>
+              <td><span class="text-success">-</span></td>
+              <td><button class="btn btn--primary btn--sm">采纳</button></td>
+            </tr>
+            <tr>
+              <td>方案 B</td>
+              <td>唐山润成单家</td>
+              <td>5/8 行</td>
+              <td>¥863,400</td>
+              <td>极低</td>
+              <td><span class="text-warning">缺 3 行</span></td>
+              <td><button class="btn btn--ghost btn--sm">采纳</button></td>
+            </tr>
+            <tr>
+              <td>方案 C</td>
+              <td>逐行最低价分散</td>
+              <td>7/8 行</td>
+              <td>¥1,374,300</td>
+              <td>高（8 家）</td>
+              <td><span class="text-danger">+¥18,400</span></td>
+              <td><button class="btn btn--ghost btn--sm">采纳</button></td>
+            </tr>
+            <tr>
+              <td>方案 D</td>
+              <td>手动自定义</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td><button class="btn btn--ghost btn--sm">开始 →</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

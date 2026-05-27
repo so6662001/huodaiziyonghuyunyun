@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>采购会话（多规格）· 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <!-- 顶部导航 -->
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">采购会话 #ps_002431</span>
+      <div class="actions">
+        <span>⋮</span>
+      </div>
+    </div>
+
+    <!-- 会话状态条 -->
+    <div style="padding: 12px 16px; background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: #fff;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+        <div style="font-size: 18px; font-weight: 600;">📦 8 条规格 / 320 吨</div>
+        <div style="font-size: 12px; opacity: 0.85;">已进行 18 分钟</div>
+      </div>
+      <div style="display:flex; gap: 8px; font-size: 12px;">
+        <div style="background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px;">⏰ 距交期 2 天 22h</div>
+        <div style="background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px;">🔥 加急</div>
+        <div style="background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px;">v1（未变更）</div>
+      </div>
+    </div>
+
+    <!-- Tab 切换：清单进展 / 卖家报价 / 沟通 -->
+    <div style="display:flex; background:#fff; border-bottom: 1px solid var(--border);">
+      <div style="flex:1; padding: 12px; text-align: center; font-size: 14px; color: var(--primary); font-weight: 600; border-bottom: 2px solid var(--primary);">
+        清单进展 8
+      </div>
+      <div style="flex:1; padding: 12px; text-align: center; font-size: 14px; color: var(--text-secondary);">
+        卖家报价 17
+      </div>
+      <div style="flex:1; padding: 12px; text-align: center; font-size: 14px; color: var(--text-secondary);">
+        沟通 42
+      </div>
+    </div>
+
+    <!-- 整单摘要 -->
+    <div style="padding: 12px 16px; background: var(--bg-light); font-size: 13px; color: var(--text-secondary);">
+      整单进展：<strong style="color:var(--success);">5 条已收到报价</strong> · <strong style="color:var(--warning);">2 条仍在派单</strong> · <strong style="color:var(--danger);">1 条无供应</strong>
+    </div>
+
+    <!-- 规格 1：已成交 -->
+    <div style="padding: 8px 16px 0;">
+      <div class="spec-row spec-row--matched">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no" style="background: var(--success); color: #fff;">1</div>
+            <div class="spec-row__title">热轧卷板 Q235B 5.5×1500×C · 50 吨</div>
+          </div>
+          <span class="badge" style="background: var(--success-light); color: var(--success);">✓ 已锁定</span>
+        </div>
+        <div class="spec-row__body">
+          <div class="spec-row__field"><span class="spec-row__field-label">收到报价</span><span class="spec-row__field-value">5 家</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">最低价</span><span class="spec-row__field-value" style="color: var(--gold);">¥3,920/吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">选中卖家</span><span class="spec-row__field-value">天津荣昌</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">小计</span><span class="spec-row__field-value">¥196,000</span></div>
+        </div>
+        <div class="spec-row__footer">
+          <span style="color: var(--success);">● 锁价 60 分钟</span>
+          <span style="color: var(--primary);">查看详情 ›</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 规格 2：已收到多个报价，待确认 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row spec-row--quoted">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no" style="background: var(--gold); color: #fff;">2</div>
+            <div class="spec-row__title">热轧卷板 Q235B 4.0×1500×C · 30 吨</div>
+          </div>
+          <span class="badge" style="background: var(--gold-light); color: var(--gold);">⭐ 5 家可选</span>
+        </div>
+        <div class="spec-row__body">
+          <div class="spec-row__field"><span class="spec-row__field-label">最低价</span><span class="spec-row__field-value" style="color: var(--gold);">¥3,980/吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">最高价</span><span class="spec-row__field-value">¥4,050/吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">综合 Top1</span><span class="spec-row__field-value">天津荣昌（同上）</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">建议</span><span class="spec-row__field-value" style="color: var(--primary);">合并 1+2 给同一家</span></div>
+        </div>
+        <div class="spec-row__footer">
+          <span style="color: var(--warning);">⏰ 报价 30 分钟内有效</span>
+          <span style="color: var(--primary);">对比 5 家报价 ›</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 规格 3：1 家报价 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row spec-row--quoted">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no" style="background: var(--gold); color: #fff;">3</div>
+            <div class="spec-row__title">螺纹 HRB400E Φ18×12m · 100 吨</div>
+          </div>
+          <span class="badge" style="background: var(--gold-light); color: var(--gold);">⭐ 4 家</span>
+        </div>
+        <div class="spec-row__body">
+          <div class="spec-row__field"><span class="spec-row__field-label">最低价</span><span class="spec-row__field-value" style="color: var(--gold);">¥4,080/吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">推荐</span><span class="spec-row__field-value">唐山润成</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">距您</span><span class="spec-row__field-value">28 km</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">信用</span><span class="spec-row__field-value">★★★★ 96</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 规格 4：1 家报价 + AI 建议改规格 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row spec-row--quoted">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no" style="background: var(--gold); color: #fff;">4</div>
+            <div class="spec-row__title">螺纹 HRB400E Φ20×12m · 80 吨</div>
+          </div>
+          <span class="badge" style="background: var(--gold-light); color: var(--gold);">⭐ 3 家</span>
+        </div>
+        <div class="spec-row__body">
+          <div class="spec-row__field"><span class="spec-row__field-label">最低价</span><span class="spec-row__field-value" style="color: var(--gold);">¥4,120/吨</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">同上家</span><span class="spec-row__field-value">唐山润成 ✓</span></div>
+        </div>
+        <div style="background: #f0fdf4; border-radius: 6px; padding: 8px 10px; margin-top: 8px; font-size: 12px; color: var(--success);">
+          💡 AI 建议：3+4 合并给唐山润成，可省运费约 ¥3,200
+        </div>
+      </div>
+    </div>
+
+    <!-- 规格 5：派单中 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no">5</div>
+            <div class="spec-row__title">镀锌板 SGCC 0.5×1200×C · 30 吨</div>
+          </div>
+          <span class="badge" style="background: var(--bg-light); color: var(--text-secondary);">⏳ 派单中</span>
+        </div>
+        <div class="spec-row__body">
+          <div class="spec-row__field"><span class="spec-row__field-label">已推送</span><span class="spec-row__field-value">12 家</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">查看</span><span class="spec-row__field-value">8 家</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">报价</span><span class="spec-row__field-value">0 家</span></div>
+          <div class="spec-row__field"><span class="spec-row__field-label">预计</span><span class="spec-row__field-value">15 分钟内</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 规格 6：派单中 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no">6</div>
+            <div class="spec-row__title">镀锌板 SGCC 0.6×1250×C · 20 吨</div>
+          </div>
+          <span class="badge" style="background: var(--bg-light); color: var(--text-secondary);">⏳ 派单中</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 规格 7：1 家在沟通 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row spec-row--active">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no">7</div>
+            <div class="spec-row__title">H 型钢 HW200×200 · 5 吨</div>
+          </div>
+          <span class="badge" style="background: var(--primary-light); color: var(--primary);">💬 沟通中</span>
+        </div>
+        <div style="background: #fff7ed; border-radius: 6px; padding: 8px 10px; margin-top: 8px; font-size: 12px; color: var(--warning);">
+          ⚠️ 卖家询问：H 型钢能否改为 HW194×150 国标新规格？
+          <div style="margin-top: 4px;">
+            <span style="color: var(--primary); margin-right: 12px;">查看消息</span>
+            <span style="color: var(--text-muted);">忽略</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 规格 8：无供应 -->
+    <div style="padding: 0 16px;">
+      <div class="spec-row" style="border-left: 3px solid var(--danger);">
+        <div class="spec-row__head">
+          <div style="display:flex;align-items:center;flex:1;min-width:0;">
+            <div class="spec-row__no" style="background: var(--danger); color: #fff;">8</div>
+            <div class="spec-row__title">不锈钢 304 1.0×1219×C · 5 吨</div>
+          </div>
+          <span class="badge" style="background: var(--danger-light); color: var(--danger);">❌ 无供应</span>
+        </div>
+        <div style="background: var(--bg-light); border-radius: 6px; padding: 8px 10px; margin-top: 8px; font-size: 12px; color: var(--text-secondary);">
+          🤖 AI 建议：当前北方区无现货。建议方案：
+          <div style="margin-top: 4px;">
+            <span style="color: var(--primary); margin-right: 12px;">改规格（1.2mm）</span>
+            <span style="color: var(--primary); margin-right: 12px;">扩区域（华东）</span>
+            <span style="color: var(--text-muted);">删除此行</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 整单建议 -->
+    <div style="padding: 16px;">
+      <div class="card" style="background: linear-gradient(135deg, #dbeafe 0%, #ffffff 100%); border: 1px solid var(--primary);">
+        <div style="font-weight: 600; color: var(--primary); margin-bottom: 8px;">🤖 整单优化建议</div>
+        <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.7;">
+          ✓ <strong>1+2</strong> 合并给天津荣昌，预计省 ¥6,000<br>
+          ✓ <strong>3+4</strong> 合并给唐山润成，预计省 ¥3,200<br>
+          ⚠️ <strong>第 7 条</strong> 卖家有改规建议，确认即可降价 ¥1,800<br>
+          ❌ <strong>第 8 条</strong> 无北方供应，建议拆出延后处理
+        </div>
+        <button class="btn btn-primary" style="margin-top: 12px; height: 40px; width: 100%;">
+          采纳全部建议 · 预计省 ¥11,000 →
+        </button>
+      </div>
+    </div>
+
+    <!-- 底部操作条 -->
+    <div class="batch-bar">
+      <div class="batch-bar__info">
+        已就绪 <strong>5</strong>/8 行 · 可成交 <strong>¥1,016,800</strong>
+      </div>
+      <button class="btn btn-warning" style="height: 44px; padding: 0 16px;">部分成交 ›</button>
+    </div>
+  </div>
+</body>
+</html>

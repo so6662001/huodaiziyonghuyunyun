@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>清单上传 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">清单采购</span>
+      <div class="actions"><span>历史</span></div>
+    </div>
+
+    <!-- 主上传区 -->
+    <div style="padding: 20px 16px 0;">
+      <div class="upload-area">
+        <span class="icon">📷</span>
+        <div class="label">拍照即询价</div>
+        <div class="hint">手机拍下您的清单照片，AI 自动识别<br>支持手写/打印/PDF 截图</div>
+      </div>
+    </div>
+
+    <!-- 其他上传方式 -->
+    <div class="card" style="margin-top: 12px;">
+      <div class="card-title" style="font-size:14px;color:var(--text-secondary);font-weight:normal;">或选择其他方式</div>
+      <div class="upload-options">
+        <div class="item">
+          <span class="icon">📁</span>
+          <div>上传 Excel</div>
+        </div>
+        <div class="item">
+          <span class="icon">📄</span>
+          <div>上传 PDF</div>
+        </div>
+        <div class="item">
+          <span class="icon">💬</span>
+          <div>微信转发</div>
+        </div>
+        <div class="item">
+          <span class="icon">📋</span>
+          <div>粘贴文本</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 模式选择 -->
+    <div class="card">
+      <div class="card-title">📊 询价模式</div>
+
+      <label style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;cursor:pointer;border-bottom: 1px solid var(--border);">
+        <input type="radio" name="mode" checked style="margin-top:3px;">
+        <div style="flex:1;">
+          <div style="font-weight:500;display:flex;align-items:center;gap:6px;">
+            🎯 精确询价
+            <span class="badge badge-primary">推荐</span>
+          </div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">清单已定，卖家给精确报价</div>
+        </div>
+      </label>
+
+      <label style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;cursor:pointer;">
+        <input type="radio" name="mode" style="margin-top:3px;">
+        <div style="flex:1;">
+          <div style="font-weight:500;">🌫️ 模糊询价</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">清单未定，先摸底参考价</div>
+        </div>
+      </label>
+    </div>
+
+    <!-- 项目关联 -->
+    <div class="card">
+      <div class="card-title">📂 归属项目（可选）</div>
+
+      <select class="form-select" style="margin-bottom: 8px;">
+        <option>+ 新建项目</option>
+        <option>XX 工程钢材采购（进行中）</option>
+        <option>YY 工厂月度采购</option>
+      </select>
+
+      <div style="font-size:12px;color:var(--text-muted);">
+        💡 归到项目后可以一键续单/补单，并生成项目台账
+      </div>
+    </div>
+
+    <!-- 历史清单 -->
+    <div class="card">
+      <div class="card-title">📚 最近清单</div>
+
+      <div class="list-item" style="margin: -16px;">
+        <div class="icon-wrap">📋</div>
+        <div class="info">
+          <div class="title">XX 工程一期清单</div>
+          <div class="meta">23 行 · 已成交 ¥123 万 · 3 天前</div>
+        </div>
+        <div class="extra"><span class="badge badge-neutral">复用</span></div>
+      </div>
+
+      <div class="list-item" style="margin: 0 -16px -16px;">
+        <div class="icon-wrap">📋</div>
+        <div class="info">
+          <div class="title">5 月月度补单</div>
+          <div class="meta">10 行 · 进行中 · 1 周前</div>
+        </div>
+        <div class="extra"><span class="badge badge-warning">询价中</span></div>
+      </div>
+    </div>
+
+    <!-- 底部说明 -->
+    <div style="padding: 0 16px 20px; text-align:center; font-size:12px; color:var(--text-muted);">
+      💡 AI 识别准确率 ≥ 90%，平均 10 秒解析完成<br>
+      ⚙️ 平台自动按品类拆单 + 智能匹配卖家
+    </div>
+  </div>
+</body>
+</html>

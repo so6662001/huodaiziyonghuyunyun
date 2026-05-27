@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>货袋子 UI 高保真原型</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { padding: 40px 20px; }
+    .container { max-width: 960px; margin: 0 auto; }
+    h1 { font-size: 28px; margin-bottom: 8px; color: var(--text-primary); }
+    .subtitle { color: var(--text-secondary); margin-bottom: 32px; font-size: 16px; }
+    .pages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .page-card {
+      background: var(--bg-white);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+      border: 1px solid var(--border);
+    }
+    .page-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+    .page-card .badge {
+      margin-bottom: 12px;
+    }
+    .page-card .title {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .page-card .desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .page-card .module {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>货袋子 UI 高保真原型 v2.7（移动端 H5）</h1>
+    <div class="subtitle">
+      20 个移动端页面，覆盖买家/卖家/公共三类完整闭环。
+      <strong style="color: var(--warning);">v2.7 新增 13 页</strong>：对齐 PC 端 18 页，移动端三端全闭环。
+      <br><br>
+      💻 <a href="../ui-prototype-pc/index.html" style="color: var(--primary); font-weight: 600;">→ 查看 PC 端原型（18 页）</a>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%); border: 1px solid var(--warning); border-radius: 12px; padding: 20px; margin-bottom: 28px;">
+      <div style="font-weight: 600; color: var(--warning); margin-bottom: 8px; font-size: 16px;">🔧 v2 多规格基线 + v2.7 闭环补全</div>
+      <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7;">
+        v2 修正：多规格作为默认场景（钢贸 80%+ 询价是 5-30 行）<br>
+        v2.7 新增：买家首页/订单/订单详情/供应商/清单，卖家首页/列表/报价/发货/库存/客户，公共消息/我的<br>
+        <br>
+        👉 <a href="07-多规格全流程.html" style="color: var(--primary); font-weight: 600;">查看完整多规格全流程说明 →</a>
+      </div>
+    </div>
+
+    <div class="pages-grid" style="margin-bottom:24px;">
+      <a href="07-多规格全流程.html" class="page-card" style="border: 1px solid var(--warning); background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%);">
+        <span class="badge" style="background: var(--warning); color: #fff;">必读</span>
+        <div class="title">🔧 多规格全流程总览</div>
+        <div class="desc">真实钢贸场景 + 8 步全流程 + 数据模型</div>
+        <div class="module">v2 改造 · 必读</div>
+      </a>
+    </div>
+
+    <h2 style="margin: 24px 0 12px; font-size: 18px; padding-bottom: 8px; border-bottom: 2px solid var(--primary);">📋 买家端（采购方）· 9 页</h2>
+    <div class="pages-grid">
+      <a href="08-买家首页.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">🏠 买家首页/工作台</div>
+        <div class="desc">KPI + 待办 + 询价进度 + AI 推荐 + 入口网格</div>
+        <div class="module">总入口</div>
+      </a>
+      <a href="01-发需求.html" class="page-card" style="border-left: 3px solid var(--warning);">
+        <span class="badge badge-primary">v2 重写</span>
+        <div class="title">📝 发需求（多规格）</div>
+        <div class="desc">默认多规格 + 行内编辑 + Excel + 智能拆单</div>
+        <div class="module">M2 采购会话</div>
+      </a>
+      <a href="02-清单上传.html" class="page-card">
+        <span class="badge badge-primary">买家</span>
+        <div class="title">📋 清单上传</div>
+        <div class="desc">5 种上传方式 + AI 解析</div>
+        <div class="module">M3</div>
+      </a>
+      <a href="06-清单确认.html" class="page-card">
+        <span class="badge badge-warning">关键体验</span>
+        <div class="title">✅ 清单 AI 解析确认</div>
+        <div class="desc">只展示不确定行，10 秒确认 30 行</div>
+        <div class="module">M3</div>
+      </a>
+      <a href="12-买家我的清单.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">📋 我的清单</div>
+        <div class="desc">草稿/询价中/模板/项目档案</div>
+        <div class="module">M2/M3</div>
+      </a>
+      <a href="03-采购会话.html" class="page-card" style="border-left: 3px solid var(--warning);">
+        <span class="badge badge-primary">v2 重写</span>
+        <div class="title">💬 采购会话（多规格聚合）</div>
+        <div class="desc">8 行分别展示 + AI 整单优化</div>
+        <div class="module">M2</div>
+      </a>
+      <a href="05-报价配置器.html" class="page-card" style="border-left: 3px solid var(--warning);">
+        <span class="badge badge-primary">v2 重写</span>
+        <div class="title">⊞ 报价对比矩阵</div>
+        <div class="desc">17 家×8 行 + AI 最优组合</div>
+        <div class="module">M4</div>
+      </a>
+      <a href="09-买家订单列表.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">📦 我的订单</div>
+        <div class="desc">待发货/运输中/待收货 全状态</div>
+        <div class="module">订单中心</div>
+      </a>
+      <a href="10-买家订单详情.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">📄 订单详情</div>
+        <div class="desc">多规格按行 + 4 步骤 + 物流 + 财务</div>
+        <div class="module">订单中心</div>
+      </a>
+      <a href="11-买家供应商管理.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">🏢 供应商管理</div>
+        <div class="desc">私有 CRM · 23 家分级 · 履约/价差</div>
+        <div class="module">M8 买家工具包</div>
+      </a>
+    </div>
+
+    <h2 style="margin: 32px 0 12px; font-size: 18px; padding-bottom: 8px; border-bottom: 2px solid var(--gold);">🏪 卖家端（销售方）· 7 页</h2>
+    <div class="pages-grid">
+      <a href="13-卖家首页.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">🏠 卖家首页/工作台</div>
+        <div class="desc">利润 KPI + 紧急询价 + S 级特权</div>
+        <div class="module">总入口</div>
+      </a>
+      <a href="14-卖家询价列表.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">📥 询价中心</div>
+        <div class="desc">多规格询价总列表 + 紧急组优先</div>
+        <div class="module">M5</div>
+      </a>
+      <a href="04-卖家接单.html" class="page-card" style="border-left: 3px solid var(--warning);">
+        <span class="badge badge-success">v2 重写</span>
+        <div class="title">🔔 卖家接单（处理页）</div>
+        <div class="desc">勾选可供货行 + 库存核对 + 改规</div>
+        <div class="module">M5</div>
+      </a>
+      <a href="15-卖家报价管理.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">📑 我的报价</div>
+        <div class="desc">中标/Top1/议价/失败 + 失败原因</div>
+        <div class="module">M4</div>
+      </a>
+      <a href="16-卖家订单发货.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">🚚 订单与发货</div>
+        <div class="desc">多规格按行发货 + 物流跟踪</div>
+        <div class="module">M7</div>
+      </a>
+      <a href="17-卖家库存管理.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">📦 库存管理</div>
+        <div class="desc">126 SKU + 安全线告警 + 滞销</div>
+        <div class="module">M7</div>
+      </a>
+      <a href="18-卖家客户管理.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">👥 我的客户</div>
+        <div class="desc">私有 CRM · A/B/C/沉睡 · AI 洞察</div>
+        <div class="module">M7</div>
+      </a>
+    </div>
+
+    <h2 style="margin: 32px 0 12px; font-size: 18px; padding-bottom: 8px; border-bottom: 2px solid var(--text-secondary);">🔄 公共（买家+卖家共用）· 2 页</h2>
+    <div class="pages-grid">
+      <a href="19-会话沟通列表.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">💬 消息中心</div>
+        <div class="desc">4 类系统通知 + IM 会话列表</div>
+        <div class="module">公共</div>
+      </a>
+      <a href="20-个人中心.html" class="page-card" style="border-left: 3px solid var(--success);">
+        <span class="badge" style="background: var(--success); color: #fff;">v2.7 新</span>
+        <div class="title">👤 个人中心 / 我的</div>
+        <div class="desc">买卖家视角切换 + 信用 + 权益 + 设置</div>
+        <div class="module">公共</div>
+      </a>
+    </div>
+    </div>
+
+    <div class="pages-grid">
+
+      <a href="07-多规格全流程.html" class="page-card" style="border: 1px solid var(--warning); background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%);">
+        <span class="badge" style="background: var(--warning); color: #fff;">NEW · v2</span>
+        <div class="title">🔧 多规格全流程总览</div>
+        <div class="desc">真实钢贸场景说明 + 8 步全流程 + 数据模型说明。先看这个！</div>
+        <div class="module">v2 改造 · 必读</div>
+      </a>
+
+      <a href="01-发需求.html" class="page-card" style="border-left: 3px solid var(--warning);">
+        <span class="badge badge-primary">买家端</span>
+        <div class="title">📝 发需求（多规格）</div>
+        <div class="desc">⭐ <strong>v2 重写</strong>：默认多规格清单 + 行内编辑 + Excel 导入 + 智能拆单。</div>
+        <div class="module">M2 采购会话 · P0 核心</div>
+      </a>
+
+      <a href="02-清单上传.html" class="page-card">
+        <span class="badge badge-primary">买家端</span>
+        <div class="title">📋 清单采购</div>
+        <div class="desc">拍照/Excel/PDF/微信转发 5 种上传方式 + AI 解析 + 极简确认页。</div>
+        <div class="module">M3 清单采购 · P1 核心</div>
+      </a>
+
+      <a href="03-采购会话.html" class="page-card" style="border-left: 3px solid var(--warning);">
+        <span class="badge badge-primary">买家端</span>
+        <div class="title">💬 采购会话（多规格聚合）</div>
+        <div class="desc">⭐ <strong>v2 重写</strong>：8 行规格分别展示进展 · 已成交/可选/派单中/无供应 4 态 · AI 整单优化建议。</div>
+        <div class="module">M2 采购会话 · P0 核心</div>
+      </a>
+
+      <a href="04-卖家接单.html" class="page-card" style="border-left: 3px solid var(--warning);">
+        <span class="badge badge-success">卖家端</span>
+        <div class="title">🔔 卖家接单（多规格）</div>
+        <div class="desc">⭐ <strong>v2 重写</strong>：勾选可供货行 · 库存自动核对 · 可仅报部分行/部分数量 · 改规建议。</div>
+        <div class="module">M5 智能匹配 · P0 核心</div>
+      </a>
+
+      <a href="05-报价配置器.html" class="page-card" style="border-left: 3px solid var(--warning);">
+        <span class="badge badge-primary">买家端</span>
+        <div class="title">⊞ 报价对比（多卖家×多规格）</div>
+        <div class="desc">⭐ <strong>v2 重写</strong>：矩阵视图（17 家×8 行）+ AI 最优组合方案 + 多卖家分单成交。</div>
+        <div class="module">M4 报价系统 · P0 核心</div>
+      </a>
+
+      <a href="06-清单确认.html" class="page-card">
+        <span class="badge badge-warning">关键体验</span>
+        <div class="title">✅ 清单 AI 解析确认</div>
+        <div class="desc">AI 解析后只展示不确定行 + 一键"全部正确"。10 秒确认 30 行清单。</div>
+        <div class="module">M3 清单采购</div>
+      </a>
+
+    </div>
+
+    <div style="margin-top: 40px; padding: 20px; background: white; border-radius: 12px; box-shadow: var(--shadow-sm);">
+      <h2 style="font-size: 18px; margin-bottom: 12px;">使用说明</h2>
+      <ul style="padding-left: 20px; line-height: 1.8; color: var(--text-secondary); font-size: 14px;">
+        <li>所有原型以移动端为基础（414px 宽度），桌面端展示为居中卡片</li>
+        <li>点击页面元素无真实交互（这是设计原型，非可运行 demo）</li>
+        <li>用 Chrome 开发者工具切换到 iPhone 模拟可获得最佳预览</li>
+        <li>原型展示的内容、数字、卖家姓名均为示例数据</li>
+        <li>颜色规范：主色 #2563eb（蓝），辅色 #d4a73a（金），告警 #f59e0b（橙）</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
