@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>订单详情 · 货袋子（PC）</title>
+  <link rel="stylesheet" href="../styles-pc.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon">📦</div>
+      <div class="sidebar__logo-text">货袋子</div>
+    </div>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar">王</div>
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-name">王采购</div>
+        <div class="sidebar__user-role">华建工集团</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__group">采购</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📊</span>工作台</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📝</span>发布需求</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💬</span>采购会话</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📋</span>清单管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">⊞</span>报价对比</div>
+      <div class="sidebar__group">订单</div>
+      <div class="sidebar__item sidebar__item--active"><span class="sidebar__item-icon">📦</span>我的订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🚚</span>物流跟踪</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💳</span>对账中心</div>
+      <div class="sidebar__group">企业</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🏢</span>供应商管理</div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <div class="header__breadcrumb">订单 / 我的订单 / <strong>#o_001902</strong></div>
+      <div class="header__actions">
+        <button class="btn">📄 下载合同</button>
+        <button class="btn">📧 转发给财务</button>
+        <button class="btn btn--warning">⚖️ 提交申诉</button>
+      </div>
+    </div>
+
+    <div class="content" style="max-width:none;">
+      <!-- 订单头 -->
+      <div class="card" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color:#fff;">
+        <div class="flex items-center justify-between">
+          <div>
+            <div style="font-size:13px; opacity:0.85;">订单编号</div>
+            <div style="font-size:22px; font-weight:700; margin-top:4px;">#o_001902</div>
+            <div style="font-size:13px; opacity:0.85; margin-top:6px;">
+              来自询价 #ps_002431 · 2 行规格 · 80 吨 · 现款
+            </div>
+          </div>
+          <div class="flex gap-20">
+            <div style="text-align:center;">
+              <div style="opacity:0.85; font-size:12px;">订单金额</div>
+              <div style="font-size:28px; font-weight:700;">¥313,600</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="opacity:0.85; font-size:12px;">已付款</div>
+              <div style="font-size:28px; font-weight:700; color:#fbbf24;">¥313,600</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="opacity:0.85; font-size:12px;">应收发票</div>
+              <div style="font-size:28px; font-weight:700;">2 张</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 进度 -->
+      <div class="card">
+        <div class="card__title">📍 订单进度</div>
+        <div class="steps">
+          <div class="step step--done">
+            <div class="step__dot">✓</div>
+            <div class="step__label">订单创建<br><span class="text-muted text-sm">5/27 10:30</span></div>
+          </div>
+          <div class="step__line" style="background:var(--success);"></div>
+          <div class="step step--done">
+            <div class="step__dot">✓</div>
+            <div class="step__label">合同签署<br><span class="text-muted text-sm">5/27 10:45</span></div>
+          </div>
+          <div class="step__line" style="background:var(--success);"></div>
+          <div class="step step--done">
+            <div class="step__dot">✓</div>
+            <div class="step__label">付款完成<br><span class="text-muted text-sm">5/27 11:20</span></div>
+          </div>
+          <div class="step__line" style="background:var(--success);"></div>
+          <div class="step step--active">
+            <div class="step__dot">4</div>
+            <div class="step__label">备货发货<br><span class="text-primary text-sm">进行中</span></div>
+          </div>
+          <div class="step__line"></div>
+          <div class="step">
+            <div class="step__dot">5</div>
+            <div class="step__label">在途运输</div>
+          </div>
+          <div class="step__line"></div>
+          <div class="step">
+            <div class="step__dot">6</div>
+            <div class="step__label">收货验收</div>
+          </div>
+          <div class="step__line"></div>
+          <div class="step">
+            <div class="step__dot">7</div>
+            <div class="step__label">开票完结</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 两栏：订单明细 + 卖家信息 -->
+      <div style="display:grid; grid-template-columns: 1fr 360px; gap:20px;">
+        <!-- 左：订单明细 -->
+        <div>
+          <div class="card">
+            <div class="card__title">
+              <span>📋 订单明细（多规格按行）</span>
+              <button class="btn btn--ghost btn--sm">📤 导出明细</button>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>规格</th>
+                  <th>订单数量</th>
+                  <th>单价</th>
+                  <th>金额</th>
+                  <th>已收货</th>
+                  <th>待收货</th>
+                  <th>验收</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <div class="text-bold">热轧 Q235B 5.5×1500×C</div>
+                    <div class="text-muted text-sm">质保书 ✓ · 探伤 否</div>
+                  </td>
+                  <td>50 吨</td>
+                  <td>¥3,920</td>
+                  <td><strong>¥196,000</strong></td>
+                  <td><span class="text-muted">0 吨</span></td>
+                  <td><span class="text-warning">50 吨</span></td>
+                  <td>—</td>
+                  <td><span class="tag tag--warning">待发货</span></td>
+                  <td><button class="btn btn--ghost btn--sm">物流</button></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>
+                    <div class="text-bold">热轧 Q235B 4.0×1500×C</div>
+                    <div class="text-muted text-sm">质保书 ✓</div>
+                  </td>
+                  <td>30 吨</td>
+                  <td>¥3,920</td>
+                  <td><strong>¥117,600</strong></td>
+                  <td><span class="text-muted">0 吨</span></td>
+                  <td><span class="text-warning">30 吨</span></td>
+                  <td>—</td>
+                  <td><span class="tag tag--warning">待发货</span></td>
+                  <td><button class="btn btn--ghost btn--sm">物流</button></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr style="background:var(--bg-light);">
+                  <td colspan="2" class="text-bold">小计</td>
+                  <td><strong>80 吨</strong></td>
+                  <td>—</td>
+                  <td><strong style="font-size:16px;">¥313,600</strong></td>
+                  <td><strong>0 吨</strong></td>
+                  <td><strong>80 吨</strong></td>
+                  <td>—</td>
+                  <td colspan="2"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- 物流跟踪 -->
+          <div class="card">
+            <div class="card__title">🚚 物流跟踪</div>
+            <div style="padding:12px; background:var(--bg-light); border-radius:8px; margin-bottom:12px;">
+              <div class="flex justify-between mb-8">
+                <span class="text-muted">物流商</span>
+                <strong>德邦物流</strong>
+              </div>
+              <div class="flex justify-between mb-8">
+                <span class="text-muted">运单号</span>
+                <strong>DB202605270001</strong>
+                <a href="#" class="text-primary text-sm">复制</a>
+              </div>
+              <div class="flex justify-between mb-8">
+                <span class="text-muted">司机/车牌</span>
+                <strong>张师傅 · 津 A·X1234</strong>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-muted">预计到货</span>
+                <strong>明日 14:00 前</strong>
+              </div>
+            </div>
+
+            <!-- 物流时间线 -->
+            <div style="position:relative; padding-left:24px;">
+              <div style="position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--border);"></div>
+
+              <div style="position:relative; margin-bottom:14px;">
+                <div style="position:absolute; left:-22px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--success);"></div>
+                <div class="text-bold text-sm">订单确认</div>
+                <div class="text-muted text-sm">2026-05-27 10:30</div>
+              </div>
+
+              <div style="position:relative; margin-bottom:14px;">
+                <div style="position:absolute; left:-22px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--success);"></div>
+                <div class="text-bold text-sm">已付款</div>
+                <div class="text-muted text-sm">2026-05-27 11:20</div>
+              </div>
+
+              <div style="position:relative; margin-bottom:14px;">
+                <div style="position:absolute; left:-22px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--primary); animation: pulse 2s infinite;"></div>
+                <div class="text-bold text-sm" style="color:var(--primary);">备货中（卖家）</div>
+                <div class="text-muted text-sm">2026-05-27 11:30 · 进行中</div>
+              </div>
+
+              <div style="position:relative; margin-bottom:14px; opacity:0.5;">
+                <div style="position:absolute; left:-22px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--text-muted);"></div>
+                <div class="text-bold text-sm">从天津 1# 仓库发出</div>
+                <div class="text-muted text-sm">预计明日 08:00</div>
+              </div>
+
+              <div style="position:relative; margin-bottom:14px; opacity:0.5;">
+                <div style="position:absolute; left:-22px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--text-muted);"></div>
+                <div class="text-bold text-sm">运输中</div>
+                <div class="text-muted text-sm">预计 6 小时</div>
+              </div>
+
+              <div style="position:relative; opacity:0.5;">
+                <div style="position:absolute; left:-22px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--text-muted);"></div>
+                <div class="text-bold text-sm">到达天津·滨海仓库</div>
+                <div class="text-muted text-sm">预计明日 14:00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：卖家信息 + 财务 -->
+        <div>
+          <div class="card" style="margin:0 0 20px;">
+            <div class="card__title">🏢 卖家信息</div>
+            <div style="text-align:center; padding:8px 0;">
+              <div style="width:64px; height:64px; margin:0 auto; border-radius:50%; background:var(--gold); color:#fff; display:flex; align-items:center; justify-content:center; font-size:28px;">荣</div>
+              <div class="text-bold mt-12">🏆 天津荣昌钢贸</div>
+              <div class="text-muted text-sm mt-8">★★★★★ 96 分 · S 级</div>
+            </div>
+            <div class="divider"></div>
+            <div style="font-size:13px; line-height:1.8;">
+              <div class="flex justify-between"><span class="text-muted">联系人</span><strong>李总</strong></div>
+              <div class="flex justify-between"><span class="text-muted">虚拟电话</span><strong>400-XXX-XXX1</strong></div>
+              <div class="flex justify-between"><span class="text-muted">合作时长</span><strong>2 年 6 月</strong></div>
+              <div class="flex justify-between"><span class="text-muted">累计订单</span><strong>68 单</strong></div>
+              <div class="flex justify-between"><span class="text-muted">履约率</span><strong class="text-success">100%</strong></div>
+            </div>
+            <button class="btn btn--ghost btn--sm mt-12" style="width:100%;">💬 联系卖家</button>
+          </div>
+
+          <div class="card" style="margin:0 0 20px;">
+            <div class="card__title">💳 财务信息</div>
+            <div style="font-size:13px; line-height:1.8;">
+              <div class="flex justify-between"><span class="text-muted">订单金额</span><strong>¥313,600</strong></div>
+              <div class="flex justify-between"><span class="text-muted">已付款</span><strong class="text-success">¥313,600</strong></div>
+              <div class="flex justify-between"><span class="text-muted">未付款</span><strong>¥0</strong></div>
+              <div class="divider"></div>
+              <div class="flex justify-between"><span class="text-muted">付款方式</span><strong>对公转账</strong></div>
+              <div class="flex justify-between"><span class="text-muted">付款时间</span><strong>5/27 11:20</strong></div>
+              <div class="divider"></div>
+              <div class="flex justify-between"><span class="text-muted">发票类型</span><strong>增值税专票</strong></div>
+              <div class="flex justify-between"><span class="text-muted">税点</span><strong>13%</strong></div>
+              <div class="flex justify-between"><span class="text-muted">已开票</span><strong>0 张</strong></div>
+              <div class="flex justify-between"><span class="text-muted">待开票</span><strong class="text-warning">2 张</strong></div>
+            </div>
+            <button class="btn btn--ghost btn--sm mt-12" style="width:100%;">📄 申请开票</button>
+          </div>
+
+          <div class="card" style="margin:0 0 20px;">
+            <div class="card__title">📍 收货信息</div>
+            <div style="font-size:13px; line-height:1.8;">
+              <div><strong>华*建工集团（天津滨海仓库）</strong></div>
+              <div class="text-muted mt-8">张管理员 · 13900001234</div>
+              <div class="text-muted">天津市滨海新区开发区第二大街 12 号</div>
+            </div>
+            <button class="btn btn--ghost btn--sm mt-12" style="width:100%;">✏️ 修改</button>
+          </div>
+
+          <div class="card" style="margin:0;">
+            <div class="card__title">⚙️ 操作</div>
+            <button class="btn btn--ghost btn--sm" style="width:100%; margin-bottom:8px;">📄 下载合同</button>
+            <button class="btn btn--ghost btn--sm" style="width:100%; margin-bottom:8px;">📥 申请发票</button>
+            <button class="btn btn--ghost btn--sm" style="width:100%; margin-bottom:8px;">💬 联系卖家</button>
+            <button class="btn btn--ghost btn--sm" style="width:100%; margin-bottom:8px; color:var(--warning);">⚖️ 提交申诉</button>
+            <button class="btn btn--ghost btn--sm" style="width:100%; color:var(--success);">⭐ 评价卖家</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

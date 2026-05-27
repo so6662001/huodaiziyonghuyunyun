@@ -32,13 +32,13 @@
     .role-section__desc { color: var(--text-muted); font-size: 13px; }
     .page-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 16px;
     }
     .page-card {
       background: #fff;
       border-radius: 12px;
-      padding: 20px;
+      padding: 16px;
       box-shadow: var(--shadow-sm);
       text-decoration: none;
       color: inherit;
@@ -51,16 +51,16 @@
       transform: translateY(-2px);
       border-color: var(--primary);
     }
-    .page-card__title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-    .page-card__desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
-    .page-card__meta { font-size: 11px; color: var(--text-muted); margin-top: 12px; }
+    .page-card__title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .page-card__desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+    .page-card__meta { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
     .badge-new {
       position: absolute;
       top: 12px;
       right: 12px;
-      padding: 2px 8px;
+      padding: 2px 6px;
       border-radius: 4px;
-      font-size: 11px;
+      font-size: 10px;
       background: var(--warning);
       color: #fff;
     }
@@ -68,20 +68,30 @@
       position: absolute;
       top: 12px;
       right: 12px;
-      padding: 2px 8px;
+      padding: 2px 6px;
       border-radius: 4px;
-      font-size: 11px;
+      font-size: 10px;
       background: var(--primary);
+      color: #fff;
+    }
+    .badge-fresh {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      background: var(--success);
       color: #fff;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>货袋子 PC 端 UI 高保真原型</h1>
+    <h1>货袋子 PC 端 UI 高保真原型 v2.6</h1>
     <div class="subtitle">
       面向 PC 大屏的完整产品原型，覆盖三端：买家（采购方）、卖家（销售方）、平台运营管理员。
-      <strong style="color:var(--primary);">利用 PC 大屏优势</strong>展现复杂的多规格矩阵、数据看板、批量管理。
+      <strong style="color:var(--primary);">v2.6 新增 9 页</strong>：卖家会话沟通/报价管理/订单发货/客户CRM，买家清单管理/订单详情/采购分析，运营申诉处理。
     </div>
 
     <!-- 设计说明 -->
@@ -101,7 +111,7 @@
       <div class="role-section__head">
         <div class="role-section__icon" style="background:var(--primary);">📋</div>
         <div>
-          <div class="role-section__title">买家端（采购方 SaaS）</div>
+          <div class="role-section__title">买家端（采购方 SaaS）· 8 页</div>
           <div class="role-section__desc">面向大客户采购员、采购经理 · 整合询价/订单/供应商/分析</div>
         </div>
       </div>
@@ -109,30 +119,48 @@
         <a href="buyer/01-dashboard.html" class="page-card">
           <span class="badge-core">核心</span>
           <div class="page-card__title">📊 采购工作台</div>
-          <div class="page-card__desc">KPI 看板 · 进行中询价 · 月度趋势 · AI 推荐 · 待办</div>
-          <div class="page-card__meta">M2/M3 总览页</div>
+          <div class="page-card__desc">KPI 看板 · 进行中询价 · 月度趋势 · AI 推荐</div>
+          <div class="page-card__meta">M2/M3 总览</div>
         </a>
         <a href="buyer/02-发需求.html" class="page-card">
           <span class="badge-new">多规格</span>
           <div class="page-card__title">📝 发布需求（多规格）</div>
-          <div class="page-card__desc">表格式批量编辑 + Excel 导入 + 整单全局选项 + 智能拆单</div>
+          <div class="page-card__desc">表格式批量编辑 + Excel 导入 + 智能拆单</div>
           <div class="page-card__meta">M2 采购会话</div>
         </a>
         <a href="buyer/03-采购会话详情.html" class="page-card">
           <span class="badge-core">核心</span>
           <div class="page-card__title">💬 采购会话详情</div>
-          <div class="page-card__desc">三栏布局：清单进展 + 行内报价对比 + 沟通时间线</div>
+          <div class="page-card__desc">三栏：清单进展 + 行内对比 + 时间线</div>
           <div class="page-card__meta">M2 采购会话</div>
         </a>
         <a href="buyer/04-报价对比矩阵.html" class="page-card">
           <span class="badge-new">PC 独占</span>
           <div class="page-card__title">⊞ 报价对比矩阵</div>
-          <div class="page-card__desc">17 家卖家 × 8 行规格的完整矩阵 + AI 最优组合方案</div>
+          <div class="page-card__desc">17 家 × 8 行 完整矩阵 + AI 最优组合</div>
           <div class="page-card__meta">M4 报价系统</div>
         </a>
         <a href="buyer/05-供应商管理.html" class="page-card">
           <div class="page-card__title">🏢 供应商管理</div>
-          <div class="page-card__desc">私有 CRM · 23 家分级管理 · 履约率/价格优势分析</div>
+          <div class="page-card__desc">私有 CRM · 23 家分级管理</div>
+          <div class="page-card__meta">M8 买家工具包</div>
+        </a>
+        <a href="buyer/06-清单管理.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">📋 清单管理</div>
+          <div class="page-card__desc">所有清单 / 草稿 / 模板 / 项目档案</div>
+          <div class="page-card__meta">M2 采购会话</div>
+        </a>
+        <a href="buyer/07-订单详情.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">📦 订单详情</div>
+          <div class="page-card__desc">多规格按行验收 + 物流跟踪 + 财务</div>
+          <div class="page-card__meta">M2 采购会话</div>
+        </a>
+        <a href="buyer/08-采购分析.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">📈 采购分析报表</div>
+          <div class="page-card__desc">月度全景 + 品类/供应商 + AI 报告</div>
           <div class="page-card__meta">M8 买家工具包</div>
         </a>
       </div>
@@ -143,7 +171,7 @@
       <div class="role-section__head">
         <div class="role-section__icon" style="background:var(--gold);">🏪</div>
         <div>
-          <div class="role-section__title">卖家端（销售方工作台）</div>
+          <div class="role-section__title">卖家端（销售方工作台）· 8 页</div>
           <div class="role-section__desc">面向钢贸商销售经理、老板 · 询价处理/库存/利润管理</div>
         </div>
       </div>
@@ -151,18 +179,48 @@
         <a href="seller/01-dashboard.html" class="page-card">
           <span class="badge-core">核心</span>
           <div class="page-card__title">📊 销售工作台</div>
-          <div class="page-card__desc">利润 KPI · 待处理询价 · 利润趋势 · S 级特权状态</div>
+          <div class="page-card__desc">利润 KPI · 待处理 · 利润趋势 · S 级特权</div>
           <div class="page-card__meta">M7 卖家工具包</div>
+        </a>
+        <a href="seller/04-询价列表.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">📥 询价列表</div>
+          <div class="page-card__desc">多规格询价总列表 + 筛选 + 紧急度排序</div>
+          <div class="page-card__meta">M5 智能匹配</div>
         </a>
         <a href="seller/02-询价中心.html" class="page-card">
           <span class="badge-new">多规格</span>
           <div class="page-card__title">📥 询价中心（处理页）</div>
-          <div class="page-card__desc">买家信息 + 多规格清单勾选 + 批量调价 + 利润预估 + AI 助手</div>
+          <div class="page-card__desc">多规格勾选 + 批量调价 + 利润预估</div>
           <div class="page-card__meta">M5 智能匹配</div>
+        </a>
+        <a href="seller/05-会话沟通.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">💬 会话沟通</div>
+          <div class="page-card__desc">IM 三栏布局 + 上下文 + AI 助手</div>
+          <div class="page-card__meta">M2 采购会话</div>
+        </a>
+        <a href="seller/06-报价管理.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">📑 报价管理</div>
+          <div class="page-card__desc">报价历史（按行）+ 中标率 + 失败复盘</div>
+          <div class="page-card__meta">M4 报价系统</div>
+        </a>
+        <a href="seller/07-订单发货.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">🚚 订单与发货</div>
+          <div class="page-card__desc">多规格按行发货 + 物流跟踪 + 步骤条</div>
+          <div class="page-card__meta">M7 卖家工具包</div>
         </a>
         <a href="seller/03-库存管理.html" class="page-card">
           <div class="page-card__title">📦 库存管理</div>
-          <div class="page-card__desc">126 SKU · 安全线告警 · 滞销提示 · 周转分析 · 批量改价</div>
+          <div class="page-card__desc">126 SKU · 安全线告警 · 滞销分析</div>
+          <div class="page-card__meta">M7 卖家工具包</div>
+        </a>
+        <a href="seller/08-客户管理.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">👥 客户管理 CRM</div>
+          <div class="page-card__desc">私有客户 · RFM 矩阵 · AI 洞察</div>
           <div class="page-card__meta">M7 卖家工具包</div>
         </a>
       </div>
@@ -173,7 +231,7 @@
       <div class="role-section__head">
         <div class="role-section__icon" style="background:var(--danger);">⚡</div>
         <div>
-          <div class="role-section__title">运营后台（平台管理员）</div>
+          <div class="role-section__title">运营后台（平台管理员）· 2 页</div>
           <div class="role-section__desc">面向平台风控/运营/客服 · 风控/审计/用户/数据</div>
         </div>
       </div>
@@ -181,8 +239,14 @@
         <a href="admin/01-风控看板.html" class="page-card">
           <span class="badge-core">核心</span>
           <div class="page-card__title">🛡 风控看板</div>
-          <div class="page-card__desc">36 规则命中分布 · 高危事件 · 围猎检测 · 区域风险热力</div>
+          <div class="page-card__desc">36 规则 · 围猎检测 · 区域热力</div>
           <div class="page-card__meta">M11 风控反作弊</div>
+        </a>
+        <a href="admin/02-申诉处理.html" class="page-card">
+          <span class="badge-fresh">v2.6 新增</span>
+          <div class="page-card__title">⚖️ 申诉处理</div>
+          <div class="page-card__desc">申诉队列 + AI 辅助判决 + 48h 闭环</div>
+          <div class="page-card__meta">M6 信用体系</div>
         </a>
       </div>
     </div>

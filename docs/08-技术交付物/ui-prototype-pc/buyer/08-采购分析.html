@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>采购分析报表 · 货袋子（PC）</title>
+  <link rel="stylesheet" href="../styles-pc.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon">📦</div>
+      <div class="sidebar__logo-text">货袋子</div>
+    </div>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar">王</div>
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-name">王采购</div>
+        <div class="sidebar__user-role">华建工集团</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__group">采购</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📊</span>工作台</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📝</span>发布需求</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💬</span>采购会话</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📋</span>清单管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">⊞</span>报价对比</div>
+      <div class="sidebar__group">订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📦</span>我的订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💳</span>对账中心</div>
+      <div class="sidebar__group">企业</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🏢</span>供应商管理</div>
+      <div class="sidebar__item sidebar__item--active"><span class="sidebar__item-icon">📈</span>采购分析</div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <div class="header__breadcrumb">企业 / <strong>采购分析</strong></div>
+      <div class="header__actions">
+        <select class="form-row__select" style="width:140px; height:36px;">
+          <option>2026 年 5 月</option>
+          <option>2026 年 Q2</option>
+          <option>2026 全年</option>
+          <option>自定义</option>
+        </select>
+        <button class="btn">📤 导出 PDF 报表</button>
+        <button class="btn btn--primary">📧 定时发送</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="page-title">采购分析报表</div>
+      <div class="page-subtitle">月度采购全景分析：金额/品类/供应商/价格/节省。所有数据基于您企业的真实订单。</div>
+
+      <!-- 总览 -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-card__label">本月采购总额</div>
+          <div class="kpi-card__value">¥3.86<span style="font-size:18px;color:var(--text-muted);">M</span></div>
+          <div class="kpi-card__sub">
+            <span class="kpi-card__trend kpi-card__trend--up">↑ 12.4%</span>
+            <span class="text-muted">vs 上月</span>
+          </div>
+          <div class="kpi-card__icon">💰</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">本月采购吨数</div>
+          <div class="kpi-card__value">980 <span style="font-size:14px;color:var(--text-muted);">吨</span></div>
+          <div class="kpi-card__sub">
+            <span class="kpi-card__trend kpi-card__trend--up">↑ 8.6%</span>
+          </div>
+          <div class="kpi-card__icon">⚖️</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">询价单数 / 成交率</div>
+          <div class="kpi-card__value">38 <span style="font-size:14px;">/ 87%</span></div>
+          <div class="kpi-card__sub"><span class="text-success">vs 行业 65%</span></div>
+          <div class="kpi-card__icon">🎯</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">本月节省</div>
+          <div class="kpi-card__value text-success">¥48.2K</div>
+          <div class="kpi-card__sub"><span class="text-success">vs 市场均价</span></div>
+          <div class="kpi-card__icon">💎</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">平均交付时长</div>
+          <div class="kpi-card__value">2.4 <span style="font-size:14px;color:var(--text-muted);">天</span></div>
+          <div class="kpi-card__sub"><span class="text-success">优于行业 3.5 天</span></div>
+          <div class="kpi-card__icon">⏱</div>
+        </div>
+      </div>
+
+      <!-- 趋势图 -->
+      <div class="chart-wrap">
+        <div class="chart-wrap__head">
+          <div class="chart-wrap__title">📈 12 月采购趋势</div>
+          <div class="chart-wrap__legend">
+            <span><span class="chart-wrap__legend-dot" style="background:var(--primary);"></span>采购金额（万）</span>
+            <span><span class="chart-wrap__legend-dot" style="background:var(--success);"></span>节省金额（千）</span>
+            <span><span class="chart-wrap__legend-dot" style="background:var(--warning);"></span>采购吨数</span>
+          </div>
+        </div>
+        <svg viewBox="0 0 1200 280" style="width:100%; height:280px;">
+          <!-- 坐标 -->
+          <line x1="40" y1="20" x2="40" y2="240" stroke="var(--border)"/>
+          <line x1="40" y1="240" x2="1180" y2="240" stroke="var(--border)"/>
+          <!-- 月份 -->
+          <g font-size="11" fill="var(--text-muted)">
+            <text x="80" y="260">6月</text><text x="180" y="260">7月</text><text x="280" y="260">8月</text>
+            <text x="380" y="260">9月</text><text x="480" y="260">10月</text><text x="580" y="260">11月</text>
+            <text x="680" y="260">12月</text><text x="780" y="260">1月</text><text x="880" y="260">2月</text>
+            <text x="980" y="260">3月</text><text x="1080" y="260">4月</text><text x="1140" y="260">5月</text>
+          </g>
+          <!-- 主线：金额 -->
+          <polyline points="90,180 190,170 290,160 390,165 490,150 590,140 690,160 790,155 890,120 990,135 1090,110 1150,90" fill="none" stroke="var(--primary)" stroke-width="3"/>
+          <!-- 节省 -->
+          <polyline points="90,220 190,210 290,205 390,210 490,200 590,195 690,200 790,195 890,180 990,185 1090,170 1150,160" fill="none" stroke="var(--success)" stroke-width="2"/>
+          <!-- 吨数（虚线） -->
+          <polyline points="90,190 190,185 290,178 390,180 490,170 590,155 690,170 790,165 890,135 990,150 1090,125 1150,110" fill="none" stroke="var(--warning)" stroke-width="2" stroke-dasharray="4 4"/>
+
+          <!-- 数据点 -->
+          <g fill="var(--primary)">
+            <circle cx="1150" cy="90" r="5"/>
+          </g>
+          <text x="1100" y="80" font-size="12" fill="var(--primary)" font-weight="600">¥3.86M</text>
+        </svg>
+      </div>
+
+      <!-- 两栏：品类 + 供应商 -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+        <!-- 品类分布 -->
+        <div class="chart-wrap">
+          <div class="chart-wrap__head">
+            <div class="chart-wrap__title">📦 品类分布</div>
+            <span class="text-muted text-sm">本月</span>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>品类</th>
+                <th>占比</th>
+                <th>金额</th>
+                <th>吨数</th>
+                <th>均价</th>
+                <th>vs 上月</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>热轧板</strong></td>
+                <td>
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <div class="progress" style="width:60px;"><div class="progress__bar" style="width:42%;"></div></div>
+                    <span>42%</span>
+                  </div>
+                </td>
+                <td><strong>¥1.62M</strong></td>
+                <td>420 吨</td>
+                <td>¥3,860</td>
+                <td><span class="text-success">+8.2%</span></td>
+              </tr>
+              <tr>
+                <td><strong>螺纹钢</strong></td>
+                <td>
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <div class="progress" style="width:60px;"><div class="progress__bar progress__bar--warning" style="width:28%;"></div></div>
+                    <span>28%</span>
+                  </div>
+                </td>
+                <td><strong>¥1.08M</strong></td>
+                <td>260 吨</td>
+                <td>¥4,150</td>
+                <td><span class="text-success">+12.1%</span></td>
+              </tr>
+              <tr>
+                <td><strong>镀锌板</strong></td>
+                <td>
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <div class="progress" style="width:60px;"><div class="progress__bar progress__bar--success" style="width:18%;"></div></div>
+                    <span>18%</span>
+                  </div>
+                </td>
+                <td><strong>¥695K</strong></td>
+                <td>122 吨</td>
+                <td>¥5,700</td>
+                <td><span class="text-success">+5.4%</span></td>
+              </tr>
+              <tr>
+                <td>H 型钢</td>
+                <td>
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <div class="progress" style="width:60px;"><div class="progress__bar" style="background:var(--gold); width:8%;"></div></div>
+                    <span>8%</span>
+                  </div>
+                </td>
+                <td><strong>¥310K</strong></td>
+                <td>72 吨</td>
+                <td>¥4,300</td>
+                <td><span class="text-secondary">-2.0%</span></td>
+              </tr>
+              <tr>
+                <td>不锈钢</td>
+                <td>
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <div class="progress" style="width:60px;"><div class="progress__bar" style="background:var(--text-muted); width:4%;"></div></div>
+                    <span>4%</span>
+                  </div>
+                </td>
+                <td><strong>¥155K</strong></td>
+                <td>16 吨</td>
+                <td>¥9,700</td>
+                <td><span class="text-warning">-8.5%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 供应商分布 -->
+        <div class="chart-wrap">
+          <div class="chart-wrap__head">
+            <div class="chart-wrap__title">🏢 供应商集中度</div>
+            <span class="text-muted text-sm">23 家中前 8</span>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>供应商</th>
+                <th>金额</th>
+                <th>占比</th>
+                <th>履约</th>
+                <th>价差</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🏆 天津荣昌</td>
+                <td><strong>¥1.86M</strong></td>
+                <td>48%</td>
+                <td><span class="text-success">100%</span></td>
+                <td><span class="text-success">-3.2%</span></td>
+              </tr>
+              <tr>
+                <td>唐山润成</td>
+                <td><strong>¥920K</strong></td>
+                <td>24%</td>
+                <td><span class="text-success">98.5%</span></td>
+                <td><span class="text-success">-2.8%</span></td>
+              </tr>
+              <tr>
+                <td>聊城金海</td>
+                <td><strong>¥520K</strong></td>
+                <td>13%</td>
+                <td><span class="text-success">97.8%</span></td>
+                <td><span class="text-success">-1.8%</span></td>
+              </tr>
+              <tr>
+                <td>河北鼎信</td>
+                <td><strong>¥320K</strong></td>
+                <td>8%</td>
+                <td><span class="text-success">100%</span></td>
+                <td><span class="text-secondary">-1.2%</span></td>
+              </tr>
+              <tr>
+                <td>天津 YY</td>
+                <td><strong>¥150K</strong></td>
+                <td>4%</td>
+                <td><span class="text-success">95.0%</span></td>
+                <td><span class="text-warning">+0.5%</span></td>
+              </tr>
+              <tr>
+                <td>沧州金属</td>
+                <td><strong>¥100K</strong></td>
+                <td>3%</td>
+                <td><span class="text-warning">90.0%</span></td>
+                <td><span class="text-warning">+1.2%</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="background:var(--warning-light); border-radius:8px; padding:10px; margin-top:12px; font-size:12px; color:var(--warning);">
+            ⚠️ 前 2 家供应商占 72%，建议提升备选供应商使用率以降低风险
+          </div>
+        </div>
+      </div>
+
+      <!-- 节省分析 -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+        <div class="chart-wrap">
+          <div class="chart-wrap__head">
+            <div class="chart-wrap__title">💎 节省来源分析</div>
+            <span class="text-muted text-sm">本月节省 ¥48.2K</span>
+          </div>
+          <table class="table">
+            <tr>
+              <td>🏆 AI 最优组合方案</td>
+              <td><strong class="text-success">¥18.4K</strong></td>
+              <td>38%</td>
+            </tr>
+            <tr>
+              <td>💬 议价 / 卖家让利</td>
+              <td><strong class="text-success">¥12.8K</strong></td>
+              <td>27%</td>
+            </tr>
+            <tr>
+              <td>📊 比价（多家竞标）</td>
+              <td><strong class="text-success">¥10.5K</strong></td>
+              <td>22%</td>
+            </tr>
+            <tr>
+              <td>⏰ 提前锁价（避涨价）</td>
+              <td><strong class="text-success">¥4.2K</strong></td>
+              <td>9%</td>
+            </tr>
+            <tr>
+              <td>🔄 规格优化（卖家提议）</td>
+              <td><strong class="text-success">¥2.3K</strong></td>
+              <td>5%</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="chart-wrap">
+          <div class="chart-wrap__head">
+            <div class="chart-wrap__title">📊 价格对比（vs 市场均价）</div>
+          </div>
+          <table class="table">
+            <thead>
+              <tr><th>品类</th><th>市场均价</th><th>我方均价</th><th>差异</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>热轧板</td>
+                <td>¥3,985</td>
+                <td><strong>¥3,860</strong></td>
+                <td><span class="text-success">-3.1% ↓</span></td>
+              </tr>
+              <tr>
+                <td>螺纹钢</td>
+                <td>¥4,220</td>
+                <td><strong>¥4,150</strong></td>
+                <td><span class="text-success">-1.7% ↓</span></td>
+              </tr>
+              <tr>
+                <td>镀锌板</td>
+                <td>¥5,820</td>
+                <td><strong>¥5,700</strong></td>
+                <td><span class="text-success">-2.1% ↓</span></td>
+              </tr>
+              <tr>
+                <td>H 型钢</td>
+                <td>¥4,280</td>
+                <td><strong>¥4,300</strong></td>
+                <td><span class="text-warning">+0.5% ↑</span></td>
+              </tr>
+              <tr>
+                <td>不锈钢</td>
+                <td>¥9,650</td>
+                <td><strong>¥9,700</strong></td>
+                <td><span class="text-warning">+0.5% ↑</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-success text-sm mt-12">💡 整体价格优势 -2.0%，本月节省 ¥48.2K</div>
+        </div>
+      </div>
+
+      <!-- AI 总结 -->
+      <div class="card" style="background:linear-gradient(135deg, #dbeafe 0%, #ffffff 100%); border:1px solid var(--primary); margin-top:20px;">
+        <div class="card__title" style="color:var(--primary);">🤖 AI 月度采购报告</div>
+        <div style="font-size:14px; line-height:1.8;">
+          <p><strong>本月成果：</strong>采购总额 ¥3.86M（+12.4%），节省 ¥48.2K，整体价格优势 -2.0%，超出行业基准。</p>
+
+          <p style="margin-top:12px;"><strong>关键洞察：</strong></p>
+          <ul style="padding-left:24px; margin-top:8px;">
+            <li>✅ <strong>AI 最优组合</strong>贡献了 38% 的节省，建议继续优先使用</li>
+            <li>✅ 热轧板和镀锌板价格控制良好（-3% 以上）</li>
+            <li>⚠️ H 型钢和不锈钢价格略高于市场均价，下月议价空间较大</li>
+            <li>⚠️ <strong>供应商集中度过高</strong>（前 2 家占 72%），有断供风险</li>
+            <li>📈 <strong>询价成交率 87%</strong>（行业 65%），说明前期需求规划准确</li>
+          </ul>
+
+          <p style="margin-top:12px;"><strong>下月建议：</strong></p>
+          <ul style="padding-left:24px; margin-top:8px;">
+            <li>① 给河北鼎信、天津 YY 增加 5-10% 订单份额，降低集中度风险</li>
+            <li>② H 型钢预计 6 月涨价，建议本周锁价</li>
+            <li>③ 不锈钢供应紧张，可考虑改用 316 替代 304 部分订单</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>
