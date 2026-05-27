@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卖家首页 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame page-bg-gray">
+    <!-- 顶部 -->
+    <div style="background: linear-gradient(135deg, var(--gold) 0%, #b08821 100%); color:#fff; padding: 16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; font-size:18px;">李</div>
+          <div>
+            <div style="font-size:16px; font-weight:600;">李总（销售经理）</div>
+            <div style="font-size:11px; opacity:0.9;">天津荣昌 · ⭐ S 级</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <span style="font-size:20px;">🔔</span>
+          <span style="font-size:20px;">⚙️</span>
+        </div>
+      </div>
+      <div style="font-size:13px; opacity:0.9;">本月成交</div>
+      <div style="font-size:28px; font-weight:700; margin-top:4px;">¥6.82<span style="font-size:18px;">M</span></div>
+      <div style="display:flex; gap:16px; margin-top:8px; font-size:12px;">
+        <span>↑ 28.3% vs 上月</span>
+        <span>净利 ¥182K</span>
+      </div>
+    </div>
+
+    <!-- S 级特权 -->
+    <div style="background: linear-gradient(135deg, var(--gold-light) 0%, #fff 100%); padding:10px 16px; border-bottom:1px solid var(--gold); font-size:12px; color:var(--gold);">
+      ⭐ S 级特权：流量加权 1.5x · 询价优先 · 盲价透视
+    </div>
+
+    <!-- KPI -->
+    <div class="mini-kpi" style="padding-top:12px;">
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-warning">12</div>
+        <div class="mini-kpi__label">待处理</div>
+        <div class="mini-kpi__sub text-warning">3 个紧急</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">5</div>
+        <div class="mini-kpi__label">待发货</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-success">38.5%</div>
+        <div class="mini-kpi__label">中标率</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">68</div>
+        <div class="mini-kpi__label">客户</div>
+      </div>
+    </div>
+
+    <!-- 功能入口 -->
+    <div class="grid-entries">
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">📥</div>
+        <div class="grid-entries__label">询价</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">📑</div>
+        <div class="grid-entries__label">报价</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">🚚</div>
+        <div class="grid-entries__label">发货</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">📦</div>
+        <div class="grid-entries__label">库存</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">👥</div>
+        <div class="grid-entries__label">客户</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">💰</div>
+        <div class="grid-entries__label">收益</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">🚀</div>
+        <div class="grid-entries__label">流量包</div>
+      </div>
+      <div class="grid-entries__item">
+        <div class="grid-entries__icon">⋯</div>
+        <div class="grid-entries__label">更多</div>
+      </div>
+    </div>
+
+    <!-- 紧急询价 -->
+    <div class="section-head">
+      <div class="section-head__title">🚨 紧急询价（3）</div>
+      <div class="section-head__more">全部 ›</div>
+    </div>
+
+    <div class="list-card" style="border-left:3px solid var(--danger); background: linear-gradient(to right, var(--danger-light) 0%, #fff 30%);">
+      <div class="list-card__head">
+        <div class="list-card__title">🏆 华*建工集团</div>
+        <span class="badge badge-danger">⏰ 28 min</span>
+      </div>
+      <div class="list-card__body">
+        8 行 / 320 吨 · 您可供 5 行 · 预估利润 ¥14,250
+      </div>
+      <button class="btn btn-warning btn-block" style="margin-top:8px; padding:10px;">立即报价 →</button>
+    </div>
+
+    <div class="list-card" style="border-left:3px solid var(--danger);">
+      <div class="list-card__head">
+        <div class="list-card__title">天*钢构（首次）</div>
+        <span class="badge badge-danger">⏰ 22 min</span>
+      </div>
+      <div class="list-card__body">15 行 / 580 吨 · 8/15 行 · ¥18,200</div>
+    </div>
+
+    <div class="list-card" style="border-left:3px solid var(--danger);">
+      <div class="list-card__head">
+        <div class="list-card__title">京*物流园</div>
+        <span class="badge badge-danger">⏰ 18 min</span>
+      </div>
+      <div class="list-card__body">3 行 / 50 吨 · 3/3 · ¥2,800</div>
+    </div>
+
+    <!-- 利润看板 -->
+    <div class="section-head">
+      <div class="section-head__title">💰 本月利润</div>
+      <div class="section-head__more">详情 ›</div>
+    </div>
+    <div style="margin: 0 16px; background:#fff; border-radius:10px; padding:14px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div style="font-size:11px; color:var(--text-muted);">净利润</div>
+          <div style="font-size:24px; font-weight:700; color:var(--success);">¥182,400</div>
+        </div>
+        <div style="text-align:right; font-size:12px;">
+          <div>毛利率 <strong>2.67%</strong></div>
+          <div class="text-success">超出行业 0.87%</div>
+        </div>
+      </div>
+      <svg viewBox="0 0 320 60" style="width:100%; height:60px; margin-top:8px;">
+        <polyline points="0,50 30,45 60,40 90,42 120,30 150,25 180,32 210,20 240,15 270,18 300,8 320,5" fill="none" stroke="var(--success)" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <div style="height:80px;"></div>
+
+    <div class="tab-bar">
+      <div class="tab active"><div class="icon">🏠</div><div>首页</div></div>
+      <div class="tab"><div class="icon">📥</div><div>询价</div></div>
+      <div class="tab"><div class="icon">💬</div><div>消息</div></div>
+      <div class="tab"><div class="icon">👤</div><div>我的</div></div>
+    </div>
+  </div>
+</body>
+</html>

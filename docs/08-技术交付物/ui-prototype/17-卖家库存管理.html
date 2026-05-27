@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>库存管理 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame page-bg-gray">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">库存管理</span>
+      <div class="actions"><span>+ 新增</span></div>
+    </div>
+
+    <div class="mini-kpi" style="padding-top:12px;">
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">126</div>
+        <div class="mini-kpi__label">SKU 数</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">¥18.6M</div>
+        <div class="mini-kpi__label">总价值</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-warning">8</div>
+        <div class="mini-kpi__label">滞销</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-danger">3</div>
+        <div class="mini-kpi__label">告警</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="filter-chip filter-chip--active">全部 126</div>
+      <div class="filter-chip">畅销</div>
+      <div class="filter-chip">不足 3</div>
+      <div class="filter-chip">滞销 8</div>
+      <div class="filter-chip">天津仓</div>
+      <div class="filter-chip">唐山仓</div>
+    </div>
+
+    <div class="search-bar">
+      <input class="search-bar__input" placeholder="搜索品名 / 规格 / SKU">
+    </div>
+
+    <!-- 告警条 -->
+    <div style="margin: 8px 16px; padding:10px 12px; background:var(--danger-light); border-radius:8px; color:var(--danger); font-size:12px;">
+      🚨 3 个 SKU 严重不足，建议立即补货
+    </div>
+
+    <div style="padding-top:4px;">
+      <!-- 严重不足 -->
+      <div class="list-card" style="background:var(--danger-light); border-left:3px solid var(--danger);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">冷板 SPCC 1.2×1250×C</div>
+            <div style="font-size:11px; color:var(--text-muted);">SKU-020 · 天津 2# 仓</div>
+          </div>
+          <span class="badge badge-danger">严重不足</span>
+        </div>
+        <div style="font-size:12px; line-height:1.7; margin-top:6px;">
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">库存</span><strong class="text-danger">8 吨</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">安全线</span><strong>30 吨</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">挂牌价</span><strong>¥4,800/吨</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">近 7 日出货</span><strong class="text-warning">22 吨</strong></div>
+        </div>
+        <button class="btn btn-danger btn-block" style="margin-top:8px; padding:8px; font-size:12px;">立即补货</button>
+      </div>
+
+      <!-- 不足 -->
+      <div class="list-card" style="background:var(--warning-light); border-left:3px solid var(--warning);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">螺纹 HRB400E Φ18×12m</div>
+            <div style="font-size:11px; color:var(--text-muted);">SKU-003 · 唐山仓</div>
+          </div>
+          <span class="badge badge-warning">不足</span>
+        </div>
+        <div style="font-size:12px; line-height:1.7; margin-top:6px;">
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">库存</span><strong class="text-warning">60 吨</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">安全线</span><strong>80 吨</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">挂牌价</span><strong>¥4,080</strong></div>
+        </div>
+      </div>
+
+      <!-- 畅销 -->
+      <div class="list-card" style="border-left:3px solid var(--success);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">热轧 Q235B 5.5×1500×C</div>
+            <div style="font-size:11px; color:var(--text-muted);">SKU-001 · 天津 1# 仓</div>
+          </div>
+          <span class="badge badge-success">畅销</span>
+        </div>
+        <div style="font-size:12px; line-height:1.7; margin-top:6px;">
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">库存</span><strong>120 吨</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">挂牌价</span><strong>¥3,920</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">采购成本</span><strong>¥3,820</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-success">毛利</span><strong class="text-success">¥100/吨</strong></div>
+        </div>
+      </div>
+
+      <!-- 畅销 -->
+      <div class="list-card" style="border-left:3px solid var(--success);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">热轧 Q235B 4.0×1500×C</div>
+            <div style="font-size:11px; color:var(--text-muted);">SKU-002 · 天津 1# 仓</div>
+          </div>
+          <span class="badge badge-success">畅销</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+          80 吨 · ¥3,980 · 近 7 日出货 30t
+        </div>
+      </div>
+
+      <!-- 滞销 -->
+      <div class="list-card" style="opacity:0.75;">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">H 型钢 HW200×200（旧规）</div>
+            <div style="font-size:11px; color:var(--text-muted);">SKU-009 · 唐山仓</div>
+          </div>
+          <span class="badge badge-warning">滞销 75 天</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+          12 吨 · ¥4,280 · 建议促销或换新规
+        </div>
+        <button class="btn" style="width:100%; margin-top:8px; padding:8px; font-size:12px; color:var(--warning); border-color:var(--warning);">⚡ 设置促销</button>
+      </div>
+    </div>
+
+    <div style="height:80px;"></div>
+
+    <div class="tab-bar">
+      <div class="tab"><div class="icon">🏠</div><div>首页</div></div>
+      <div class="tab"><div class="icon">📥</div><div>询价</div></div>
+      <div class="tab active"><div class="icon">📦</div><div>库存</div></div>
+      <div class="tab"><div class="icon">👤</div><div>我的</div></div>
+    </div>
+  </div>
+</body>
+</html>

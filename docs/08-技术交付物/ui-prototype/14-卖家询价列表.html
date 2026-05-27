@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>询价中心 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame page-bg-gray">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">询价中心</span>
+      <div class="actions"><span>⚙️</span></div>
+    </div>
+
+    <!-- KPI -->
+    <div class="mini-kpi" style="padding-top:12px;">
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-danger">3</div>
+        <div class="mini-kpi__label">紧急</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">12</div>
+        <div class="mini-kpi__label">待处理</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-warning">5</div>
+        <div class="mini-kpi__label">议价中</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">18</div>
+        <div class="mini-kpi__label">今日报价</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="filter-chip filter-chip--active">待处理 12</div>
+      <div class="filter-chip">已报价 28</div>
+      <div class="filter-chip">议价 5</div>
+      <div class="filter-chip">成交 60</div>
+      <div class="filter-chip">失败 42</div>
+    </div>
+
+    <div class="search-bar">
+      <input class="search-bar__input" placeholder="搜索买家 / 询价编号">
+    </div>
+
+    <div style="padding-top:8px;">
+      <!-- 紧急 -->
+      <div class="list-card" style="border-left:3px solid var(--danger); background: linear-gradient(to right, var(--danger-light) 0%, #fff 30%);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">🏆 华*建工集团</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">主力 · 已成交 12 单</div>
+          </div>
+          <span class="badge badge-danger">⏰ 28 min</span>
+        </div>
+        <div style="background:var(--bg-light); border-radius:6px; padding:8px; font-size:12px; margin-top:8px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <strong>8 行规格 · 320 吨</strong>
+            <span class="text-success">您可供 5/8</span>
+          </div>
+          <div style="color:var(--text-muted);">天津/唐山 · 热轧+螺纹+镀锌</div>
+        </div>
+        <div class="list-card__foot">
+          <strong class="text-success">预估利润 ¥14,250</strong>
+          <button class="btn btn-warning" style="padding:6px 14px; font-size:12px;">立即报价</button>
+        </div>
+      </div>
+
+      <div class="list-card" style="border-left:3px solid var(--danger);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">天*钢构（首次）</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">新买家</div>
+          </div>
+          <span class="badge badge-danger">⏰ 22 min</span>
+        </div>
+        <div class="list-card__body">15 行 / 580 吨 · 您可供 8/15 · ¥18,200</div>
+      </div>
+
+      <div class="list-card" style="border-left:3px solid var(--danger);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">京*物流园</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">活跃 · 2 次合作</div>
+          </div>
+          <span class="badge badge-danger">⏰ 18 min</span>
+        </div>
+        <div class="list-card__body">3 行 / 50 吨 · 3/3 行 · ¥2,800</div>
+      </div>
+
+      <!-- 普通 -->
+      <div class="list-card">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">沧*建材</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">活跃 · 3 次合作</div>
+          </div>
+          <span class="badge">1h 23min</span>
+        </div>
+        <div class="list-card__body">5 行 / 120 吨 · 您可供 3/5 · ¥5,600</div>
+      </div>
+
+      <div class="list-card">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">河*农机（熟客）</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">活跃 · 8 次合作</div>
+          </div>
+          <span class="badge badge-success">熟客</span>
+        </div>
+        <div class="list-card__body">2 行 / 40 吨 · 2/2 行 · ¥2,000</div>
+      </div>
+
+      <div class="list-card">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">石*工程</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">新买家</div>
+          </div>
+          <span class="badge badge-primary">新</span>
+        </div>
+        <div class="list-card__body">10 行 / 230 吨 · 您可供 6/10</div>
+      </div>
+
+      <!-- 已报价 -->
+      <div class="list-card" style="opacity:0.85;">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">秦*港务</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">主力</div>
+          </div>
+          <span class="badge badge-success">已报价</span>
+        </div>
+        <div class="list-card__body">6 行 / 180 吨 · 等待结果</div>
+      </div>
+    </div>
+
+    <div style="height:80px;"></div>
+
+    <div class="tab-bar">
+      <div class="tab"><div class="icon">🏠</div><div>首页</div></div>
+      <div class="tab active"><div class="icon">📥</div><div>询价</div></div>
+      <div class="tab"><div class="icon">💬</div><div>消息</div></div>
+      <div class="tab"><div class="icon">👤</div><div>我的</div></div>
+    </div>
+  </div>
+</body>
+</html>

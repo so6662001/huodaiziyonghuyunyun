@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的订单 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame page-bg-gray">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">我的订单</span>
+      <div class="actions"><span>🔍</span></div>
+    </div>
+
+    <!-- 状态 Tab -->
+    <div class="filter-bar">
+      <div class="filter-chip filter-chip--active">全部 21</div>
+      <div class="filter-chip">待付款 0</div>
+      <div class="filter-chip">待发货 5</div>
+      <div class="filter-chip">运输中 12</div>
+      <div class="filter-chip">待收货 2</div>
+      <div class="filter-chip">已完成 38</div>
+      <div class="filter-chip">售后 0</div>
+    </div>
+
+    <div style="padding-top:8px;">
+      <!-- 订单 1：待发货 -->
+      <div class="list-card" style="border-left:3px solid var(--warning);">
+        <div class="list-card__head">
+          <div class="list-card__title">#o_001902 · 天津荣昌钢贸</div>
+          <span class="badge badge-warning">待发货</span>
+        </div>
+        <div style="background:var(--bg-light); border-radius:6px; padding:8px; font-size:12px; margin-top:6px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <span>① 热轧 Q235B 5.5×1500</span>
+            <span>50t × ¥3920</span>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span>② 热轧 Q235B 4.0×1500</span>
+            <span>30t × ¥3920</span>
+          </div>
+        </div>
+        <div class="list-card__foot">
+          <span>2 行规格 · 80 吨</span>
+          <strong style="color:var(--primary);">¥313,600</strong>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button class="btn" style="flex:1; padding:8px; font-size:12px;">📞 联系卖家</button>
+          <button class="btn btn-primary" style="flex:1; padding:8px; font-size:12px;">查看详情</button>
+        </div>
+      </div>
+
+      <!-- 订单 2：部分发货 -->
+      <div class="list-card" style="border-left:3px solid var(--warning);">
+        <div class="list-card__head">
+          <div class="list-card__title">#o_001899 · 唐山润成</div>
+          <span class="badge badge-warning">部分发货</span>
+        </div>
+        <div style="background:var(--bg-light); border-radius:6px; padding:8px; font-size:12px; margin-top:6px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <span>3 行规格</span>
+            <span>1/3 行已发</span>
+          </div>
+          <div style="background:#fff; border-radius:4px; height:6px; overflow:hidden;">
+            <div style="background:var(--warning); width:33%; height:100%;"></div>
+          </div>
+        </div>
+        <div class="list-card__foot">
+          <span>75 吨 · 沧州</span>
+          <strong style="color:var(--primary);">¥298,500</strong>
+        </div>
+      </div>
+
+      <!-- 订单 3：运输中 -->
+      <div class="list-card" style="border-left:3px solid var(--primary);">
+        <div class="list-card__head">
+          <div class="list-card__title">#o_001895 · 河*农机</div>
+          <span class="badge badge-primary">运输中</span>
+        </div>
+        <div style="background:var(--bg-light); border-radius:6px; padding:8px; font-size:12px; margin-top:6px;">
+          <div>2 行规格 / 40 吨已全部发出</div>
+          <div style="background:#fff; border-radius:4px; height:6px; overflow:hidden; margin-top:4px;">
+            <div style="background:var(--primary); width:100%; height:100%;"></div>
+          </div>
+          <div style="margin-top:4px;">🚛 德邦 · 预计明日 14:00 到货</div>
+        </div>
+        <div class="list-card__foot">
+          <span>邯郸</span>
+          <strong style="color:var(--primary);">¥190,000</strong>
+        </div>
+      </div>
+
+      <!-- 订单 4：待收货 -->
+      <div class="list-card" style="border-left:3px solid var(--success);">
+        <div class="list-card__head">
+          <div class="list-card__title">#o_001892 · 天津荣昌钢贸</div>
+          <span class="badge badge-success">待签收</span>
+        </div>
+        <div style="background:var(--success-light); border-radius:6px; padding:8px; font-size:12px; margin-top:6px; color:var(--success);">
+          📦 已送达 · 请 24h 内确认验收
+        </div>
+        <div class="list-card__foot">
+          <span>5 行 / 150 吨</span>
+          <strong style="color:var(--primary);">¥595,000</strong>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button class="btn" style="flex:1; padding:8px; font-size:12px;">⚠️ 申诉</button>
+          <button class="btn btn-primary" style="flex:1; padding:8px; font-size:12px;">确认收货</button>
+        </div>
+      </div>
+
+      <!-- 订单 5：已完成 -->
+      <div class="list-card" style="opacity:0.7;">
+        <div class="list-card__head">
+          <div class="list-card__title">#o_001886 · 廊*仓储</div>
+          <span class="badge">已完成</span>
+        </div>
+        <div class="list-card__body">4 行 / 80 吨 · 5/25 完成</div>
+        <div class="list-card__foot">
+          <span class="text-muted">已开票</span>
+          <strong>¥330,200</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-bar">
+      <div class="tab"><div class="icon">🏠</div><div>首页</div></div>
+      <div class="tab"><div class="icon">📝</div><div>发需求</div></div>
+      <div class="tab active"><div class="icon">📦</div><div>订单</div></div>
+      <div class="tab"><div class="icon">👤</div><div>我的</div></div>
+    </div>
+  </div>
+</body>
+</html>

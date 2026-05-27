@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>供应商管理 · 货袋子</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="phone-frame page-bg-gray">
+    <div class="nav-bar">
+      <span class="back">←</span>
+      <span class="title">供应商管理</span>
+      <div class="actions"><span>+</span></div>
+    </div>
+
+    <!-- 私有 CRM 提示 -->
+    <div style="background: linear-gradient(135deg, var(--gold-light) 0%, #fff 100%); padding:10px 16px; border-bottom:1px solid var(--border); font-size:12px; color:var(--gold);">
+      🔒 您的供应商资料完全私有，平台不向他人共享
+    </div>
+
+    <!-- KPI -->
+    <div class="mini-kpi" style="padding-top:12px;">
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value">23</div>
+        <div class="mini-kpi__label">合作总数</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-gold">8</div>
+        <div class="mini-kpi__label">A 级核心</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-success">15</div>
+        <div class="mini-kpi__label">本月活跃</div>
+      </div>
+      <div class="mini-kpi__item">
+        <div class="mini-kpi__value text-success">-2.3%</div>
+        <div class="mini-kpi__label">价格优势</div>
+      </div>
+    </div>
+
+    <!-- 搜索 -->
+    <div class="search-bar">
+      <input class="search-bar__input" placeholder="搜索企业 / 联系人">
+    </div>
+
+    <!-- 筛选 -->
+    <div class="filter-bar">
+      <div class="filter-chip filter-chip--active">全部</div>
+      <div class="filter-chip">A 核心 8</div>
+      <div class="filter-chip">B 合作 12</div>
+      <div class="filter-chip">C 备选 3</div>
+      <div class="filter-chip">板材</div>
+      <div class="filter-chip">螺纹</div>
+      <div class="filter-chip">天津</div>
+    </div>
+
+    <div style="padding-top:8px;">
+      <!-- A 级核心 -->
+      <div class="list-card" style="background: linear-gradient(135deg, var(--gold-light) 0%, #fff 50%); border:1px solid var(--gold);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">🏆 天津荣昌钢贸</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">李总 · 138****1234 · 天津</div>
+          </div>
+          <span class="badge" style="background:var(--gold); color:#fff;">A · 核心</span>
+        </div>
+        <div style="font-size:12px; line-height:1.7; margin-top:8px;">
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">合作时长</span><strong>2 年 6 月</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">累计成交</span><strong>¥6.82M · 68 单</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">履约率</span><strong class="text-success">100%</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">价格优势</span><strong class="text-success">-3.2%</strong></div>
+          <div style="display:flex; justify-content:space-between;"><span class="text-muted">主营品类</span><strong>热轧 / 中厚板</strong></div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <button class="btn" style="flex:1; padding:8px; font-size:12px;">📞 电话</button>
+          <button class="btn" style="flex:1; padding:8px; font-size:12px;">💬 沟通</button>
+          <button class="btn btn-primary" style="flex:1; padding:8px; font-size:12px;">📝 询价</button>
+        </div>
+      </div>
+
+      <!-- A 级 -->
+      <div class="list-card" style="border-left:3px solid var(--gold);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">唐山润成钢铁</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">张总 · 139****5678 · 唐山</div>
+          </div>
+          <span class="badge" style="background:var(--gold); color:#fff;">A · 核心</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+          ¥1.42M · 28 单 · 履约 98.5% · <span class="text-success">-2.8% 价差</span>
+        </div>
+      </div>
+
+      <!-- A 级 -->
+      <div class="list-card" style="border-left:3px solid var(--gold);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">聊城金海镀锌</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">赵总 · 153****9876 · 聊城</div>
+          </div>
+          <span class="badge" style="background:var(--gold); color:#fff;">A</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+          ¥860K · 18 单 · 镀锌专精 · <span class="text-success">-1.8%</span>
+        </div>
+      </div>
+
+      <!-- B 级 -->
+      <div class="list-card" style="border-left:3px solid var(--success);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">河北鼎信钢铁</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">刘总 · 135****1234 · 沧州</div>
+          </div>
+          <span class="badge badge-success">B · 合作</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+          ¥620K · 12 单 · 履约 100% · <span>-1.2%</span>
+        </div>
+      </div>
+
+      <!-- B 级 -->
+      <div class="list-card" style="border-left:3px solid var(--success);">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">天津 YY 钢铁</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">周经理 · 137****9999 · 天津</div>
+          </div>
+          <span class="badge badge-success">B</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+          ¥480K · 10 单 · <span class="text-warning">+0.5% 略高</span>
+        </div>
+      </div>
+
+      <!-- C 级 -->
+      <div class="list-card" style="opacity:0.85;">
+        <div class="list-card__head">
+          <div>
+            <div class="list-card__title">沧州金属贸易</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">孙总 · 180****4567 · 沧州</div>
+          </div>
+          <span class="badge">C · 备选</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+          ¥210K · 5 单 · 履约 90%
+        </div>
+      </div>
+    </div>
+
+    <div style="height:80px;"></div>
+
+    <div class="tab-bar">
+      <div class="tab"><div class="icon">🏠</div><div>首页</div></div>
+      <div class="tab"><div class="icon">📝</div><div>发需求</div></div>
+      <div class="tab"><div class="icon">📦</div><div>订单</div></div>
+      <div class="tab active"><div class="icon">👤</div><div>我的</div></div>
+    </div>
+  </div>
+</body>
+</html>
