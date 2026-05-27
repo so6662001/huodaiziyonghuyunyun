@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>销售工作台 · 货袋子（PC）</title>
+  <link rel="stylesheet" href="../styles-pc.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon" style="background:var(--gold);">🏆</div>
+      <div class="sidebar__logo-text">货袋子 · 卖家</div>
+    </div>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar" style="background:var(--gold);">李</div>
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-name">李总（销售经理）</div>
+        <div class="sidebar__user-role">天津荣昌 · <span style="color:#fbbf24;">S 级</span></div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__group">销售</div>
+      <div class="sidebar__item sidebar__item--active"><span class="sidebar__item-icon">📊</span>工作台</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📥</span>询价中心<span class="sidebar__item-badge">12</span></div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💬</span>会话沟通</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📑</span>报价管理</div>
+      <div class="sidebar__group">运营</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📦</span>库存管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🚚</span>订单与发货</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">👥</span>我的客户</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📈</span>利润看板</div>
+      <div class="sidebar__group">营销</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🚀</span>流量包采购</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">⭐</span>会员特权</div>
+      <div class="sidebar__group">财务</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💳</span>对账中心</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💰</span>资金看板</div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <div class="header__breadcrumb">销售 / <strong>工作台</strong></div>
+      <div class="header__actions">
+        <span class="tag tag--gold">⭐ S 级卖家 · 流量加权 1.5x</span>
+        <div class="header__icon-btn">🔔<span class="header__icon-dot"></span></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="page-title">销售工作台</div>
+      <div class="page-subtitle">您今天有 <strong style="color:var(--primary);">12 个新询价</strong>，其中 <strong style="color:var(--gold);">3 个 是您的主力买家</strong>。</div>
+
+      <!-- KPI -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-card__label">本月成交额</div>
+          <div class="kpi-card__value">¥6.82<span style="font-size:18px;color:var(--text-muted);">M</span></div>
+          <div class="kpi-card__sub">
+            <span class="kpi-card__trend kpi-card__trend--up">↑ 28.3%</span>
+            <span class="text-muted">vs 上月</span>
+          </div>
+          <div class="kpi-card__icon">💰</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">本月净利润</div>
+          <div class="kpi-card__value text-success">¥182K</div>
+          <div class="kpi-card__sub">
+            <span class="text-success">利润率 2.67%</span>
+          </div>
+          <div class="kpi-card__icon">📈</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">待处理询价</div>
+          <div class="kpi-card__value">12 <span style="font-size:14px;color:var(--text-muted);">单</span></div>
+          <div class="kpi-card__sub">
+            <span class="text-warning">3 个 30 分内必报</span>
+          </div>
+          <div class="kpi-card__icon">📥</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">本月报价中标率</div>
+          <div class="kpi-card__value">38.5<span style="font-size:18px;">%</span></div>
+          <div class="kpi-card__sub">
+            <span class="text-success">行业平均 22%</span>
+          </div>
+          <div class="kpi-card__icon">🎯</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">合作买家</div>
+          <div class="kpi-card__value">68 <span style="font-size:14px;color:var(--text-muted);">家</span></div>
+          <div class="kpi-card__sub">
+            <span class="text-secondary">本月新增 <strong>5 家</strong></span>
+          </div>
+          <div class="kpi-card__icon">👥</div>
+        </div>
+      </div>
+
+      <!-- 主区两栏 -->
+      <div style="display:grid; grid-template-columns: 1fr 380px; gap:20px;">
+        <div>
+          <!-- 待处理询价 -->
+          <div class="card">
+            <div class="card__title">
+              📥 待处理询价
+              <div class="flex gap-8">
+                <button class="btn btn--ghost btn--sm">⚡ 一键批量回价</button>
+                <button class="btn btn--ghost btn--sm">查看全部</button>
+              </div>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>买家</th>
+                  <th>规格行数</th>
+                  <th>您可供</th>
+                  <th>预估利润</th>
+                  <th>距截止</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background:var(--gold-light);">
+                  <td>
+                    <div class="text-bold">🏆 华*建工集团</div>
+                    <div class="text-muted text-sm">主力买家 · 已成交 12 单</div>
+                  </td>
+                  <td>8 行 / 320 吨</td>
+                  <td><span class="text-success">5/8 行</span></td>
+                  <td><strong style="color:var(--success);">¥14,250</strong></td>
+                  <td><span class="text-danger">⏰ 28 分</span></td>
+                  <td><span class="tag tag--warning">急</span></td>
+                  <td><button class="btn btn--warning btn--sm">立即报价 →</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="text-bold">京*物流园</div>
+                    <div class="text-muted text-sm">2 次合作</div>
+                  </td>
+                  <td>3 行 / 50 吨</td>
+                  <td><span class="text-success">3/3 行</span></td>
+                  <td><strong>¥2,800</strong></td>
+                  <td>1h 23min</td>
+                  <td><span class="tag tag--primary">新</span></td>
+                  <td><button class="btn btn--primary btn--sm">报价 →</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="text-bold">天*钢构</div>
+                    <div class="text-muted text-sm">首次询价</div>
+                  </td>
+                  <td>15 行 / 580 吨</td>
+                  <td><span class="text-warning">8/15 行</span></td>
+                  <td><strong>¥18,200</strong>（部分）</td>
+                  <td>2h 14min</td>
+                  <td><span class="tag">新买家</span></td>
+                  <td><button class="btn btn--primary btn--sm">报价 →</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="text-bold">沧*建材</div>
+                    <div class="text-muted text-sm">3 次合作</div>
+                  </td>
+                  <td>5 行 / 120 吨</td>
+                  <td><span class="text-warning">3/5 行</span></td>
+                  <td><strong>¥5,600</strong></td>
+                  <td>3h 02min</td>
+                  <td><span class="tag">议价</span></td>
+                  <td><button class="btn btn--primary btn--sm">报价 →</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="text-bold">河*农机</div>
+                    <div class="text-muted text-sm">8 次合作</div>
+                  </td>
+                  <td>2 行 / 40 吨</td>
+                  <td><span class="text-success">2/2 行</span></td>
+                  <td><strong>¥2,000</strong></td>
+                  <td>5h 30min</td>
+                  <td><span class="tag tag--success">熟客</span></td>
+                  <td><button class="btn btn--primary btn--sm">报价 →</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 利润趋势 -->
+          <div class="card">
+            <div class="card__title">
+              📈 利润趋势（最近 30 天）
+              <span class="card__title-sub">日维度</span>
+            </div>
+            <!-- 简单折线 -->
+            <svg viewBox="0 0 800 200" style="width:100%; height:180px;">
+              <defs>
+                <linearGradient id="grad" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <polyline points="0,150 30,140 60,130 90,135 120,110 150,100 180,115 210,95 240,80 270,90 300,75 330,65 360,80 390,60 420,55 450,70 480,50 510,40 540,55 570,35 600,30 630,45 660,25 690,20 720,30 750,15 780,10 800,5" fill="none" stroke="#10b981" stroke-width="2"/>
+              <polygon points="0,150 30,140 60,130 90,135 120,110 150,100 180,115 210,95 240,80 270,90 300,75 330,65 360,80 390,60 420,55 450,70 480,50 510,40 540,55 570,35 600,30 630,45 660,25 690,20 720,30 750,15 780,10 800,5 800,200 0,200" fill="url(#grad)"/>
+            </svg>
+            <div class="flex justify-between text-sm text-muted mt-12">
+              <span>4/26</span><span>5/3</span><span>5/10</span><span>5/17</span><span>5/24</span><span>今天</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <!-- 流量价值 -->
+          <div class="card" style="background:linear-gradient(135deg,var(--gold-light) 0%, #fff 50%); border:1px solid var(--gold);">
+            <div class="card__title" style="color:var(--gold);">⭐ S 级特权状态</div>
+            <div style="font-size:13px; line-height:1.8;">
+              ✓ 流量加权 <strong>1.5x</strong>（多看 50%）<br>
+              ✓ 询价响应优先<br>
+              ✓ 独家盲价透视（看竞品报价区间）<br>
+              ✓ 客户经理 1 对 1
+            </div>
+            <div class="text-muted text-sm mt-12">距下一等级：还需成交 ¥800K</div>
+            <div class="progress mt-8"><div class="progress__bar progress__bar--success" style="width:74%;"></div></div>
+            <button class="btn btn--ghost btn--sm mt-12" style="width:100%;">查看会员权益 →</button>
+          </div>
+
+          <!-- 当月流量统计 -->
+          <div class="card">
+            <div class="card__title">📊 本月流量</div>
+            <div class="text-sm" style="line-height:1.8;">
+              <div class="flex justify-between"><span>展示</span><strong>2,840 次</strong></div>
+              <div class="flex justify-between"><span>询价</span><strong>156 个</strong></div>
+              <div class="flex justify-between"><span>报价</span><strong>98 次</strong></div>
+              <div class="flex justify-between"><span>成交</span><strong class="text-success">38 单</strong></div>
+              <div class="divider"></div>
+              <div class="flex justify-between"><span>询价转化率</span><strong>5.5%</strong></div>
+              <div class="flex justify-between"><span>报价中标率</span><strong class="text-success">38.5%</strong></div>
+              <div class="flex justify-between"><span>客单价</span><strong>¥179K</strong></div>
+            </div>
+          </div>
+
+          <!-- 待办 -->
+          <div class="card">
+            <div class="card__title">⚡ 今日待办</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="padding:10px; background:var(--warning-light); border-radius:8px; border-left: 3px solid var(--warning);">
+                <div class="text-bold text-sm">3 个询价 30 分内必报</div>
+                <div class="text-muted text-sm">不及时报价会降低分数</div>
+              </div>
+              <div style="padding:10px; background:var(--primary-50); border-radius:8px; border-left: 3px solid var(--primary);">
+                <div class="text-bold text-sm">5 单待发货</div>
+                <div class="text-muted text-sm">总金额 ¥820K</div>
+              </div>
+              <div style="padding:10px; background:var(--bg-light); border-radius:8px;">
+                <div class="text-bold text-sm">月度对账确认</div>
+                <div class="text-muted text-sm">23 笔订单</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

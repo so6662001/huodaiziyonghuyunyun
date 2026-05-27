@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>采购工作台 · 货袋子（PC）</title>
+  <link rel="stylesheet" href="../styles-pc.css">
+</head>
+<body>
+<div class="app">
+  <!-- 侧栏 -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon">📦</div>
+      <div class="sidebar__logo-text">货袋子</div>
+    </div>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar">王</div>
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-name">王采购</div>
+        <div class="sidebar__user-role">华建工集团 · 采购部</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__group">采购</div>
+      <div class="sidebar__item sidebar__item--active"><span class="sidebar__item-icon">📊</span>工作台</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📝</span>发布需求</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💬</span>采购会话<span class="sidebar__item-badge">3</span></div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📋</span>清单管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">⊞</span>报价对比</div>
+      <div class="sidebar__group">订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📦</span>我的订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🚚</span>物流跟踪</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💳</span>对账中心</div>
+      <div class="sidebar__group">企业</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🏢</span>供应商管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">👥</span>团队成员</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📈</span>采购分析</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">⚙️</span>企业设置</div>
+    </nav>
+  </aside>
+
+  <!-- 主区 -->
+  <main class="main">
+    <!-- 顶部 -->
+    <div class="header">
+      <div class="header__breadcrumb">
+        采购 / <strong>工作台</strong>
+      </div>
+      <div class="header__actions">
+        <div class="header__search-wrap">
+          <input class="header__search" placeholder="搜索询价、订单、卖家...">
+        </div>
+        <div class="header__icon-btn">🔔<span class="header__icon-dot"></span></div>
+        <div class="header__icon-btn">❓</div>
+      </div>
+    </div>
+
+    <!-- 内容 -->
+    <div class="content">
+      <div class="page-title">采购工作台</div>
+      <div class="page-subtitle">早上好，王采购。今日有 <strong style="color:var(--primary);">3 个询价</strong>收到新报价，<strong style="color:var(--warning);">2 个订单</strong>等待收货确认。</div>
+
+      <!-- KPI -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-card__label">本月采购额</div>
+          <div class="kpi-card__value">¥3.86<span style="font-size:18px;font-weight:500;color:var(--text-muted);">M</span></div>
+          <div class="kpi-card__sub">
+            <span class="kpi-card__trend kpi-card__trend--up">↑ 12.4%</span>
+            <span class="text-muted">vs 上月</span>
+          </div>
+          <div class="kpi-card__icon">💰</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">询价中</div>
+          <div class="kpi-card__value">8 <span style="font-size:14px;font-weight:500;color:var(--text-muted);">单</span></div>
+          <div class="kpi-card__sub">
+            <span class="text-secondary">含 <strong style="color:var(--text-primary);">42 行</strong> 规格</span>
+          </div>
+          <div class="kpi-card__icon">📝</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">待发货</div>
+          <div class="kpi-card__value">5 <span style="font-size:14px;font-weight:500;color:var(--text-muted);">单</span></div>
+          <div class="kpi-card__sub">
+            <span class="text-secondary">总金额 <strong style="color:var(--text-primary);">¥820,400</strong></span>
+          </div>
+          <div class="kpi-card__icon">🚚</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">本月节省</div>
+          <div class="kpi-card__value text-success">¥48.2K</div>
+          <div class="kpi-card__sub">
+            <span class="text-success">📊 AI 最优组合 + 议价</span>
+          </div>
+          <div class="kpi-card__icon">💎</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">合作供应商</div>
+          <div class="kpi-card__value">23 <span style="font-size:14px;font-weight:500;color:var(--text-muted);">家</span></div>
+          <div class="kpi-card__sub">
+            <span class="text-secondary">活跃 <strong style="color:var(--success);">15 家</strong></span>
+          </div>
+          <div class="kpi-card__icon">🏢</div>
+        </div>
+      </div>
+
+      <!-- 双栏 -->
+      <div style="display:grid; grid-template-columns: 1fr 380px; gap: 20px;">
+        <!-- 左：进行中的询价 -->
+        <div>
+          <div class="card">
+            <div class="card__title">
+              进行中的询价
+              <div class="flex gap-8">
+                <button class="btn btn--ghost btn--sm">查看全部</button>
+                <button class="btn btn--primary btn--sm">+ 新建询价</button>
+              </div>
+            </div>
+
+            <div class="table-wrap" style="margin: -20px; margin-top: 0; box-shadow: none;">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>询价编号</th>
+                    <th>规格</th>
+                    <th>总量</th>
+                    <th>到货地</th>
+                    <th>报价进度</th>
+                    <th>距交期</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#ps_002431</strong><br><span class="text-muted text-sm">2 分钟前</span></td>
+                    <td>8 行<br><span class="text-muted text-sm">热轧+螺纹+镀锌</span></td>
+                    <td>320 吨</td>
+                    <td>天津/唐山</td>
+                    <td>
+                      <div style="width: 100px;">
+                        <div class="progress mb-8"><div class="progress__bar progress__bar--success" style="width: 62%;"></div></div>
+                        <div class="text-sm text-muted">5/8 行</div>
+                      </div>
+                    </td>
+                    <td><span class="text-warning text-sm">2 天 22h</span></td>
+                    <td><span class="tag tag--warning">报价中</span></td>
+                    <td><a href="03-采购会话详情.html" class="btn btn--ghost btn--sm">查看 →</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#ps_002429</strong><br><span class="text-muted text-sm">18 分钟前</span></td>
+                    <td>12 行<br><span class="text-muted text-sm">不锈钢全系</span></td>
+                    <td>85 吨</td>
+                    <td>聊城</td>
+                    <td>
+                      <div style="width: 100px;">
+                        <div class="progress mb-8"><div class="progress__bar" style="width: 25%;"></div></div>
+                        <div class="text-sm text-muted">3/12 行</div>
+                      </div>
+                    </td>
+                    <td><span class="text-sm">5 天</span></td>
+                    <td><span class="tag tag--primary">派单中</span></td>
+                    <td><a href="03-采购会话详情.html" class="btn btn--ghost btn--sm">查看 →</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#ps_002418</strong><br><span class="text-muted text-sm">3 小时前</span></td>
+                    <td>5 行</td>
+                    <td>150 吨</td>
+                    <td>天津</td>
+                    <td>
+                      <div style="width: 100px;">
+                        <div class="progress mb-8"><div class="progress__bar progress__bar--success" style="width: 100%;"></div></div>
+                        <div class="text-sm text-success">5/5 行</div>
+                      </div>
+                    </td>
+                    <td><span class="text-sm">1 天</span></td>
+                    <td><span class="tag tag--gold">待确认</span></td>
+                    <td><a href="03-采购会话详情.html" class="btn btn--ghost btn--sm">查看 →</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#ps_002405</strong><br><span class="text-muted text-sm">昨天</span></td>
+                    <td>18 行<br><span class="text-muted text-sm">大型项目</span></td>
+                    <td>820 吨</td>
+                    <td>天津/唐山/聊城</td>
+                    <td>
+                      <div style="width: 100px;">
+                        <div class="progress mb-8"><div class="progress__bar progress__bar--success" style="width: 100%;"></div></div>
+                        <div class="text-sm text-success">18/18 行</div>
+                      </div>
+                    </td>
+                    <td><span class="text-sm">7 天</span></td>
+                    <td><span class="tag tag--success">议价中</span></td>
+                    <td><a href="03-采购会话详情.html" class="btn btn--ghost btn--sm">查看 →</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 月度采购趋势 -->
+          <div class="card">
+            <div class="card__title">
+              采购趋势（最近 6 个月）
+              <span class="card__title-sub">按规格品类</span>
+            </div>
+            <!-- 模拟柱状图 -->
+            <div style="display:flex; height:180px; align-items:flex-end; gap:24px; padding:0 16px;">
+              <div style="flex:1; text-align:center;">
+                <div style="display:flex; flex-direction:column; gap:1px; align-items:center;">
+                  <div style="width:32px; background:var(--success); height:30px; border-radius:4px 4px 0 0;"></div>
+                  <div style="width:32px; background:var(--warning); height:40px;"></div>
+                  <div style="width:32px; background:var(--primary); height:60px;"></div>
+                </div>
+                <div class="text-sm text-muted mt-8">12月</div>
+                <div class="text-bold text-sm">¥2.8M</div>
+              </div>
+              <div style="flex:1; text-align:center;">
+                <div style="display:flex; flex-direction:column; gap:1px; align-items:center;">
+                  <div style="width:32px; background:var(--success); height:35px; border-radius:4px 4px 0 0;"></div>
+                  <div style="width:32px; background:var(--warning); height:45px;"></div>
+                  <div style="width:32px; background:var(--primary); height:55px;"></div>
+                </div>
+                <div class="text-sm text-muted mt-8">1月</div>
+                <div class="text-bold text-sm">¥2.9M</div>
+              </div>
+              <div style="flex:1; text-align:center;">
+                <div style="display:flex; flex-direction:column; gap:1px; align-items:center;">
+                  <div style="width:32px; background:var(--success); height:42px; border-radius:4px 4px 0 0;"></div>
+                  <div style="width:32px; background:var(--warning); height:55px;"></div>
+                  <div style="width:32px; background:var(--primary); height:78px;"></div>
+                </div>
+                <div class="text-sm text-muted mt-8">2月</div>
+                <div class="text-bold text-sm">¥3.4M</div>
+              </div>
+              <div style="flex:1; text-align:center;">
+                <div style="display:flex; flex-direction:column; gap:1px; align-items:center;">
+                  <div style="width:32px; background:var(--success); height:38px; border-radius:4px 4px 0 0;"></div>
+                  <div style="width:32px; background:var(--warning); height:50px;"></div>
+                  <div style="width:32px; background:var(--primary); height:65px;"></div>
+                </div>
+                <div class="text-sm text-muted mt-8">3月</div>
+                <div class="text-bold text-sm">¥3.1M</div>
+              </div>
+              <div style="flex:1; text-align:center;">
+                <div style="display:flex; flex-direction:column; gap:1px; align-items:center;">
+                  <div style="width:32px; background:var(--success); height:48px; border-radius:4px 4px 0 0;"></div>
+                  <div style="width:32px; background:var(--warning); height:60px;"></div>
+                  <div style="width:32px; background:var(--primary); height:72px;"></div>
+                </div>
+                <div class="text-sm text-muted mt-8">4月</div>
+                <div class="text-bold text-sm">¥3.6M</div>
+              </div>
+              <div style="flex:1; text-align:center;">
+                <div style="display:flex; flex-direction:column; gap:1px; align-items:center;">
+                  <div style="width:32px; background:var(--success); height:52px; border-radius:4px 4px 0 0;"></div>
+                  <div style="width:32px; background:var(--warning); height:68px;"></div>
+                  <div style="width:32px; background:var(--primary); height:80px;"></div>
+                </div>
+                <div class="text-sm text-muted mt-8">5月</div>
+                <div class="text-bold">¥3.86M</div>
+              </div>
+            </div>
+            <div class="flex gap-16 mt-16" style="justify-content:center; font-size:12px;">
+              <span><span class="dot" style="background:var(--primary);"></span>板材</span>
+              <span><span class="dot" style="background:var(--warning);"></span>螺纹</span>
+              <span><span class="dot" style="background:var(--success);"></span>其他</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：通知 + 快捷 -->
+        <div>
+          <!-- 待办 -->
+          <div class="card">
+            <div class="card__title">
+              ⚡ 今日待办
+              <span class="card__title-sub">6 项</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <div style="padding:10px; background:var(--warning-light); border-radius:8px; border-left: 3px solid var(--warning);">
+                <div class="text-bold text-sm">#ps_002418 待确认成交</div>
+                <div class="text-muted text-sm mt-8">最优组合方案已生成，5 行可锁单</div>
+                <button class="btn btn--warning btn--sm mt-8">立即确认</button>
+              </div>
+              <div style="padding:10px; background:var(--primary-50); border-radius:8px; border-left: 3px solid var(--primary);">
+                <div class="text-bold text-sm">#ps_002431 卖家提议改规</div>
+                <div class="text-muted text-sm mt-8">第 7 行 H 型钢有改规建议</div>
+                <button class="btn btn--ghost btn--sm mt-8">查看</button>
+              </div>
+              <div style="padding:10px; background:var(--bg-light); border-radius:8px;">
+                <div class="text-bold text-sm">订单 #o_001892 验收</div>
+                <div class="text-muted text-sm mt-8">货物已到，请在 24h 内确认</div>
+              </div>
+              <div style="padding:10px; background:var(--bg-light); border-radius:8px;">
+                <div class="text-bold text-sm">月度对账（5 月）</div>
+                <div class="text-muted text-sm mt-8">23 笔订单待对账</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI 推荐 -->
+          <div class="card" style="background: linear-gradient(135deg, #dbeafe 0%, #ffffff 50%); border:1px solid var(--primary);">
+            <div class="card__title" style="color:var(--primary);">
+              🤖 AI 智能推荐
+            </div>
+            <div class="text-sm" style="line-height:1.7;">
+              📈 本月 <strong>热轧 Q235B 5.5mm</strong> 价格预计上涨 2-3%，建议尽快锁价<br><br>
+              🏢 <strong>天津荣昌</strong> 给您的报价持续优于市场 1.5%，可优先合作<br><br>
+              ⚠️ <strong>聊城金海</strong> 信用分降至 88，建议关注后续合作
+            </div>
+            <button class="btn btn--primary btn--sm mt-12" style="width:100%;">查看完整报告 →</button>
+          </div>
+
+          <!-- 快捷模板 -->
+          <div class="card">
+            <div class="card__title">📌 我的常用清单</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div class="spec-row-pc" style="margin:0;">
+                <div class="spec-row-pc__no">A</div>
+                <div class="spec-row-pc__main">
+                  <div class="spec-row-pc__title">屋面工程标准包</div>
+                  <div class="spec-row-pc__meta">8 行 · 用了 12 次</div>
+                </div>
+                <button class="btn btn--ghost btn--sm">一键发</button>
+              </div>
+              <div class="spec-row-pc" style="margin:0;">
+                <div class="spec-row-pc__no">B</div>
+                <div class="spec-row-pc__main">
+                  <div class="spec-row-pc__title">梁柱钢筋组合</div>
+                  <div class="spec-row-pc__meta">5 行 · 用了 8 次</div>
+                </div>
+                <button class="btn btn--ghost btn--sm">一键发</button>
+              </div>
+              <div class="spec-row-pc" style="margin:0;">
+                <div class="spec-row-pc__no">C</div>
+                <div class="spec-row-pc__main">
+                  <div class="spec-row-pc__title">围护结构清单</div>
+                  <div class="spec-row-pc__meta">6 行 · 用了 5 次</div>
+                </div>
+                <button class="btn btn--ghost btn--sm">一键发</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

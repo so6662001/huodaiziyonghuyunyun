@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>供应商管理 · 货袋子（PC）</title>
+  <link rel="stylesheet" href="../styles-pc.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon">📦</div>
+      <div class="sidebar__logo-text">货袋子</div>
+    </div>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar">王</div>
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-name">王采购</div>
+        <div class="sidebar__user-role">华建工集团</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__group">采购</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📊</span>工作台</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📝</span>发布需求</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💬</span>采购会话</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">⊞</span>报价对比</div>
+      <div class="sidebar__group">订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📦</span>我的订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💳</span>对账中心</div>
+      <div class="sidebar__group">企业</div>
+      <div class="sidebar__item sidebar__item--active"><span class="sidebar__item-icon">🏢</span>供应商管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📈</span>采购分析</div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <div class="header__breadcrumb">
+        企业 / <strong>供应商管理</strong>
+      </div>
+      <div class="header__actions">
+        <button class="btn">📤 导出</button>
+        <button class="btn btn--primary">+ 添加供应商</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="page-title">供应商管理（私有 CRM）</div>
+      <div class="page-subtitle">23 家合作供应商，按分级、品类、地区管理。<strong style="color:var(--primary);">注：信息仅本企业可见</strong>，不会向其他买家共享。</div>
+
+      <!-- KPI -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-card__label">合作供应商</div>
+          <div class="kpi-card__value">23 <span style="font-size:14px; color:var(--text-muted);">家</span></div>
+          <div class="kpi-card__sub"><span class="text-success">+2</span><span class="text-muted">本月新增</span></div>
+          <div class="kpi-card__icon">🏢</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">核心供应商（A 级）</div>
+          <div class="kpi-card__value">8 <span style="font-size:14px; color:var(--text-muted);">家</span></div>
+          <div class="kpi-card__sub"><span class="text-secondary">承担 76% 采购额</span></div>
+          <div class="kpi-card__icon">⭐</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">本月已合作</div>
+          <div class="kpi-card__value">15 <span style="font-size:14px; color:var(--text-muted);">家</span></div>
+          <div class="kpi-card__sub"><span class="text-secondary">活跃率 65%</span></div>
+          <div class="kpi-card__icon">🤝</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__label">平均价格优势</div>
+          <div class="kpi-card__value text-success">-2.3%</div>
+          <div class="kpi-card__sub"><span class="text-success">vs 市场均价</span></div>
+          <div class="kpi-card__icon">💰</div>
+        </div>
+      </div>
+
+      <!-- 筛选 -->
+      <div class="card">
+        <div class="flex gap-8 items-center">
+          <span class="text-secondary text-sm">筛选：</span>
+          <select class="form-row__select" style="width:120px; height:36px;">
+            <option>全部分级</option>
+            <option>A 级（核心）</option>
+            <option>B 级（合作）</option>
+            <option>C 级（备选）</option>
+          </select>
+          <select class="form-row__select" style="width:120px; height:36px;">
+            <option>全部品类</option>
+            <option>热轧板</option>
+            <option>螺纹钢</option>
+            <option>镀锌板</option>
+          </select>
+          <select class="form-row__select" style="width:120px; height:36px;">
+            <option>全部地区</option>
+            <option>天津</option>
+            <option>唐山</option>
+            <option>聊城</option>
+          </select>
+          <input class="form-row__input" placeholder="搜索供应商名称…" style="width:240px;">
+          <button class="btn btn--ghost btn--sm">重置</button>
+        </div>
+      </div>
+
+      <!-- 供应商表 -->
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <div class="table-toolbar__left">
+            <span class="text-secondary text-sm">共 23 家，按近 3 个月合作金额排序</span>
+          </div>
+          <div class="table-toolbar__right">
+            <button class="btn btn--sm">🔧 列设置</button>
+            <button class="btn btn--sm">📤 导出</button>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><input type="checkbox"></th>
+              <th>供应商</th>
+              <th>分级</th>
+              <th>主营品类</th>
+              <th>地区</th>
+              <th>合作时长</th>
+              <th>近 3 月成交</th>
+              <th>履约率</th>
+              <th>平均价差</th>
+              <th>最近合作</th>
+              <th>标签</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>
+                <div class="text-bold">🏆 天津荣昌钢贸</div>
+                <div class="text-muted text-sm">李总 · 18900001234</div>
+              </td>
+              <td><span class="tag tag--gold">A · 核心</span></td>
+              <td>热轧 / 中厚板</td>
+              <td>天津</td>
+              <td>2 年 6 月</td>
+              <td><strong>¥1.86M</strong><br><span class="text-muted text-sm">42 单</span></td>
+              <td><span class="text-success">100%</span></td>
+              <td><span class="text-success">-3.2%</span></td>
+              <td>今天</td>
+              <td>
+                <span class="tag tag--success">同城</span>
+                <span class="tag tag--primary">主力</span>
+              </td>
+              <td>
+                <button class="btn btn--ghost btn--sm">详情</button>
+                <button class="btn btn--ghost btn--sm">询价</button>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>
+                <div class="text-bold">唐山润成钢铁</div>
+                <div class="text-muted text-sm">张总 · 13900005678</div>
+              </td>
+              <td><span class="tag tag--gold">A · 核心</span></td>
+              <td>螺纹 / 线材</td>
+              <td>唐山</td>
+              <td>1 年 8 月</td>
+              <td><strong>¥1.42M</strong><br><span class="text-muted text-sm">28 单</span></td>
+              <td><span class="text-success">98.5%</span></td>
+              <td><span class="text-success">-2.8%</span></td>
+              <td>今天</td>
+              <td>
+                <span class="tag tag--primary">主力</span>
+                <span class="tag">建材</span>
+              </td>
+              <td>
+                <button class="btn btn--ghost btn--sm">详情</button>
+                <button class="btn btn--ghost btn--sm">询价</button>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>
+                <div class="text-bold">聊城金海镀锌</div>
+                <div class="text-muted text-sm">赵总 · 15300009876</div>
+              </td>
+              <td><span class="tag tag--gold">A · 核心</span></td>
+              <td>镀锌板</td>
+              <td>聊城</td>
+              <td>1 年 2 月</td>
+              <td><strong>¥860K</strong><br><span class="text-muted text-sm">18 单</span></td>
+              <td><span class="text-success">97.8%</span></td>
+              <td><span class="text-success">-1.8%</span></td>
+              <td>3 天前</td>
+              <td>
+                <span class="tag">镀锌专精</span>
+              </td>
+              <td>
+                <button class="btn btn--ghost btn--sm">详情</button>
+                <button class="btn btn--ghost btn--sm">询价</button>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>
+                <div class="text-bold">河北鼎信钢铁</div>
+                <div class="text-muted text-sm">刘总 · 13500001234</div>
+              </td>
+              <td><span class="tag tag--success">B · 合作</span></td>
+              <td>热轧 / 冷轧</td>
+              <td>沧州</td>
+              <td>10 月</td>
+              <td><strong>¥620K</strong><br><span class="text-muted text-sm">12 单</span></td>
+              <td><span class="text-success">100%</span></td>
+              <td><span class="text-secondary">-1.2%</span></td>
+              <td>1 周前</td>
+              <td>
+                <span class="tag">备选</span>
+              </td>
+              <td>
+                <button class="btn btn--ghost btn--sm">详情</button>
+                <button class="btn btn--ghost btn--sm">询价</button>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>
+                <div class="text-bold">天津 YY 钢铁</div>
+                <div class="text-muted text-sm">周经理 · 13700009999</div>
+              </td>
+              <td><span class="tag tag--success">B · 合作</span></td>
+              <td>板材综合</td>
+              <td>天津</td>
+              <td>8 月</td>
+              <td><strong>¥480K</strong><br><span class="text-muted text-sm">10 单</span></td>
+              <td><span class="text-success">95.0%</span></td>
+              <td><span class="text-warning">+0.5%</span></td>
+              <td>2 周前</td>
+              <td>
+                <span class="tag tag--success">同城</span>
+              </td>
+              <td>
+                <button class="btn btn--ghost btn--sm">详情</button>
+                <button class="btn btn--ghost btn--sm">询价</button>
+              </td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>
+                <div class="text-bold">沧州金属贸易</div>
+                <div class="text-muted text-sm">孙总 · 18000004567</div>
+              </td>
+              <td><span class="tag">C · 备选</span></td>
+              <td>螺纹 / H 型钢</td>
+              <td>沧州</td>
+              <td>4 月</td>
+              <td><strong>¥210K</strong><br><span class="text-muted text-sm">5 单</span></td>
+              <td><span class="text-warning">90.0%</span></td>
+              <td><span class="text-warning">+1.2%</span></td>
+              <td>1 月前</td>
+              <td>
+                <span class="tag tag--warning">应急</span>
+              </td>
+              <td>
+                <button class="btn btn--ghost btn--sm">详情</button>
+                <button class="btn btn--ghost btn--sm">询价</button>
+              </td>
+            </tr>
+            <tr style="opacity:0.6;">
+              <td><input type="checkbox"></td>
+              <td>
+                <div class="text-bold">秦皇岛特钢</div>
+                <div class="text-muted text-sm">林总 · 13600007890</div>
+              </td>
+              <td><span class="tag">C · 备选</span></td>
+              <td>特种钢</td>
+              <td>秦皇岛</td>
+              <td>6 月</td>
+              <td><strong>¥120K</strong><br><span class="text-muted text-sm">2 单</span></td>
+              <td><span class="text-warning">85.0%</span></td>
+              <td><span class="text-danger">+2.8%</span></td>
+              <td>3 月前</td>
+              <td>
+                <span class="tag tag--warning">观察</span>
+              </td>
+              <td>
+                <button class="btn btn--ghost btn--sm">详情</button>
+                <button class="btn btn--ghost btn--sm">询价</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <span>共 23 条，第 1-7 条</span>
+          <div class="pagination__pages">
+            <div class="pagination__page">«</div>
+            <div class="pagination__page pagination__page--active">1</div>
+            <div class="pagination__page">2</div>
+            <div class="pagination__page">3</div>
+            <div class="pagination__page">4</div>
+            <div class="pagination__page">»</div>
+          </div>
+          <select class="form-row__select" style="width:80px; height:28px;">
+            <option>7/页</option>
+            <option>20/页</option>
+            <option>50/页</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

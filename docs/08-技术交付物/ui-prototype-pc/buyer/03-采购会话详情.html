@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>采购会话详情 · 货袋子（PC）</title>
+  <link rel="stylesheet" href="../styles-pc.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon">📦</div>
+      <div class="sidebar__logo-text">货袋子</div>
+    </div>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar">王</div>
+      <div class="sidebar__user-info">
+        <div class="sidebar__user-name">王采购</div>
+        <div class="sidebar__user-role">华建工集团</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__group">采购</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📊</span>工作台</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📝</span>发布需求</div>
+      <div class="sidebar__item sidebar__item--active"><span class="sidebar__item-icon">💬</span>采购会话<span class="sidebar__item-badge">3</span></div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📋</span>清单管理</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">⊞</span>报价对比</div>
+      <div class="sidebar__group">订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">📦</span>我的订单</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">💳</span>对账中心</div>
+      <div class="sidebar__group">企业</div>
+      <div class="sidebar__item"><span class="sidebar__item-icon">🏢</span>供应商管理</div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <div class="header__breadcrumb">
+        采购会话 / <strong>#ps_002431 · 8 行规格</strong>
+      </div>
+      <div class="header__actions">
+        <button class="btn">📤 分享</button>
+        <button class="btn">📄 导出 PDF</button>
+        <button class="btn btn--warning">⚠️ 关闭会话</button>
+      </div>
+    </div>
+
+    <div class="content" style="max-width:none;">
+      <!-- 顶部状态条 -->
+      <div class="card" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color:#fff; margin-bottom:20px;">
+        <div class="flex items-center justify-between">
+          <div>
+            <div style="font-size:13px; opacity:0.85;">采购会话</div>
+            <div style="font-size:22px; font-weight:700; margin-top:4px;">📦 8 条规格 · 320 吨</div>
+            <div style="font-size:12px; opacity:0.85; margin-top:6px;">
+              已进行 18 分钟 · 距交期 2 天 22h · v1（未变更） · 🔥 加急
+            </div>
+          </div>
+          <div class="flex gap-20">
+            <div style="text-align:center;">
+              <div style="opacity:0.85; font-size:12px;">已报价</div>
+              <div style="font-size:28px; font-weight:700;">5<span style="font-size:18px; opacity:0.7;">/8</span></div>
+            </div>
+            <div style="text-align:center;">
+              <div style="opacity:0.85; font-size:12px;">参与卖家</div>
+              <div style="font-size:28px; font-weight:700;">17</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="opacity:0.85; font-size:12px;">可成交</div>
+              <div style="font-size:28px; font-weight:700;">¥1.02M</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="opacity:0.85; font-size:12px;">预计省</div>
+              <div style="font-size:28px; font-weight:700; color:#fbbf24;">¥18.4K</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 三栏：清单进展 + 主区 + 卖家列表 -->
+      <div style="display:grid; grid-template-columns: 380px 1fr 320px; gap:20px;">
+        <!-- 左：清单按行进展 -->
+        <div class="card" style="margin:0; max-height:calc(100vh - 240px); overflow-y:auto;">
+          <div class="card__title">
+            📋 清单进展
+            <span class="card__title-sub">5/8 行</span>
+          </div>
+
+          <!-- 行 1：已锁定 -->
+          <div class="spec-row-pc spec-row-pc--matched">
+            <div class="spec-row-pc__no" style="background:var(--success); color:#fff;">1</div>
+            <div class="spec-row-pc__main">
+              <div class="spec-row-pc__title">热轧 Q235B 5.5×1500</div>
+              <div class="spec-row-pc__meta">50 吨 · ¥3920/吨 · 天津荣昌</div>
+            </div>
+            <span class="tag tag--success">✓ 锁定</span>
+          </div>
+
+          <!-- 行 2：可选 -->
+          <div class="spec-row-pc spec-row-pc--quoted">
+            <div class="spec-row-pc__no" style="background:var(--gold); color:#fff;">2</div>
+            <div class="spec-row-pc__main">
+              <div class="spec-row-pc__title">热轧 Q235B 4.0×1500</div>
+              <div class="spec-row-pc__meta">30 吨 · 低 ¥3980 · 5 家</div>
+            </div>
+            <span class="tag tag--gold">⭐ 5 家</span>
+          </div>
+
+          <!-- 行 3 -->
+          <div class="spec-row-pc spec-row-pc--quoted">
+            <div class="spec-row-pc__no" style="background:var(--gold); color:#fff;">3</div>
+            <div class="spec-row-pc__main">
+              <div class="spec-row-pc__title">螺纹 HRB400E Φ18</div>
+              <div class="spec-row-pc__meta">100 吨 · 低 ¥4080 · 4 家</div>
+            </div>
+            <span class="tag tag--gold">⭐ 4 家</span>
+          </div>
+
+          <!-- 行 4 -->
+          <div class="spec-row-pc spec-row-pc--quoted">
+            <div class="spec-row-pc__no" style="background:var(--gold); color:#fff;">4</div>
+            <div class="spec-row-pc__main">
+              <div class="spec-row-pc__title">螺纹 HRB400E Φ20</div>
+              <div class="spec-row-pc__meta">80 吨 · 低 ¥4120 · 3 家</div>
+            </div>
+            <span class="tag tag--gold">⭐ 3 家</span>
+          </div>
+
+          <!-- 行 5 -->
+          <div class="spec-row-pc">
+            <div class="spec-row-pc__no">5</div>
+            <div class="spec-row-pc__main">
+              <div class="spec-row-pc__title">镀锌 SGCC 0.5×1200</div>
+              <div class="spec-row-pc__meta">30 吨 · 派单中（推 12 家）</div>
+            </div>
+            <span class="tag">⏳ 派单</span>
+          </div>
+
+          <!-- 行 6 -->
+          <div class="spec-row-pc">
+            <div class="spec-row-pc__no">6</div>
+            <div class="spec-row-pc__main">
+              <div class="spec-row-pc__title">镀锌 SGCC 0.6×1250</div>
+              <div class="spec-row-pc__meta">20 吨 · 派单中</div>
+            </div>
+            <span class="tag">⏳ 派单</span>
+          </div>
+
+          <!-- 行 7 -->
+          <div class="spec-row-pc spec-row-pc--active">
+            <div class="spec-row-pc__no" style="background:var(--primary); color:#fff;">7</div>
+            <div class="spec-row-pc__main">
+              <div class="spec-row-pc__title">H 型钢 HW200×200</div>
+              <div class="spec-row-pc__meta text-warning">⚠️ 卖家提议改规</div>
+            </div>
+            <span class="tag tag--primary">💬 沟通</span>
+          </div>
+
+          <!-- 行 8 -->
+          <div class="spec-row-pc spec-row-pc--danger">
+            <div class="spec-row-pc__no" style="background:var(--danger); color:#fff;">8</div>
+            <div class="spec-row-pc__main">
+              <div class="spec-row-pc__title">不锈钢 304 1.0×1219</div>
+              <div class="spec-row-pc__meta text-danger">❌ 北方无现货</div>
+            </div>
+            <span class="tag tag--danger">无</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- AI 整单建议 -->
+          <div style="background: linear-gradient(135deg, #dbeafe 0%, #ffffff 100%); border:1px solid var(--primary); border-radius:8px; padding:12px;">
+            <div class="text-bold text-primary mb-8">🤖 AI 整单优化</div>
+            <div class="text-sm" style="line-height:1.7;">
+              ✓ 1+2 → 天津荣昌（省 ¥6,000）<br>
+              ✓ 3+4 → 唐山润成（省 ¥3,200）<br>
+              ⚠️ 第 7 行：确认改规（降 ¥1,800）<br>
+              ❌ 第 8 行：建议延后处理
+            </div>
+            <button class="btn btn--primary btn--sm" style="width:100%; margin-top:8px;">采纳全部 · 省 ¥11,000</button>
+          </div>
+        </div>
+
+        <!-- 中：主区（选中行的详细报价对比） -->
+        <div>
+          <div class="card" style="margin:0 0 20px;">
+            <div class="card__title">
+              <div class="flex items-center gap-12">
+                <span>第 2 行：热轧 Q235B 4.0×1500×C · 30 吨</span>
+                <span class="tag tag--gold">5 家报价</span>
+              </div>
+              <div class="flex gap-8">
+                <button class="btn btn--sm">📝 修改需求</button>
+                <button class="btn btn--sm">📊 全屏对比</button>
+              </div>
+            </div>
+
+            <!-- 行内的卖家报价对比 -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>卖家</th>
+                  <th>报价</th>
+                  <th>可供数量</th>
+                  <th>交期</th>
+                  <th>账期</th>
+                  <th>距离</th>
+                  <th>信用</th>
+                  <th>综合</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background:var(--gold-light);">
+                  <td>
+                    <div class="text-bold">天津荣昌钢贸 🏆</div>
+                    <div class="text-muted text-sm">已选合作伙伴</div>
+                  </td>
+                  <td><strong style="color:var(--gold); font-size:16px;">¥3,980</strong>/吨</td>
+                  <td>30 吨 ✓</td>
+                  <td>2 天</td>
+                  <td>现款</td>
+                  <td>12 km</td>
+                  <td>★★★★★ 96</td>
+                  <td><span class="tag tag--gold">99 分</span></td>
+                  <td>
+                    <button class="btn btn--warning btn--sm">立即锁定</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="text-bold">河北鼎信钢铁</div></td>
+                  <td><strong>¥4,000</strong>/吨</td>
+                  <td>30 吨 ✓</td>
+                  <td>3 天</td>
+                  <td>3 天</td>
+                  <td>45 km</td>
+                  <td>★★★★ 94</td>
+                  <td><span class="tag tag--success">92 分</span></td>
+                  <td><button class="btn btn--ghost btn--sm">议价</button></td>
+                </tr>
+                <tr>
+                  <td><div class="text-bold">天津 YY 钢铁</div></td>
+                  <td><strong>¥4,020</strong>/吨</td>
+                  <td>30 吨 ✓</td>
+                  <td>2 天</td>
+                  <td>现款</td>
+                  <td>28 km</td>
+                  <td>★★★★ 91</td>
+                  <td><span class="tag">88 分</span></td>
+                  <td><button class="btn btn--ghost btn--sm">议价</button></td>
+                </tr>
+                <tr>
+                  <td><div class="text-bold">唐山宏达</div></td>
+                  <td><strong>¥4,030</strong>/吨</td>
+                  <td>30 吨 ✓</td>
+                  <td>3 天</td>
+                  <td>3 天</td>
+                  <td>52 km</td>
+                  <td>★★★★ 89</td>
+                  <td><span class="tag">85 分</span></td>
+                  <td><button class="btn btn--ghost btn--sm">议价</button></td>
+                </tr>
+                <tr>
+                  <td><div class="text-bold">沧州金属</div></td>
+                  <td><strong>¥4,050</strong>/吨</td>
+                  <td>20 吨</td>
+                  <td>4 天</td>
+                  <td>7 天</td>
+                  <td>78 km</td>
+                  <td>★★★ 87</td>
+                  <td><span class="tag">78 分</span></td>
+                  <td><button class="btn btn--ghost btn--sm">议价</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 沟通区 -->
+          <div class="card" style="margin:0;">
+            <div class="card__title">💬 沟通记录</div>
+            <div style="max-height:300px; overflow-y:auto;">
+              <div class="flex gap-12 mb-16">
+                <div style="width:32px; height:32px; border-radius:50%; background:var(--success); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;">荣</div>
+                <div style="flex:1;">
+                  <div class="flex items-center gap-8 mb-8">
+                    <span class="text-bold">天津荣昌（李总）</span>
+                    <span class="text-muted text-sm">5 分钟前</span>
+                  </div>
+                  <div style="background:var(--bg-light); padding:10px 12px; border-radius:8px; font-size:13px;">
+                    第 1+2 行 我都可以供，合并下单优惠 ¥30/吨，您看怎么样？
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-12 mb-16" style="flex-direction:row-reverse;">
+                <div style="width:32px; height:32px; border-radius:50%; background:var(--primary); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;">王</div>
+                <div style="flex:1; text-align:right;">
+                  <div class="flex items-center gap-8 mb-8" style="justify-content:flex-end;">
+                    <span class="text-muted text-sm">3 分钟前</span>
+                    <span class="text-bold">我</span>
+                  </div>
+                  <div style="background:var(--primary-light); padding:10px 12px; border-radius:8px; font-size:13px; display:inline-block; text-align:left;">
+                    可以，那 5.5 厚的 50 吨 + 4.0 厚的 30 吨 合并给你，价格统一 ¥3920？
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-12 mb-16">
+                <div style="width:32px; height:32px; border-radius:50%; background:var(--success); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;">荣</div>
+                <div style="flex:1;">
+                  <div class="flex items-center gap-8 mb-8">
+                    <span class="text-bold">天津荣昌（李总）</span>
+                    <span class="text-muted text-sm">1 分钟前</span>
+                  </div>
+                  <div style="background:var(--bg-light); padding:10px 12px; border-radius:8px; font-size:13px;">
+                    成交！我现在锁价。明天上午发货，下午到您仓库。
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-8" style="border-top:1px solid var(--border); padding-top:12px; margin-top:12px;">
+              <input class="form-row__input flex-1" placeholder="输入消息…（AI 自动识别需求变更）">
+              <button class="btn">📎</button>
+              <button class="btn btn--primary">发送</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：时间线 + AI 助手 -->
+        <div>
+          <div class="card" style="margin:0 0 20px;">
+            <div class="card__title">⏱ 时间线</div>
+            <div style="display:flex; flex-direction:column; gap:14px; font-size:12px;">
+              <div style="display:flex; gap:10px;">
+                <div style="width:20px; height:20px; border-radius:50%; background:var(--primary); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px;">1</div>
+                <div>
+                  <div class="text-bold">您发布需求（8 行）</div>
+                  <div class="text-muted">18 分钟前</div>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <div style="width:20px; height:20px; border-radius:50%; background:var(--primary); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px;">2</div>
+                <div>
+                  <div class="text-bold">系统智能拆 3 子单</div>
+                  <div class="text-muted">17 分钟前</div>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <div style="width:20px; height:20px; border-radius:50%; background:var(--success); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px;">3</div>
+                <div>
+                  <div class="text-bold">17 家卖家被推送</div>
+                  <div class="text-muted">15 分钟前</div>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <div style="width:20px; height:20px; border-radius:50%; background:var(--gold); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px;">4</div>
+                <div>
+                  <div class="text-bold">天津荣昌 报价 第 1+2 行</div>
+                  <div class="text-muted">12 分钟前</div>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <div style="width:20px; height:20px; border-radius:50%; background:var(--gold); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px;">5</div>
+                <div>
+                  <div class="text-bold">唐山润成 报价 第 3+4 行</div>
+                  <div class="text-muted">10 分钟前</div>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <div style="width:20px; height:20px; border-radius:50%; background:var(--success); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px;">6</div>
+                <div>
+                  <div class="text-bold">您锁价 第 1 行</div>
+                  <div class="text-muted">5 分钟前</div>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <div style="width:20px; height:20px; border-radius:50%; background:var(--warning); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px;">7</div>
+                <div>
+                  <div class="text-bold">天津泰锋 提议第 7 行改规</div>
+                  <div class="text-muted">2 分钟前</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 市场参考价 -->
+          <div class="card" style="margin:0 0 20px;">
+            <div class="card__title">📊 市场参考价</div>
+            <div style="font-size:12px; line-height:1.7;">
+              <div class="flex justify-between mb-8"><span>热轧 Q235B 4.0mm（华北）</span><strong>¥3,950 - ¥4,080</strong></div>
+              <div class="flex justify-between mb-8"><span>本单成本估算</span><strong style="color:var(--success);">¥3,980 ✓ 价优</strong></div>
+              <div class="flex justify-between mb-8"><span>预计议价空间</span><strong>¥20-30/吨</strong></div>
+              <div class="text-muted text-sm mt-12">数据来源：上钢联 + 平台成交</div>
+            </div>
+          </div>
+
+          <!-- 卖家列表 -->
+          <div class="card" style="margin:0;">
+            <div class="card__title">🏢 参与卖家 17</div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:12px;">
+              <div class="flex items-center justify-between"><span>🏆 天津荣昌</span><span class="text-success">已锁</span></div>
+              <div class="flex items-center justify-between"><span>唐山润成</span><span class="text-gold">已报</span></div>
+              <div class="flex items-center justify-between"><span>聊城金海</span><span class="text-gold">已报</span></div>
+              <div class="flex items-center justify-between"><span>河北鼎信</span><span class="text-gold">已报</span></div>
+              <div class="flex items-center justify-between"><span>天津 YY 钢铁</span><span class="text-gold">已报</span></div>
+              <div class="flex items-center justify-between text-muted"><span>... 还有 12 家</span><span>查看全部</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -138,6 +138,24 @@ backend/                              # ⭐ Java Spring Boot 微服务（NEW）
 ✓ Maven 编译验证通过（7 个核心模块全部 BUILD SUCCESS）
 ```
 
+
+### 08-技术交付物（PC 端 + 移动端原型）
+
+```
+docs/08-技术交付物/
+├── api/openapi.yaml             OpenAPI 3.0 (63 端点)
+├── db/01-schema.sql             MySQL DDL (33 张表)
+├── ui-prototype/                📱 移动端 H5 原型（v2.1 多规格）
+│   └── index.html               7 个页面
+├── ui-prototype-pc/             💻 PC 端原型（NEW v2.4）
+│   ├── buyer/                   买家 SaaS（5 个页面）
+│   ├── seller/                  卖家工作台（3 个页面）
+│   ├── admin/                   运营后台（1 个页面）
+│   └── index.html               PC 原型总入口
+├── test-cases/                  测试用例库
+└── ops/                         部署运维手册
+```
+
 ## 二、阅读建议（按角色）
 
 | 角色 | 必读 | 推荐 |
